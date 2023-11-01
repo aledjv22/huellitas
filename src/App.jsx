@@ -4,6 +4,7 @@ import MyAccount from './Pages/MyAccount';
 import NotFound from './Pages/NotFound';
 import SignIn from './Pages/SignIn';
 import SignUp from './Pages/SignUp';
+import NavBar from './Components/NavBar';
 
 const AppRoutes = () => {
   const base = 'huellitas';
@@ -12,7 +13,7 @@ const AppRoutes = () => {
     {path: base + '/my-account', element: <MyAccount />},
     {path: base + '/sign-in', element: <SignIn />},
     {path: base + '/sign-up', element: <SignUp />},
-    {path: base + '*', element: <NotFound />}
+    {path: base + '/*', element: <NotFound />}
   ]);
 
   return routes;
@@ -23,6 +24,7 @@ function App() {
   return (
     <BrowserRouter>
       <AppRoutes />
+      <NavBar />
     </BrowserRouter>
   )
 }
