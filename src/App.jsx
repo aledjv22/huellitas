@@ -1,4 +1,5 @@
 import { useRoutes, BrowserRouter } from 'react-router-dom';
+import { HuellitasProvider } from './Context';
 import Home from './Pages/Home';
 import MyAccount from './Pages/MyAccount';
 import NotFound from './Pages/NotFound';
@@ -23,8 +24,10 @@ function App() {
 
   return (
     <BrowserRouter>
-      <AppRoutes />
-      <NavBar />
+      <HuellitasProvider>
+        <AppRoutes />
+        <NavBar />
+      </HuellitasProvider>
     </BrowserRouter>
   )
 }
