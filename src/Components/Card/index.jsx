@@ -19,7 +19,7 @@ function Card({ pet }) {
         className='w-full h-48 object-cover'/>
         <div className='flex flex-col items-end w-8 mr-1 mt-1 absolute top-0 right-0'>
           <img 
-          src={pet.sex === 'Macho'? male : female} 
+          src={pet.sex.toLowerCase() === 'macho'? male : female} 
           alt='male' 
           className='w-full h-full mb-2 bg-[#fde6f9] p-[1px] rounded-md'/>
           <img 
