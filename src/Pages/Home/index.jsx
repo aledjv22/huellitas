@@ -4,14 +4,30 @@ import Card from '../../Components/Card';
 import { HuellitasContext } from '../../Context';
 
 function Home () {
-  const { pets } = React.useContext(HuellitasContext);
+  const { 
+    filteredPets,
+  } = React.useContext(HuellitasContext);
+
+  const renderView = () => {
+    if (filteredPets?.length > 0){
+      return (
+        filteredPets.map((pet) => (
+          <Card key={pet.id} pet={pet} />
+        ))
+      );
+    } else {
+      return (
+        <div>
+          No results found
+        </div>
+      );
+    }
+  }
 
   return (
     <Layout>
       <div className="flex flex-wrap justify-center gap-4">
-        {pets.map((pet) => (
-          <Card key={pet.id} pet={pet} />
-        ))}
+        {renderView()}
       </div>
     </Layout>
   );
