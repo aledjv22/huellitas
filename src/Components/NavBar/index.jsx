@@ -1,49 +1,58 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { HuellitasContext } from "../../Context";
+import Submenu from "../Submenu";
 
 function NavBar () {
   const { 
-    isLoggedIn, 
-    setSearchByType
+    isLoggedIn,
+    setSearchByType,
+    setSearchBySex
    } = React.useContext(HuellitasContext);
 
   const activeStyle = 'hover:underline hoverunderline-offset-4';
 
   return (
-    <nav className='flex justify-between items-center fixed z-10 top-0 w-full py-1 px-8 text-sm bg-[#fcb6ee] text-[#fcb6ee] h-11'>
+    <nav className='flex justify-between items-center fixed z-10 top-0 w-full h-11 py-1 px-8 text-sm text-[#86155f] bg-[#fcb6ee]'>
       <NavLink to='/huellitas/'
-      className={`${activeStyle} text-[#86155f]`}  >
+      className={activeStyle}
+      onClick={() => {
+        setSearchByType(null);
+        setSearchBySex(null);
+      }}
+      >
         Huellitas
       </NavLink>
 
       <ul className='flex items-center gap-3'>
         <NavLink to='/huellitas/'
-        onClick={() => setSearchByType(null)}
-        className={`${activeStyle} text-[#86155f]`}>
-          Todos
+        className={activeStyle}
+        onClick={() => {
+          setSearchByType(null);
+          setSearchBySex(null);
+        }}
+        >
+          Todos 
         </NavLink>
 
         <NavLink to='/huellitas/'
-        onClick={() => setSearchByType('Perro')}
-        className={`${activeStyle} text-[#86155f]`}>
-          Perros
+        className={activeStyle}>
+          <Submenu type='Perro' setSearchBySex={setSearchBySex} setSearchByType={setSearchByType}/>
         </NavLink>
 
         <NavLink to='/huellitas/'
-        onClick={() => setSearchByType('Gato')}
-        className={`${activeStyle} text-[#86155f]`}>
-          Gatos
+        className={activeStyle}>
+          <Submenu type='Gato' setSearchBySex={setSearchBySex} setSearchByType={setSearchByType}/>
         </NavLink>
 
         <NavLink to='/huellitas/'
         onClick={() => setSearchByType('Otro')}
-        className={`${activeStyle} text-[#86155f]`}>
+        className={activeStyle}>
           Otros
         </NavLink>
       </ul>
 
-      <ul className='flex items-center gap-3'>
+      <ul className='flex items-center gap-3 text-[#fcb6ee]'>
         <NavLink to='/huellitas/sign-up'
         className={`${!isLoggedIn ? activeStyle : 'hidden'} bg-[#a11370] p-1 rounded-xl`} >
           Sign Up
