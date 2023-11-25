@@ -67,12 +67,12 @@ function HuellitasProvider ({ children }) {
   return (
     <HuellitasContext.Provider value={{
       isLoggedIn, 
+      setIsLoggedIn,
       pets,
       filteredPets,
       setSearchByType,
       setSearchBySex,
-      setUsers,
-      API_URL
+      setUsers
     }}>
       {children}
     </HuellitasContext.Provider>
