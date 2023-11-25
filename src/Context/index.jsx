@@ -7,6 +7,7 @@ function HuellitasProvider ({ children }) {
   const [pets, setPets] = useState([]);
   const [searchByType, setSearchByType] = useState(null);
   const [searchBySex, setSearchBySex] = useState(null);
+  const [users, setUsers] = useState([]);
 
   const API_URL = 'https://db-huellitas-0308351800f8.herokuapp.com/api/v1';
 
@@ -14,6 +15,13 @@ function HuellitasProvider ({ children }) {
     fetch(`${API_URL}/pets`)
       .then(response => response.json())
       .then(data => setPets(data))
+      .catch(error => console.log(error));
+  },[]);
+
+  useEffect(() => {
+    fetch(`${API_URL}/users`)
+      .then(response => response.json())
+      .then(data => setUsers(data))
       .catch(error => console.log(error));
   },[]);
 
@@ -62,7 +70,9 @@ function HuellitasProvider ({ children }) {
       pets,
       filteredPets,
       setSearchByType,
-      setSearchBySex
+      setSearchBySex,
+      setUsers,
+      API_URL
     }}>
       {children}
     </HuellitasContext.Provider>
