@@ -8,6 +8,7 @@ function HuellitasProvider ({ children }) {
   const [searchByType, setSearchByType] = useState(null);
   const [searchBySex, setSearchBySex] = useState(null);
   const [users, setUsers] = useState([]);
+  const [userLogged, setUserLogged] = useState(null);
 
   const API_URL = 'https://db-huellitas-0308351800f8.herokuapp.com/api/v1';
 
@@ -72,7 +73,10 @@ function HuellitasProvider ({ children }) {
       filteredPets,
       setSearchByType,
       setSearchBySex,
-      setUsers
+      users,
+      setUsers,
+      userLogged,
+      setUserLogged
     }}>
       {children}
     </HuellitasContext.Provider>
