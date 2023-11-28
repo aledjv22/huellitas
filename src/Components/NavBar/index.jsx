@@ -10,7 +10,7 @@ function NavBar () {
     setSearchBySex
    } = React.useContext(HuellitasContext);
 
-  const activeStyle = 'hover:underline hoverunderline-offset-4';
+  const activeStyle = 'hover:underline hover:underline-offset-2';
 
   return (
     <nav className='flex justify-between items-center fixed z-10 top-0 w-full h-11 py-1 px-8 text-sm text-[#86155f] bg-[#fcb6ee]'>
