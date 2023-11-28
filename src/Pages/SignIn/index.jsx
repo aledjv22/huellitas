@@ -5,7 +5,10 @@ import Layout from "../../Components/Layout";
 import check from '../../Images/checkmark.svg';
 
 function SignIn () {
-  const { setIsLoggedIn } = useContext(HuellitasContext);
+  const { 
+    setIsLoggedIn,
+    setUserLogged
+  } = useContext(HuellitasContext);
 
   const styles = 'bg-transparent border-2 border-[#86155f] outline-[#f143c6] rounded-lg w-full px-2 py-1 mb-2';
   
@@ -29,6 +32,7 @@ function SignIn () {
       setLoginSuccess(true); 
       setIsLoggedIn(true);
       console.log(newUser);
+      setUserLogged(newUser);
     } else if (response.status === 401) {
       setIsEmailAndPasswordValid(false);
     }
