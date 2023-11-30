@@ -1,24 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { getUsers } from '../Utils/Users/getUsers';
+import { getPets } from '../Utils/Pets/getPets';
 
 const HuellitasContext = React.createContext();
 
 function HuellitasProvider ({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [pets, setPets] = useState([]);
   const [searchByType, setSearchByType] = useState(null);
   const [searchBySex, setSearchBySex] = useState(null);
   const [userLogged, setUserLogged] = useState(null);
 
   const API_URL = 'https://db-huellitas-0308351800f8.herokuapp.com/api/v1';
 
-  useEffect(() => {
-    fetch(`${API_URL}/pets`)
-      .then(response => response.json())
-      .then(data => setPets(data))
-      .catch(error => console.log(error));
-  },[]);
+  // get pets from API
+  const { pets } = getPets(API_URL);
 
+  // get users from API
   const { users } = getUsers(API_URL);
 
   // filtering section
@@ -69,7 +66,6 @@ function HuellitasProvider ({ children }) {
       setSearchByType,
       setSearchBySex,
       users,
-      // setUsers,
       userLogged,
       setUserLogged
     }}>
