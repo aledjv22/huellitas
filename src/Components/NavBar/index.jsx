@@ -11,7 +11,16 @@ function NavBar () {
     userLogged
   } = React.useContext(HuellitasContext);
 
-  let user = userLogged.user;
+  if (userLogged !== null) {
+    var user = userLogged.user;
+  } else {
+    var user = {
+      firstName: '',
+      lastName: '',
+      id: ''
+    }
+  }
+
   const activeStyle = 'hover:underline hover:underline-offset-2';
 
   return (
@@ -65,7 +74,8 @@ function NavBar () {
           Sign In
         </NavLink>
 
-        <NavLink to={`/huellitas/my-account/${user.firstName}${user.lastName}${user.id.slice(0, 5)}`}
+        <NavLink 
+        to={`/huellitas/my-account/${user.firstName}${user.lastName}${user.id.slice(0, 5)}`}
         className={`${isLoggedIn ? activeStyle : 'hidden'} bg-[#86155f] p-1 rounded-xl`}  >
           My Account
         </NavLink>
