@@ -1,41 +1,35 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { HuellitasContext } from '../../Context';
+import { useLoginUser } from '../../Utils/Users/loginUser';
 import Layout from "../../Components/Layout";
 import check from '../../Images/checkmark.svg';
 
 function SignIn () {
   const { 
     setIsLoggedIn,
-    setUserLogged
+    setUserLogged,
+    API_URL
   } = useContext(HuellitasContext);
 
-  const styles = 'bg-transparent border-2 border-[#86155f] outline-[#f143c6] rounded-lg w-full px-2 py-1 mb-2';
-  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loginSuccess, setLoginSuccess] = useState(false);
   const [isEmailAndPasswordValid, setIsEmailAndPasswordValid] = useState(true);
+  
+  const styles = 'bg-transparent border-2 border-[#86155f] outline-[#f143c6] rounded-lg w-full px-2 py-1 mb-2';
+  const loginUser = useLoginUser(API_URL);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch('https://db-huellitas-0308351800f8.herokuapp.com/api/v1/auth/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ 
-        email:email, 
-        password:password
-      })
-    });
-    if (response.ok) { 
-      const newUser = await response.json();
-      setLoginSuccess(true); 
-      setIsLoggedIn(true);
-      console.log(newUser);
-      setUserLogged(newUser);
-    } else if (response.status === 401) {
-      setIsEmailAndPasswordValid(false);
-    }
+    loginUser(
+      setIsLoggedIn,
+      setUserLogged,
+      setLoginSuccess, 
+      setIsEmailAndPasswordValid, 
+      email, 
+      password
+    );
   }
 
   const renderForm = () => {

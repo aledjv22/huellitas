@@ -67,7 +67,8 @@ function HuellitasProvider ({ children }) {
       setSearchBySex,
       users,
       userLogged,
-      setUserLogged
+      setUserLogged,
+      API_URL
     }}>
       {children}
     </HuellitasContext.Provider>
