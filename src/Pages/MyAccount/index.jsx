@@ -54,7 +54,7 @@ function MyAccount () {
           {
             isEditing ?
             null :
-            <UserData />
+            <UserData user={userLogged.user}/>
           }
         </div>
 

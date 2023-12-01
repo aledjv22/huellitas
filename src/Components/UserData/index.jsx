@@ -1,13 +1,6 @@
 import React from 'react';
-import { HuellitasContext } from '../../Context';
 
-function UserData () {
-  const {
-    userLogged
-  } = React.useContext(HuellitasContext);
-
-  let user = userLogged.user;
-
+function UserData ({ user }) {
   const userData = [];
   userData.push(
     ['Nombre:',user.firstName], 
