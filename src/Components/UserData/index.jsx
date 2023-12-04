@@ -1,13 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useGetUser } from '../../Utils/Users/getUser';
 
-function UserData ({ user }) {
-  const userData = [];
-  userData.push(
-    ['Nombre:',user.firstName], 
-    ['Apellido:',user.lastName], 
-    ['Correo:',user.email], 
-    ['Teléfono:',user.phone]
-  );
+function UserData ({ id, token, API_URL, setUserLogged }) {
+  const [userData, setUserData] = useState([]);
+  const getUser = useGetUser(API_URL);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const data = await getUser(id, token);
+      if (data) {
+        setUserLogged({ user: data.user, token });
+        setUserData([
+          ['Nombre:', data.user.firstName],
+          ['Apellido:', data.user.lastName],
+          ['Email:', data.user.email],
+        ]);
+      }
+    };
+
+    fetchUserData();
+  }, [id, token, getUser, setUserLogged]);
 
   return (
     <>

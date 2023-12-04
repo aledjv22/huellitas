@@ -63,7 +63,11 @@ function MyAccount () {
             setUserLogged={setUserLogged}
             /> 
             :
-            <UserData user={userLogged.user}/>
+            <UserData 
+            id={userLogged.user.id} 
+            token={userLogged.token}
+            API_URL={API_URL}
+            setUserLogged={setUserLogged}/>
           }
         </div>
 
