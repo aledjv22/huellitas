@@ -7,8 +7,6 @@ function UserEdition ({ users, user, setIsEditing, API_URL, userLogged, setUserL
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
-  {console.log('el token es:')}
-  {console.log(userLogged.token)}
   const patchUser = usePatchUser(API_URL);
 
   const isEmpty = (value) => {

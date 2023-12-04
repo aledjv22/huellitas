@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useGetUser } from '../../Utils/Users/getUser';
 
-function UserData ({ id, token, API_URL, setUserLogged }) {
-  const [userData, setUserData] = useState([]);
+function UserData ({ id, token, API_URL, userLogged, setUserLogged }) {
+  const [userData, setUserData] = useState([
+    ['Nombre:',userLogged.user.firstName],
+    ['Apellido:',userLogged.user.lastName],
+    ['Email:',userLogged.user.email],
+    ['Teléfono:',userLogged.user.phone]
+  ]);
   const getUser = useGetUser(API_URL);
 
   useEffect(() => {

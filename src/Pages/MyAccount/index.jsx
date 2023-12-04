@@ -27,7 +27,7 @@ function MyAccount () {
       </li>
 
       <li 
-      onClick={() => setIsEditing(!isEditing)} 
+      onClick={() => setIsEditing(true)} 
       className='my-1 px-2 hover:bg-[#f143c6]'
       >
         Editar Perfil:
@@ -67,6 +67,7 @@ function MyAccount () {
             id={userLogged.user.id} 
             token={userLogged.token}
             API_URL={API_URL}
+            userLogged={userLogged}
             setUserLogged={setUserLogged}/>
           }
         </div>
