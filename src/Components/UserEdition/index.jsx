@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { usePatchUser } from '../../Utils/Users/patchUser';
 
 function UserEdition ({ users, user, setIsEditing, API_URL, userLogged, setUserLogged }) {
   const styles = 'bg-transparent border-2 border-[#86155f] outline-[#f143c6] rounded-lg w-full px-2 py-1 mb-2';
@@ -8,6 +9,7 @@ function UserEdition ({ users, user, setIsEditing, API_URL, userLogged, setUserL
   const [email, setEmail] = useState('');
   {console.log('el token es:')}
   {console.log(userLogged.token)}
+  const patchUser = usePatchUser(API_URL);
 
   const isEmpty = (value) => {
     return value === '';
@@ -22,26 +24,17 @@ function UserEdition ({ users, user, setIsEditing, API_URL, userLogged, setUserL
 
   const saveEdit = async (e) => {
     e.preventDefault();
-    const response = await fetch(`${API_URL}/users/${user.id}`, {
-      method: 'PATCH',
-      headers: { 
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${userLogged.token}`
-      },
-      body: JSON.stringify({ 
-        firstName, 
-        lastName, 
-        email
-      })
-    });
-    if(response.ok) {
-      setUserLogged(null);
-      const user = users.find(user => user.id === userLogged.user.id);
-      setUserLogged({ user, token: userLogged.token });
-      setIsEditing(false);
-    } else {
-      console.log('Error');
-    }
+    await patchUser(
+      user.id, 
+      userLogged.token, 
+      isEmpty(firstName) ? user.firstName : firstName, 
+      isEmpty(lastName) ? user.lastName : lastName, 
+      isEmpty(email) ? user.email : email, 
+      users, 
+      userLogged, 
+      setUserLogged, 
+      setIsEditing
+    );
   }
 
   return (

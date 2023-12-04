@@ -1,12 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { HuellitasContext } from '../../Context';
+import { getUsers } from '../../Utils/Users/getUsers';
 import Layout from '../../Components/Layout';
 import Banner from '../../Components/Banner';
 import UserData from '../../Components/UserData';
 import UserEdition from '../../Components/UserEdition';
-
-import { getUsers } from '../../Utils/Users/getUsers';
 
 function MyAccount () {
   const {

@@ -4,25 +4,31 @@ export const usePatchUser = (API_URL) => {
     token,
     firstName,
     lastName,
-    email
+    email,
+    users,
+    userLogged,
+    setUserLogged,
+    setIsEditing,
   ) => {
     const response = await fetch(`${API_URL}/users/${id}`, {
       method: 'PATCH',
-      headers: {'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
       body: JSON.stringify({ 
         firstName,
         lastName,
         email
       })
     });
-    if (response.ok) { 
-      const newUser = await response.json();
-      setPatchSuccess(true); 
-      setIsLoggedIn(true);
-      console.log(newUser);
-      setUserLogged(newUser);
-    } else if (response.status === 401) {
-        setIsEmailAndPasswordValid(false);
+    if(response.ok) {
+      setUserLogged(null);
+      const user = users.find(user => user.id === userLogged.user.id);
+      setUserLogged({ user, token: userLogged.token });
+      setIsEditing(false);
+    } else {
+      console.log('Error');
     }
   };
 
