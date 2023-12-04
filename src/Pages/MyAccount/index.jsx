@@ -4,20 +4,24 @@ import { HuellitasContext } from '../../Context';
 import Layout from '../../Components/Layout';
 import Banner from '../../Components/Banner';
 import UserData from '../../Components/UserData';
+import UserEdition from '../../Components/UserEdition';
+
+import { getUsers } from '../../Utils/Users/getUsers';
 
 function MyAccount () {
   const {
     setIsLoggedIn,
     userLogged,
-    setUserLogged
+    setUserLogged,
+    API_URL,
   } = React.useContext(HuellitasContext);
-  
+
+  const { users } = getUsers(API_URL);
   const [isEditing, setIsEditing] = React.useState(false);
   
   const renderOptions = () => (
     <ul className='flex flex-col h-screen bg-[#f86ed9] font-medium text-base text-[#520538]'>
       <li 
-      onClick={() => setIsEditing(!isEditing)} 
       className='my-1 px-2 hover:bg-[#f143c6]'
       >
         Datos Personales:
@@ -50,10 +54,16 @@ function MyAccount () {
       <div className='flex justify-between w-full'>
         <div className='flex'>
           { renderOptions() }
-
           {
             isEditing ?
-            null :
+            <UserEdition users={users}
+            user={userLogged.user} 
+            setIsEditing={setIsEditing}
+            API_URL={API_URL}
+            userLogged={userLogged}
+            setUserLogged={setUserLogged}
+            /> 
+            :
             <UserData user={userLogged.user}/>
           }
         </div>
