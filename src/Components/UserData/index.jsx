@@ -23,9 +23,9 @@ function UserData ({ id, token, API_URL, userLogged, setUserLogged }) {
         ]);
       }
     };
-
+    
     fetchUserData();
-  }, [id, token, getUser, setUserLogged]);
+  }, []);
 
   return (
     <>
