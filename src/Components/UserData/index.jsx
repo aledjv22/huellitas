@@ -14,6 +14,7 @@ function UserData ({ id, token, API_URL, setUserLogged }) {
           ['Nombre:', data.user.firstName],
           ['Apellido:', data.user.lastName],
           ['Email:', data.user.email],
+          ['Teléfono:', data.user.phone],
         ]);
       }
     };
