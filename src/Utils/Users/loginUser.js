@@ -19,7 +19,6 @@ export const useLoginUser = (API_URL) => {
       const newUser = await response.json();
       setLoginSuccess(true); 
       setIsLoggedIn(true);
-      console.log(newUser);
       setUserLogged(newUser);
     } else if (response.status === 401) {
         setIsEmailAndPasswordValid(false);
