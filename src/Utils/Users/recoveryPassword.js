@@ -1,10 +1,5 @@
 export const useRecoveryPassword = (API_URL) => {
-  const recoveryPassword = async (
-    email,
-    setIsEmailSent,
-    setEmail,
-    setIsShortRequest
-  ) => {
+  const recoveryPassword = async (email, setEmail, setIsEmailSent, setIsShortRequest) => {
     const response = await fetch(`${API_URL}/auth/recovery`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json' },
