@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRecoveryPassword } from '../../Utils/Users/recoveryPassword';
 
-function PasswordRecoveryForm ({ API_URL, stylesInput, setIsRecorveringPassword }) {
+function PasswordRecoveryForm ({ API_URL, stylesInput, setIsRecorveringPassword, setLoginSuccess }) {
   const stylesButton = `bg-gradient-to-r from-[#e022a7] to-[#a11371] 
   hover:bg-gradient-to-r hover:to-[#e022a7] hover:from-[#a11371] 
   text-[#fccef4] font-bold rounded-lg w-[300px] mb-2 py-2`
@@ -48,7 +48,7 @@ function PasswordRecoveryForm ({ API_URL, stylesInput, setIsRecorveringPassword 
           Ingrese su correo:
         </label>
 
-        <input type='email' value={email}
+        <input type='email' value={email} required
         className={stylesInput} placeholder='Email'
         autoComplete='email' htmlFor='email' id='email'
         onChange={(e) => {
@@ -56,7 +56,7 @@ function PasswordRecoveryForm ({ API_URL, stylesInput, setIsRecorveringPassword 
           setEmail(e.target.value);
         }} />
 
-        <button type="submit"
+        <button type='submit'
         className={stylesButton}
         >
           Recuperar
