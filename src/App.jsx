@@ -6,6 +6,7 @@ import MyAccount from './Pages/MyAccount';
 import NotFound from './Pages/NotFound';
 import SignIn from './Pages/SignIn';
 import SignUp from './Pages/SignUp';
+import Recovery from './Pages/Recovery';
 import NavBar from './Components/NavBar';
 
 const AppRoutes = () => {
@@ -17,6 +18,8 @@ const AppRoutes = () => {
     {path: base + '/my-account/*', element: isLoggedIn ? <MyAccount /> : <NotFound />},
     {path: base + '/sign-in', element: <SignIn />},
     {path: base + '/sign-up', element: <SignUp />},
+    {path: base + '/recovery', element: <Recovery />},
+    {path: base + '/recovery/*', element: <Recovery />},
     {path: base + '/*', element: <NotFound />}
   ]);
 
