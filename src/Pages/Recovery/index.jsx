@@ -14,6 +14,7 @@ function Recovery () {
   const [newPassword, setNewPassword] = useState('');
   const [confirmedPassword, setConfirmedPassword] = useState('');
   const [token, setToken] = useState(null);
+  const [isPasswordChanged, setIsPasswordChanged] = useState(false);
 
   const stylesInput = `bg-transparent border-2 border-[#86155f] 
   outline-[#f143c6] rounded-lg w-full px-2 py-1 mb-2 placeholder:font-bold`;
@@ -58,8 +59,7 @@ function Recovery () {
       alert('Las contraseñas no coinciden');
       return;
     }
-    changePassword(newPassword, token, setNewPassword, setConfirmedPassword);
-    console.log('paso todo')
+    changePassword(newPassword, token, setNewPassword, setConfirmedPassword, setIsPasswordChanged);
   }
 
   const renderForm = () => {
@@ -92,11 +92,14 @@ function Recovery () {
   
   return (
     <Layout>
-      {
-      isLoggedIn?
-      renderSuccess()
+      {isLoggedIn? 
+      <div className='flex flex-col w-screen h-screen items-center justify-center'>
+        <h2 className='text-3xl font-bold text-[#86155f]'>
+        Ya estás logueado
+        </h2> 
+      </div>
       :
-      renderForm()
+      isPasswordChanged? renderSuccess() : renderForm()
       }
     </Layout>
   );

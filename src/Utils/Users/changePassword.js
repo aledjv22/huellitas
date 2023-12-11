@@ -1,5 +1,11 @@
 export const useChangePassword = (API_URL) => {
-  const changePassword = async (newPassword, token, setNewPassword, setConfirmedPassword) => {
+  const changePassword = async (
+    newPassword, 
+    token, 
+    setNewPassword, 
+    setConfirmedPassword, 
+    setIsPasswordChanged
+  ) => {
     const response = await fetch(`${API_URL}/auth/change-password`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
@@ -9,8 +15,7 @@ export const useChangePassword = (API_URL) => {
       })
     });
     if (response.ok) { 
-      // setIsPasswordChanged(true);
-      console.log('Password changed');
+      setIsPasswordChanged(true);
       setNewPassword('');
       setConfirmedPassword('');
     } else if (response.status === 401) {
