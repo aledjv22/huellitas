@@ -4,7 +4,7 @@ function Banner ({ photo }) {
       <img 
         src={ photo } 
         alt='Foto de perfil'
-        className='h-full rounded-full p-1'
+        className='h-[180px] w-[180px] rounded-full p-1'
       />
       <div></div>
     </figure>
