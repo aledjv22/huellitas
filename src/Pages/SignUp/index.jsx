@@ -1,13 +1,20 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { HuellitasContext } from '../../Context';
+import { useProfilePicture } from '../../Utils/Users/profilePicture';
+import { usePostUser } from '../../Utils/Users/postUser';
 import Layout from "../../Components/Layout";
 import check from '../../Images/checkmark.svg';
 
 function SignUp () {
-  const { setUsers } = useContext(HuellitasContext);
+  const { 
+    setUsers, 
+    API_URL 
+  } = useContext(HuellitasContext);
 
   const styles = 'bg-transparent border-2 border-[#86155f] outline-[#f143c6] rounded-lg w-full px-2 py-1 mb-2';
+  const stylesButton = `bg-gradient-to-r from-[#e022a7] to-[#a11371] hover:bg-gradient-to-r hover:to-[#e022a7] 
+  hover:from-[#a11371]  text-[#fccef4] font-bold rounded-lg w-[300px] mb-4 py-3`;
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -16,28 +23,30 @@ function SignUp () {
   const [role, setRole] = useState('');
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
   const [isEmailValid, setIsEmailValid] = useState(true);
+  const [profilePictureUrl, setProfilePictureUrl] = useState('');
+
+  const profilePicture = useProfilePicture();
+  const postUser = usePostUser(API_URL);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch('https://db-huellitas-0308351800f8.herokuapp.com/api/v1/users', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ 
-        firstName, 
-        lastName, 
-        email, 
-        password,
-        role
-         })
-    });
-    if (response.ok) { 
-      const newUser = await response.json();
-      setUsers(prevUsers => [...prevUsers, newUser]);
-      setRegistrationSuccess(true); 
-    } else if (response.status === 409) {
-      setIsEmailValid(false);
+    var userData = {
+      firstName,
+      lastName,
+      email,
+      password,
+      role
     }
+    if (profilePictureUrl !== '')
+      userData['image'] = profilePictureUrl;
+
+    await postUser( userData, setUsers, setRegistrationSuccess, setIsEmailValid);
   }
+
+  const handleImageUpload = async (event) => {
+    event.preventDefault();
+    profilePicture(event, setProfilePictureUrl);
+  };
 
   const renderForm = () => {
     return (
@@ -91,7 +100,15 @@ function SignUp () {
           className={styles}
           htmlFor='password' autoComplete='current-password'
           />
-  
+
+          <label htmlFor='profilePicture'>
+            Foto de perfil:
+          </label>
+          <input type='file' onChange={handleImageUpload} 
+          htmlFor='profilePicture' id='profilePicture' accept='.jpg, .jpeg'
+          className={`${styles} cursor-pointer hover:text-[#e022a7] file:hidden`}
+          />
+
           <label htmlFor='role'>
             Que busca?:
           </label>
@@ -110,9 +127,7 @@ function SignUp () {
           </select>
   
           <button type="submit"
-          className='bg-gradient-to-r from-[#e022a7] to-[#a11371] 
-          hover:bg-gradient-to-r hover:to-[#e022a7] hover:from-[#a11371] 
-          text-[#fccef4] font-bold rounded-lg w-[300px] mb-4 py-3'
+          className={stylesButton}
           >
             Crear cuenta
           </button>
@@ -127,9 +142,7 @@ function SignUp () {
         <h2 className='text-3xl font-bold text-[#86155f]'> Registro Exitoso </h2>
         <img src={check} alt="check" className='w-20 h-20 mb-4'/>
         <button
-          className='bg-gradient-to-r from-[#e022a7] to-[#a11371] 
-          hover:bg-gradient-to-r hover:to-[#e022a7] hover:from-[#a11371] 
-          text-[#fccef4] font-bold rounded-lg w-[300px] mb-4 py-3'
+          className={stylesButton}
           >
             <Link to='/huellitas/sign-in'>
               Inicia sesión
