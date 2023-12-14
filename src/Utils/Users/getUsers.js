@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 export const getUsers = (API_URL) => {
   const [users, setUsers] = useState([]);
@@ -10,5 +10,5 @@ export const getUsers = (API_URL) => {
       .catch(error => console.error(error));
   }, []);
 
-  return { users };
+  return { users, setUsers };
 }

@@ -16,7 +16,7 @@ function HuellitasProvider ({ children }) {
   const { pets } = getPets(API_URL);
 
   // get users from API
-  const { users } = getUsers(API_URL);
+  const { users, setUsers } = getUsers(API_URL);
 
   // filtering section
   const [filteredPets, setFilteredPets] = useState(null);
@@ -66,6 +66,7 @@ function HuellitasProvider ({ children }) {
       setSearchByType,
       setSearchBySex,
       users,
+      setUsers,
       userLogged,
       setUserLogged,
       API_URL
