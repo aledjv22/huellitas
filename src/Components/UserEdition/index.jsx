@@ -9,6 +9,7 @@ function UserEdition ({ users, user, setIsEditing, API_URL, userLogged, setUserL
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [profilePictureUrl, setProfilePictureUrl] = useState('');
+  const [phone, setPhone] = useState('');
 
   const patchUser = usePatchUser(API_URL);
   const profilePicture = useProfilePicture();
@@ -21,6 +22,8 @@ function UserEdition ({ users, user, setIsEditing, API_URL, userLogged, setUserL
     setFirstName('');
     setLastName('');
     setEmail('');
+    setProfilePictureUrl('');
+    setPhone('');
     setIsEditing(false);
   }
 
@@ -33,6 +36,7 @@ function UserEdition ({ users, user, setIsEditing, API_URL, userLogged, setUserL
       isEmpty(lastName) ? user.lastName : lastName, 
       isEmpty(email) ? user.email : email, 
       isEmpty(profilePictureUrl) ? user.image : profilePictureUrl,
+      isEmpty(phone) ? user.phone : phone,
       users, 
       userLogged, 
       setUserLogged, 
@@ -88,6 +92,16 @@ function UserEdition ({ users, user, setIsEditing, API_URL, userLogged, setUserL
         <input type='file' onChange={handleImageUpload}
         id='profilePicture' accept='.jpg, .jpeg'
         className={`${styles} cursor-pointer hover:text-[#e022a7] file:hidden`}/>
+
+        <label htmlFor='lastName'>
+          Teléfono:
+        </label>
+        <input type='text' value={phone}
+        onChange={(e) => setPhone(e.target.value)}
+        placeholder={user.phone}
+        className={styles} id='phone'
+        autoComplete='family-name'
+        />
 
         <div className='flex justify-between'>
           <button type='submit' 
