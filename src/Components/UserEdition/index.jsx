@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { useProfilePicture } from '../../Utils/Users/profilePicture';
 import { usePatchUser } from '../../Utils/Users/patchUser';
 
 function UserEdition ({ users, user, setIsEditing, API_URL, userLogged, setUserLogged }) {
@@ -7,7 +8,10 @@ function UserEdition ({ users, user, setIsEditing, API_URL, userLogged, setUserL
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
+  const [profilePictureUrl, setProfilePictureUrl] = useState('');
+
   const patchUser = usePatchUser(API_URL);
+  const profilePicture = useProfilePicture();
 
   const isEmpty = (value) => {
     return value === '';
@@ -28,12 +32,18 @@ function UserEdition ({ users, user, setIsEditing, API_URL, userLogged, setUserL
       isEmpty(firstName) ? user.firstName : firstName, 
       isEmpty(lastName) ? user.lastName : lastName, 
       isEmpty(email) ? user.email : email, 
+      isEmpty(profilePictureUrl) ? user.image : profilePictureUrl,
       users, 
       userLogged, 
       setUserLogged, 
       setIsEditing
     );
   }
+
+  const handleImageUpload = async (event) => {
+    event.preventDefault();
+    profilePicture(event, setProfilePictureUrl);
+  };
 
   return (
     <>
@@ -71,6 +81,13 @@ function UserEdition ({ users, user, setIsEditing, API_URL, userLogged, setUserL
         htmlFor='email' id='email'
         autoComplete='email'
         />
+
+        <label htmlFor='profilePicture'>
+          Foto de perfil:
+        </label>
+        <input type='file' onChange={handleImageUpload}
+        id='profilePicture' accept='.jpg, .jpeg'
+        className={`${styles} cursor-pointer hover:text-[#e022a7] file:hidden`}/>
 
         <div className='flex justify-between'>
           <button type='submit' 

@@ -5,6 +5,7 @@ export const usePatchUser = (API_URL) => {
     firstName,
     lastName,
     email,
+    image,
     users,
     userLogged,
     setUserLogged,
@@ -19,7 +20,8 @@ export const usePatchUser = (API_URL) => {
       body: JSON.stringify({ 
         firstName,
         lastName,
-        email
+        email,
+        image
       })
     });
     if(response.ok) {
