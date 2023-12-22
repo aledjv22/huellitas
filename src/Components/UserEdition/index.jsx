@@ -15,6 +15,8 @@ function UserEdition ({ users, user, setIsEditing, API_URL, userLogged, setUserL
   const [profilePictureUrl, setProfilePictureUrl] = useState('');
   const [phone, setPhone] = useState('');
   const [isChangingPassword, setIsChangingPassword] = useState('hidden');
+  const [message, setMessage] = useState('');
+  const [isCurrentPassword, setIsCurrentPassword] = useState(false);
 
   const patchUser = usePatchUser(API_URL);
   const profilePicture = useProfilePicture();
@@ -34,7 +36,20 @@ function UserEdition ({ users, user, setIsEditing, API_URL, userLogged, setUserL
   const saveEdit = async (e) => {
     e.preventDefault();
 
-    await changePasswordLocal(user.email ,currentPassword, newPassword);
+    if(!isEmpty(newPassword) && newPassword !== confirmNewPassword) 
+      return setMessage('Las contraseñas no coinciden');
+
+    if(!isEmpty(newPassword) && isEmpty(currentPassword))
+      return setMessage('Ingrese su contraseña actual');
+
+    if(newPassword.length < 8 || confirmNewPassword.length < 8)
+      return setMessage('La contraseña debe tener al menos 8 caracteres');
+
+    if(!isEmpty(newPassword) && newPassword === confirmNewPassword) {
+      await changePasswordLocal(user.email, currentPassword, newPassword, setIsCurrentPassword);
+      
+      if(!isCurrentPassword) return setMessage('Contraseña actual incorrecta');
+    }
 
     await patchUser(
       user.id, 
@@ -60,6 +75,9 @@ function UserEdition ({ users, user, setIsEditing, API_URL, userLogged, setUserL
     <>
       <form onSubmit={saveEdit}
       className='flex flex-col w-[300px] font-bold text-[#86155f] mx-2 mt-2'>
+        <p className='flex items-center justify-center text-[#e72323] text-lg'>
+          {message}
+        </p>
         <label htmlFor='firstName'>
           Nombre:
         </label>

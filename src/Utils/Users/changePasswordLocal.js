@@ -2,7 +2,8 @@ export const useChangePasswordLocal = (API_URL) => {
     const changePasswordLocal = async (
       email, 
       password,
-      newPassword
+      newPassword,
+      setIsCurrentPassword
     ) => {
       const response = await fetch(`${API_URL}/auth/change-password-local`, {
         method: 'POST',
@@ -14,9 +15,10 @@ export const useChangePasswordLocal = (API_URL) => {
         })
       });
       if (response.ok) {
-        console.log('ok');
+        setIsCurrentPassword(true);
       } else if (response.status === 401) {
         console.log('Error: Unauthorized');
+        setIsCurrentPassword(false);
       }
     };
   
