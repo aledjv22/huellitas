@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { useProfilePicture } from '../../Utils/Users/profilePicture';
 import { usePatchUser } from '../../Utils/Users/patchUser';
+import { useChangePasswordLocal } from '../../Utils/Users/changePasswordLocal';
 
 function UserEdition ({ users, user, setIsEditing, API_URL, userLogged, setUserLogged }) {
   const styles = 'bg-transparent border-2 border-[#86155f] outline-[#f143c6] rounded-lg w-full px-2 py-1 mb-2';
@@ -8,15 +9,18 @@ function UserEdition ({ users, user, setIsEditing, API_URL, userLogged, setUserL
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmNewPassword, setConfirmNewPassword] = useState('');
   const [profilePictureUrl, setProfilePictureUrl] = useState('');
   const [phone, setPhone] = useState('');
+  const [isChangingPassword, setIsChangingPassword] = useState('hidden');
 
   const patchUser = usePatchUser(API_URL);
   const profilePicture = useProfilePicture();
+  const changePasswordLocal = useChangePasswordLocal(API_URL);
 
-  const isEmpty = (value) => {
-    return value === '';
-  }
+  const isEmpty = (value) => value === '';
 
   const cancelEdit = () => {
     setFirstName('');
@@ -29,6 +33,9 @@ function UserEdition ({ users, user, setIsEditing, API_URL, userLogged, setUserL
 
   const saveEdit = async (e) => {
     e.preventDefault();
+
+    await changePasswordLocal(user.email ,currentPassword, newPassword);
+
     await patchUser(
       user.id, 
       userLogged.token, 
@@ -84,6 +91,44 @@ function UserEdition ({ users, user, setIsEditing, API_URL, userLogged, setUserL
         className={styles}
         htmlFor='email' id='email'
         autoComplete='email'
+        />
+
+        <label htmlFor='currentPassword'
+        className={isChangingPassword}
+        >
+          Contraseña actual:
+        </label>
+        <input type='password' value={currentPassword}
+        className={`${styles} ${isChangingPassword}`}
+        htmlFor='currentPassword' id='currentPassword'
+        autoComplete='current-password'
+        onChange={(e) => setCurrentPassword(e.target.value)}
+        />
+
+        <label htmlFor='newPassword'>
+          Nueva contraseña:
+        </label>
+        <input type='password' value={newPassword}
+        onChange={(e) => {
+          setNewPassword(e.target.value);
+          isEmpty(e.target.value) ? 
+          setIsChangingPassword('hidden') : 
+          setIsChangingPassword('');
+        }}
+        className={styles} 
+        htmlFor='newPassword' id='newPassword'
+        autoComplete='new-password'
+        />
+
+        <label htmlFor='confirmNewPassword' 
+        className={isChangingPassword}>
+          Confirmar nueva contraseña:
+        </label>
+        <input type='password' value={confirmNewPassword}
+        className={`${styles} ${isChangingPassword}`} 
+        htmlFor='confirmNewPassword' id='confirmNewPassword'
+        autoComplete='new-password'
+        onChange={(e) => setConfirmNewPassword(e.target.value)}
         />
 
         <label htmlFor='profilePicture'>
