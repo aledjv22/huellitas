@@ -42,7 +42,7 @@ function UserEdition ({ users, user, setIsEditing, API_URL, userLogged, setUserL
     if(!isEmpty(newPassword) && isEmpty(currentPassword))
       return setMessage('Ingrese su contraseña actual');
 
-    if(newPassword.length < 8 || confirmNewPassword.length < 8)
+    if(!isEmpty(newPassword) && (newPassword.length < 8 || confirmNewPassword.length < 8))
       return setMessage('La contraseña debe tener al menos 8 caracteres');
 
     if(!isEmpty(newPassword) && newPassword === confirmNewPassword) {
