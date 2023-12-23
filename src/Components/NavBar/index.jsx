@@ -77,7 +77,7 @@ function NavBar () {
         <NavLink 
         to={`/huellitas/my-account/${user.firstName}${user.lastName}${user.id.slice(0, 5)}`}
         className={`${isLoggedIn ? activeStyle : 'hidden'} bg-[#86155f] p-1 rounded-xl`}  >
-          My Account
+          Mi Cuenta
         </NavLink>
       </ul>
     </nav>
