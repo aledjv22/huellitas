@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Layout from '../../Components/Layout';
 import Card from '../../Components/Card';
 import { HuellitasContext } from '../../Context';
@@ -12,7 +13,9 @@ function Home () {
     if (filteredPets?.length > 0){
       return (
         filteredPets.map((pet) => (
-          <Card key={pet.id} pet={pet} />
+          <Link to={`pet/${pet.id}`} key={pet.id}>
+            <Card key={pet.id} pet={pet} />
+          </Link>
         ))
       );
     } else {
