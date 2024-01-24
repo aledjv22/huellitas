@@ -1,36 +1,64 @@
-import React from 'react';
+import heart from '../../Images/heart.svg';
+import paw from '../../Images/paw.svg';
 import male from '../../Images/male.svg';
 import female from '../../Images/female.svg';
-import vaccinated from '../../Images/vaccinated.svg';
-import unvaccinated from '../../Images/unvaccinated.svg';
 
 function Card({ pet }) {
+  const iconSex =  () => {
+    return (
+      <img
+      src={pet.sex=== 'Macho'? male : female}
+      alt='icono de sexo'
+      className='h-10 absolute top-1 right-2 p-1 rounded-xl'
+      style={{backgroundColor: 'rgba(252, 182, 238, 0.75)'}}
+      />
+    );
+  }
+
+  const iconState = () => {
+    return (
+      <img src={pet.state === 'En adopción' ? heart : paw} 
+      alt='icono del estado' 
+      className='h-[15px] mr-1'/>
+    );
+  }
+
   return (
     <div
-      className='w-64 h-[264px] bg-[#f86ed9] rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 ease-in-out mt-2'
+      className={`w-[258px] h-[463px]  bg-[#f86ed9] rounded-lg shadow-lg overflow-hidden transform 
+      hover:scale-105 transition-transform duration-300 ease-in-out mt-4`}
     >
-      <div className="px-4 py-1 flex justify-center">
-        <h2 className="text-2xl font-bold text-[#a11370]">{pet.name}</h2>
-      </div>
-      <div style={{position: 'relative'}}>
+      <h2 className='flex justify-center text-2xl font-bold text-[#a11370]'>
+        {pet.name}
+      </h2>
+      
+      <div className='relative'>
         <img
-        src={pet.image}
-        alt={pet.name}
-        className='w-full h-48 object-cover'/>
-        <div className='flex flex-col items-end w-8 mr-1 mt-1 absolute top-0 right-0'>
-          <img 
-          src={pet.sex.toLowerCase() === 'macho'? male : female} 
-          alt='male' 
-          className='w-full h-full mb-2 bg-[#fde6f9] p-[1px] rounded-md'/>
-          <img 
-          src={pet.vaccinated !== 'Desconocido'? vaccinated : unvaccinated} 
-          alt='female'
-          className='w-full h-full bg-[#fde6f9] p-[1px] rounded-md'/>
-        </div>
+        src={pet.main_image}
+        alt={`Imagen de ${pet.name}`}
+        className='w-full h-[258px] object-cover'/>
+        <span className={`flex items-center justify-center px-1 ml-2 mb-1 
+        text-[#86155f] font-bold w-[120px] rounded-lg absolute bottom-0 left-0`} 
+        style={{backgroundColor: 'rgba(252, 182, 238, 0.75)'}}>
+          {iconState()}
+          {pet.state}
+        </span>
+        {iconSex()}
       </div>
-      <p className='bg-[#a11370] px-4 py-1 text-[#fde6f9] flex justify-center'>
-        <span className="font-bold">{pet.state}</span>
-      </p>
+
+      <div className='flex flex-col px-2 font-bold mt-2 text-[#86155f]'>
+        {pet.age} - {pet.sex}
+        
+        <span style={{ display: '-webkit-box', WebkitBoxOrient: 'vertical'}}
+        className='hidden text-ellipsis line-clamp-[4] boxw font-semibold'>
+          {pet.description}
+        </span>
+      </div>
+
+      <div className='flex justify-center items-center font-bold h-[45px] text-[#86155f] absolute bottom-0 w-full'
+        style={{backgroundColor: 'rgba(161, 19, 112, 0.35)'}}>
+          Ver más información
+      </div>
     </div>
   );
 }
