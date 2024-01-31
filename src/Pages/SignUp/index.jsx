@@ -19,29 +19,44 @@ function SignUp () {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState(null);
+  const [foundation, setFoundation] = useState(null);
+  const [location, setLocation] = useState(null);
+  const [alias, setAlias] = useState(null);
+  const [cbuCvu, setCbuCvu] = useState(null);
+  const [urlDonation, setUrlDonation] = useState(null);
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('');
+  const [role, setRole] = useState('particular');
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
   const [isEmailValid, setIsEmailValid] = useState(true);
   const [profilePictureUrl, setProfilePictureUrl] = useState('');
+  const [isFoundation, setIsFoundation] = useState(false);
 
   const profilePicture = useProfilePicture();
   const postUser = usePostUser(API_URL);
 
+  const createUserData = () => ({
+    firstName,
+    lastName,
+    email,
+    password,
+    role,
+    ...(profilePictureUrl !== '' && { image: profilePictureUrl }),
+    ...(phone !== null && { phone }),
+    ...(role === 'foundation' && {
+      foundation,
+      location,
+      ...(alias !== null && { alias }),
+      ...(cbuCvu !== null && { cbuCvu }),
+      ...(urlDonation !== null && { urlDonation }),
+    })
+  });
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    var userData = {
-      firstName,
-      lastName,
-      email,
-      password,
-      role
-    }
-    if (profilePictureUrl !== '')
-      userData['image'] = profilePictureUrl;
-
-    await postUser( userData, setUsers, setRegistrationSuccess, setIsEmailValid);
-  }
+    const userData = createUserData();
+    await postUser(userData, setUsers, setRegistrationSuccess, setIsEmailValid);
+  };
 
   const handleImageUpload = async (event) => {
     event.preventDefault();
@@ -58,8 +73,9 @@ function SignUp () {
         <form className='flex flex-col w-[300px] font-bold text-[#86155f]'
         onSubmit={handleSubmit}
         >
-          <label htmlFor="firstName">
-            Nombre:
+          <label htmlFor="firstName" className='flex'> 
+            Nombre: 
+            <div className='ml-1 text-[#FF0000]'> * </div>
           </label>
           <input type="text" value={firstName} 
           onChange={(e) => setFirstName(e.target.value)} 
@@ -68,8 +84,9 @@ function SignUp () {
           htmlFor='firstName' id='firstName'
           />
           
-          <label htmlFor="lastName">
-            Apellido:
+          <label htmlFor="lastName" className='flex'>
+            Apellido: 
+            <div className='ml-1 text-[#FF0000]'> * </div>
           </label>
           <input type="text" value={lastName} 
           onChange={(e) => setLastName(e.target.value)} 
@@ -78,8 +95,9 @@ function SignUp () {
           htmlFor='lastName' id='lastName'
           />
   
-          <label htmlFor="email">
+          <label htmlFor="email" className='flex'>
             Correo: {isEmailValid ? '' : 'Correo ya registrado'}
+            <div className='ml-1 text-[#FF0000]'> * </div>
           </label>
           <input type="email" value={email} 
           onChange={(e) => {
@@ -91,13 +109,14 @@ function SignUp () {
           htmlFor='email' autoComplete='email' 
           />
   
-          <label htmlFor="password">
+          <label htmlFor="password" className='flex'>
             Contraseña:
+            <div className='ml-1 text-[#FF0000]'> * </div>
           </label>
           <input type="password" value={password} 
           onChange={(e) => setPassword(e.target.value)} 
           placeholder="******" required id='password'
-          className={styles}
+          className={styles} minLength={8}
           htmlFor='password' autoComplete='current-password'
           />
 
@@ -109,23 +128,82 @@ function SignUp () {
           className={`${styles} cursor-pointer hover:text-[#e022a7] file:hidden`}
           />
 
-          <label htmlFor='role'>
-            Que busca?:
+          <label htmlFor='phone'>
+            Teléfono:
+          </label>
+          <input type='tel'
+          onChange={(e) => setPhone(e.target.value)}
+          placeholder='351xxxxxx7' id='phone'
+          className={styles}
+          htmlFor='phone' autoComplete='tel'
+          />
+
+          <label htmlFor='role' className='flex'>
+            Representa una fundación?:
+            <div className='ml-1 text-[#FF0000]'> * </div>
           </label>
           <select htmlFor="role"  id='role' required
           className={styles}
           onChange={(e) => {
-            if (e.target.value !== 'null')
+            if (e.target.value !== '') {
               setRole(e.target.value);
+              setIsFoundation(e.target.value === 'foundation');
+            }
           }}
           >
-            <option value="null">--Seleccione--</option>
-            <option value="transit">Ser tránsito</option>
-            <option value="shelter">Adoptar</option>
-            <option value="transitAndShelter">Ser tránsito y adoptar</option>
-            <option value="giveAdoption">Dar en adopción</option>
+            <option value="">--Seleccione--</option>
+            <option value="foundation">Si</option>
+            <option value="particular">No</option>
           </select>
-  
+
+          {isFoundation && (
+            <>
+              <label htmlFor='fundationName' className='flex'>
+                Nombre de la fundación:
+                <div className='ml-1 text-[#FF0000]'> * </div>
+              </label>
+              <input type='text' id='fundationName' required
+              onChange={(e) => setFoundation(e.target.value)}
+              className={styles}
+              htmlFor='fundationName' autoComplete='organization'
+              />
+
+              <label htmlFor='fundationLocation' className='flex'>
+                Ubicación:
+                <div className='ml-1 text-[#FF0000]'> * </div>
+              </label>
+              <input type='text' id='fundationLocation' required
+              onChange={(e) => setLocation(e.target.value)}
+              className={styles}
+              htmlFor='fundationLocation' autoComplete='address'
+              />
+
+              <label htmlFor='alias'>
+                Alias:
+              </label>
+              <input type='text' id='alias' htmlFor='alias'
+              onChange={(e) => setAlias(e.target.value)}
+              className={styles}
+              />
+
+              <label htmlFor='cbuCvu'>
+                CBU/CVU:
+              </label>
+              <input type='text' id='cbuCvu' htmlFor='cbuCvu'
+              onChange={(e) => setCbuCvu(e.target.value)}
+              className={styles}
+              />
+
+              <label htmlFor='urlDonation'>
+                URL de donación:
+              </label>
+              <input type='url' id='urlDonation' htmlFor='urlDonation'
+              onChange={(e) => setUrlDonation(e.target.value)}
+              className={styles}
+              />
+            </>
+          )}
+
           <button type="submit"
           className={stylesButton}
           >
