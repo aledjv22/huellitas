@@ -1,26 +1,35 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useGetUser } from '../../Utils/Users/getUser';
 
 function UserData ({ id, token, API_URL, userLogged, setUserLogged }) {
-  const [userData, setUserData] = useState([
-    ['Nombre:',userLogged.user.firstName],
-    ['Apellido:',userLogged.user.lastName],
-    ['Email:',userLogged.user.email],
-    ['Teléfono:',userLogged.user.phone]
-  ]);
-  const getUser = useGetUser(API_URL);
+  const createUserData = () => {
+    const values = ['firstName', 'lastName', 'email', 'phone', 'role', 'foundation', 
+    'location', 'alias', 'cbuCvu', 'urlDonation'];
 
+    const datas = ['Nombre', 'Apellido', 'Email', 'Teléfono', 'Rol', 'Fundación',
+    'Ubicación', 'Alias', 'CBU/CVU', 'URL de donación'];
+
+    const data = [];
+    for (let i = 0; i < values.length; i++) {
+      if(userLogged[values[i]] === 'particular')
+        break;
+
+      if (userLogged[values[i]] !== null) {
+        data.push([datas[i] + ':', userLogged[values[i]]]);
+      }
+    }
+
+    return data;
+  };
+
+  const [userData, setUserData] = useState(createUserData);
+  const getUser = useGetUser(API_URL);
   useEffect(() => {
     const fetchUserData = async () => {
-      const data = await getUser(id, token);
-      if (data) {
-        setUserLogged({ user: data.user, token });
-        setUserData([
-          ['Nombre:', data.user.firstName],
-          ['Apellido:', data.user.lastName],
-          ['Email:', data.user.email],
-          ['Teléfono:', data.user.phone],
-        ]);
+      const { user } = await getUser(id, token);
+      if (user) {
+        setUserLogged({ user, token });
+        setUserData(createUserData());
       }
     };
     

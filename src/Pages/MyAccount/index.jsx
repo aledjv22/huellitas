@@ -1,4 +1,4 @@
-import React from 'react';
+import {useContext, useState} from 'react';
 import { Link } from 'react-router-dom';
 import { HuellitasContext } from '../../Context';
 import { getUsers } from '../../Utils/Users/getUsers';
@@ -13,10 +13,10 @@ function MyAccount () {
     userLogged,
     setUserLogged,
     API_URL,
-  } = React.useContext(HuellitasContext);
+  } = useContext(HuellitasContext);
 
   const { users } = getUsers(API_URL);
-  const [isEditing, setIsEditing] = React.useState(false);
+  const [isEditing, setIsEditing] = useState(false);
   
   const renderOptions = () => (
     <ul className='flex flex-col h-screen bg-[#f86ed9] font-medium text-base text-[#520538]'>
@@ -67,7 +67,7 @@ function MyAccount () {
             id={userLogged.user.id} 
             token={userLogged.token}
             API_URL={API_URL}
-            userLogged={userLogged}
+            userLogged={userLogged.user}
             setUserLogged={setUserLogged}/>
           }
         </div>
