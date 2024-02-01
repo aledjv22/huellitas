@@ -128,13 +128,14 @@ function SignUp () {
           className={`${styles} cursor-pointer hover:text-[#e022a7] file:hidden`}
           />
 
-          <label htmlFor='phone'>
+          <label htmlFor='phone' className='flex'>
             Teléfono:
+            {isFoundation && <div className='ml-1 text-[#FF0000]'> * </div>}
           </label>
           <input type='tel'
           onChange={(e) => setPhone(e.target.value)}
           placeholder='351xxxxxx7' id='phone'
-          className={styles}
+          className={styles} required={isFoundation}
           htmlFor='phone' autoComplete='tel'
           />
 

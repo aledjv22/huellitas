@@ -66,12 +66,12 @@ function NavBar () {
       <ul className='flex items-center gap-3 text-[#fcb6ee]'>
         <NavLink to='/huellitas/sign-up'
         className={`${!isLoggedIn ? activeStyle : 'hidden'} bg-[#a11370] p-1 rounded-xl`} >
-          Creá tu cuenta
+          Registrarse
         </NavLink>
 
         <NavLink to='/huellitas/sign-in'
         className={`${!isLoggedIn ? activeStyle : 'hidden'} bg-[#86155f] p-1 rounded-xl`} >
-          Ingresá
+          Ingresar
         </NavLink>
 
         <NavLink 
