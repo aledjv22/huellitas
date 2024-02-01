@@ -1,4 +1,4 @@
-import React from 'react';
+import { useContext } from 'react';
 import { useRoutes, BrowserRouter } from 'react-router-dom';
 import { HuellitasProvider, HuellitasContext } from './Context';
 import Home from './Pages/Home';
@@ -11,7 +11,7 @@ import PetDetail from './Pages/PetDetail';
 import NavBar from './Components/NavBar';
 
 const AppRoutes = () => {
-  const { isLoggedIn } = React.useContext(HuellitasContext);
+  const { isLoggedIn } = useContext(HuellitasContext);
   const base = 'huellitas';
   let routes = useRoutes([
     {path: base, element: <Home />},

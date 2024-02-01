@@ -20,8 +20,8 @@ function Home () {
       );
     } else {
       return (
-        <div>
-          No results found
+        <div className='mt-2 text-[#86155f] font-bold text-xl'>
+          No se han encontrado resultados
         </div>
       );
     }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import down from '../../Images/down-arrow.svg';
 import triangle from '../../Images/nav-triangle.svg';
 

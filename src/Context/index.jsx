@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, createContext } from 'react';
 import { getUsers } from '../Utils/Users/getUsers';
 import { getPets } from '../Utils/Pets/getPets';
 
-const HuellitasContext = React.createContext();
+const HuellitasContext = createContext();
 
 function HuellitasProvider ({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
