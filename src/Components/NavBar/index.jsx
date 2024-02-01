@@ -1,4 +1,4 @@
-import React from "react";
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { HuellitasContext } from "../../Context";
 import Submenu from "../Submenu";
@@ -9,7 +9,7 @@ function NavBar () {
     setSearchByType,
     setSearchBySex,
     userLogged
-  } = React.useContext(HuellitasContext);
+  } = useContext(HuellitasContext);
 
   if (userLogged !== null) {
     var user = userLogged.user;
@@ -66,12 +66,12 @@ function NavBar () {
       <ul className='flex items-center gap-3 text-[#fcb6ee]'>
         <NavLink to='/huellitas/sign-up'
         className={`${!isLoggedIn ? activeStyle : 'hidden'} bg-[#a11370] p-1 rounded-xl`} >
-          Sign Up
+          Creá tu cuenta
         </NavLink>
 
         <NavLink to='/huellitas/sign-in'
         className={`${!isLoggedIn ? activeStyle : 'hidden'} bg-[#86155f] p-1 rounded-xl`} >
-          Sign In
+          Ingresá
         </NavLink>
 
         <NavLink 
