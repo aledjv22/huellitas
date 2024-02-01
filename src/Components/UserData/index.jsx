@@ -34,7 +34,7 @@ function UserData ({ id, token, API_URL, userLogged, setUserLogged }) {
     };
     
     fetchUserData();
-  }, []);
+  }, [userLogged]);
 
   return (
     <>
