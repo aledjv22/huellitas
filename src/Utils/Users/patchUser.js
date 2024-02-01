@@ -2,29 +2,20 @@ export const usePatchUser = (API_URL) => {
   const patchUser = async (
     id,
     token,
-    firstName,
-    lastName,
-    email,
-    image,
-    phone,
+    userData,
     users,
     userLogged,
     setUserLogged,
     setIsEditing,
   ) => {
+    console.log('userData:', userData)
     const response = await fetch(`${API_URL}/users/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
       },
-      body: JSON.stringify({ 
-        firstName,
-        lastName,
-        image,
-        email,
-        phone
-      })
+      body: JSON.stringify(userData)
     });
     if(response.ok) {
       setUserLogged(null);
@@ -33,6 +24,7 @@ export const usePatchUser = (API_URL) => {
       setIsEditing(false);
     } else {
       console.log('Error');
+      console.log(response);
     }
   };
 
