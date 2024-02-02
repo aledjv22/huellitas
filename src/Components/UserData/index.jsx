@@ -11,12 +11,12 @@ function UserData ({ id, token, API_URL, userLogged, setUserLogged }) {
 
     const data = [];
     for (let i = 0; i < values.length; i++) {
-      if(userLogged[values[i]] === 'particular')
-        break;
+      if(userLogged[values[i]] === 'particular') break;
 
-      if (userLogged[values[i]] !== null) {
+      if(userLogged[values[i]] === 'foundation') continue;
+
+      if (userLogged[values[i]] !== null) 
         data.push([datas[i] + ':', userLogged[values[i]]]);
-      }
     }
 
     return data;
