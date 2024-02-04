@@ -8,7 +8,6 @@ export const usePatchUser = (API_URL) => {
     setUserLogged,
     setIsEditing,
   ) => {
-    console.log('userData:', userData)
     const response = await fetch(`${API_URL}/users/${id}`, {
       method: 'PATCH',
       headers: {
