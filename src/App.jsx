@@ -8,6 +8,7 @@ import SignIn from './Pages/SignIn';
 import SignUp from './Pages/SignUp';
 import Recovery from './Pages/Recovery';
 import PetDetail from './Pages/PetDetail';
+import PetRegister from './Pages/PetRegister';
 import NavBar from './Components/NavBar';
 
 const AppRoutes = () => {
@@ -22,6 +23,7 @@ const AppRoutes = () => {
     {path: base + '/recovery', element: <NotFound />},
     {path: base + '/recovery/*', element: <Recovery />},
     {path: base + '/pet/', element: <NotFound />},
+    {path: base + '/pet/register', element: <PetRegister />},
     {path: base + '/pet/*', element: <PetDetail />},
     {path: base + '/*', element: <NotFound />}
   ]);
