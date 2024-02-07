@@ -12,7 +12,7 @@ function SignUp () {
     API_URL 
   } = useContext(HuellitasContext);
 
-  const styles = 'bg-transparent border-2 border-[#86155f] outline-[#f143c6] rounded-lg w-full px-2 py-1 mb-2';
+  const stylesInput = 'bg-transparent border-2 border-[#86155f] outline-[#f143c6] rounded-lg w-full px-2 py-1 mb-2';
   const stylesButton = `bg-gradient-to-r from-[#e022a7] to-[#a11371] hover:bg-gradient-to-r hover:to-[#e022a7] 
   hover:from-[#a11371]  text-[#fccef4] font-bold rounded-lg w-[300px] mb-4 py-3`;
 
@@ -80,7 +80,7 @@ function SignUp () {
           <input type="text" value={firstName} 
           onChange={(e) => setFirstName(e.target.value)} 
           placeholder="Ingresa tu nombre" required
-          className={styles}
+          className={stylesInput}
           htmlFor='firstName' id='firstName'
           />
           
@@ -91,7 +91,7 @@ function SignUp () {
           <input type="text" value={lastName} 
           onChange={(e) => setLastName(e.target.value)} 
           placeholder="Ingresa tu apellido" required 
-          className={styles}
+          className={stylesInput}
           htmlFor='lastName' id='lastName'
           />
   
@@ -105,7 +105,7 @@ function SignUp () {
             setIsEmailValid(true);
           }} 
           placeholder="ejemplo@email.com" required id='email'
-          className={styles}
+          className={stylesInput}
           htmlFor='email' autoComplete='email' 
           />
   
@@ -116,7 +116,7 @@ function SignUp () {
           <input type="password" value={password} 
           onChange={(e) => setPassword(e.target.value)} 
           placeholder="******" required id='password'
-          className={styles} minLength={8}
+          className={stylesInput} minLength={8}
           htmlFor='password' autoComplete='current-password'
           />
 
@@ -125,7 +125,7 @@ function SignUp () {
           </label>
           <input type='file' onChange={handleImageUpload} 
           htmlFor='profilePicture' id='profilePicture' accept='.jpg, .jpeg'
-          className={`${styles} cursor-pointer hover:text-[#e022a7] file:hidden`}
+          className={`${stylesInput} cursor-pointer hover:text-[#e022a7] file:hidden`}
           />
 
           <label htmlFor='phone' className='flex'>
@@ -135,7 +135,7 @@ function SignUp () {
           <input type='tel'
           onChange={(e) => setPhone(e.target.value)}
           placeholder='351xxxxxx7' id='phone'
-          className={styles} required={isFoundation}
+          className={stylesInput} required={isFoundation}
           htmlFor='phone' autoComplete='tel'
           />
 
@@ -144,7 +144,7 @@ function SignUp () {
             <div className='ml-1 text-[#FF0000]'> * </div>
           </label>
           <select htmlFor="role"  id='role' required
-          className={styles}
+          className={stylesInput}
           onChange={(e) => {
             if (e.target.value !== '') {
               setRole(e.target.value);
@@ -165,7 +165,7 @@ function SignUp () {
               </label>
               <input type='text' id='fundationName' required
               onChange={(e) => setFoundation(e.target.value)}
-              className={styles}
+              className={stylesInput}
               htmlFor='fundationName' autoComplete='organization'
               />
 
@@ -175,7 +175,7 @@ function SignUp () {
               </label>
               <input type='text' id='fundationLocation' required
               onChange={(e) => setLocation(e.target.value)}
-              className={styles}
+              className={stylesInput}
               htmlFor='fundationLocation' autoComplete='address'
               />
 
@@ -184,7 +184,7 @@ function SignUp () {
               </label>
               <input type='text' id='alias' htmlFor='alias'
               onChange={(e) => setAlias(e.target.value)}
-              className={styles}
+              className={stylesInput}
               />
 
               <label htmlFor='cbuCvu'>
@@ -192,7 +192,7 @@ function SignUp () {
               </label>
               <input type='text' id='cbuCvu' htmlFor='cbuCvu'
               onChange={(e) => setCbuCvu(e.target.value)}
-              className={styles}
+              className={stylesInput}
               />
 
               <label htmlFor='urlDonation'>
@@ -200,7 +200,7 @@ function SignUp () {
               </label>
               <input type='url' id='urlDonation' htmlFor='urlDonation'
               onChange={(e) => setUrlDonation(e.target.value)}
-              className={styles}
+              className={stylesInput}
               />
             </>
           )}
@@ -228,7 +228,7 @@ function SignUp () {
             </Link>
           </button>
       </div>
-    )
+    );
   }
 
   return (
