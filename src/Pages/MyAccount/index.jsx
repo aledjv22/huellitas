@@ -37,16 +37,27 @@ function MyAccount () {
   
   const renderOptions = () => (
     <ul className='flex flex-col min-h-screen w-[144px] bg-[#f86ed9] font-medium text-base text-[#520538]'>
-      <li className={styleOptions}>
+      <li className={styleOptions}
+      onClick={() => {
+        setIsWatchingPets(false);
+        setIsEditing(false);
+      }}>
         Datos Personales:
       </li>
 
       <li className={styleOptions}
-      onClick={() => setIsEditing(true)} >
+      onClick={() => {
+        setIsWatchingPets(false);
+        setIsEditing(true);
+      }} >
         Editar Perfil:
       </li>
 
-      <li className={styleOptions}>
+      <li className={styleOptions}
+      onClick={() => {
+        setIsWatchingPets(true);
+        setIsEditing(false);
+      }}>
         Mis Mascotas:
       </li>
 
@@ -71,20 +82,29 @@ function MyAccount () {
         <div className='flex flex-grow'>
           { renderOptions() }
 
-          { !isWatchingPets && 
+          { 
+            !isEditing && !isWatchingPets &&
+            <UserData 
+            id={userLogged.user.id} 
+            token={userLogged.token}
+            API_URL={API_URL}
+            userLogged={userLogged.user}
+            setUserLogged={setUserLogged}/>
+          }
+
+          { 
+            isWatchingPets && 
             <div className='px-2 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 justify-items-center flex-grow'>
-              {
-                myPets.map(pet => (
+              {myPets.map(pet => (
                   <Link to={`/huellitas/pet/${pet.id}`} key={pet.id}>
                     <Card pet={pet} key={pet.id}/>
                   </Link>
-                ))
-              }
+                ))}
             </div>
           }
 
-          {/* {
-            isEditing ?
+          {
+            isEditing &&
             <UserEdition users={users}
             user={userLogged.user} 
             setIsEditing={setIsEditing}
@@ -92,14 +112,8 @@ function MyAccount () {
             userLogged={userLogged}
             setUserLogged={setUserLogged}
             /> 
-            :
-            <UserData 
-            id={userLogged.user.id} 
-            token={userLogged.token}
-            API_URL={API_URL}
-            userLogged={userLogged.user}
-            setUserLogged={setUserLogged}/>
-          } */}
+          }
+
         </div>
 
         <div></div>
