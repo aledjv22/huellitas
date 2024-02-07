@@ -4,6 +4,7 @@ export const usePostPet = (API_URL) => {
     token,
     setPets,
     setRegistrationSuccess,
+    setId
   ) => {
     const response = await fetch(`${API_URL}/pets`, {
       method: 'POST',
@@ -16,6 +17,7 @@ export const usePostPet = (API_URL) => {
     if (response.ok) { 
       const newPet = await response.json();
       setPets(prevPets => [...prevPets, newPet]);
+      setId(newPet.id);
       setRegistrationSuccess(true); 
     } else {
       console.error('Error al crear la mascota:', response.statusText);

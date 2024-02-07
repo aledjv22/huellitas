@@ -1,5 +1,5 @@
-export const usePostImage = () => {
-  const postImage = async (event, setImageUrl) => {
+export const usePostMainImage = () => {
+  const postMainImage = async (event, setMainImage) => {
     const imageFile = event.target.files[0];
 
     if (!imageFile.type.startsWith('image/jpeg')) {
@@ -19,11 +19,11 @@ export const usePostImage = () => {
     if (response.ok) {
       const json = await response.json();
       const imageUrl = json.data.url;
-      setImageUrl(imageUrl);
+      setMainImage(imageUrl);
     } else {
       console.error('Error al subir la imagen:', response.statusText);
     }
   };
 
-  return postImage;
+  return postMainImage;
 };
