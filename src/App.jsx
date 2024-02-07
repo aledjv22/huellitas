@@ -23,7 +23,7 @@ const AppRoutes = () => {
     {path: base + '/recovery', element: <NotFound />},
     {path: base + '/recovery/*', element: <Recovery />},
     {path: base + '/pet/', element: <NotFound />},
-    {path: base + '/pet/register', element: <PetRegister />},
+    {path: base + '/pet/register', element: isLoggedIn ? <PetRegister /> : <NotFound />},
     {path: base + '/pet/*', element: <PetDetail />},
     {path: base + '/*', element: <NotFound />}
   ]);

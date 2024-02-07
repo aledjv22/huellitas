@@ -13,7 +13,7 @@ function HuellitasProvider ({ children }) {
   const API_URL = 'https://db-huellitas-0308351800f8.herokuapp.com/api/v1';
 
   // get pets from API
-  const { pets } = getPets(API_URL);
+  const { pets, setPets } = getPets(API_URL);
 
   // get users from API
   const { users, setUsers } = getUsers(API_URL);
@@ -62,6 +62,7 @@ function HuellitasProvider ({ children }) {
       isLoggedIn, 
       setIsLoggedIn,
       pets,
+      setPets,
       filteredPets,
       setSearchByType,
       setSearchBySex,

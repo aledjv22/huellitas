@@ -10,5 +10,5 @@ export const getPets = (API_URL) => {
       .catch(error => console.error(error));
   }, []);
 
-  return { pets };
+  return { pets, setPets };
 }
