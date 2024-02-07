@@ -1,4 +1,4 @@
-import {useContext, useState} from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { HuellitasContext } from '../../Context';
 import { getUsers } from '../../Utils/Users/getUsers';
@@ -6,6 +6,7 @@ import Layout from '../../Components/Layout';
 import Banner from '../../Components/Banner';
 import UserData from '../../Components/UserData';
 import UserEdition from '../../Components/UserEdition';
+import Card from '../../Components/Card';
 
 function MyAccount () {
   const {
@@ -16,21 +17,37 @@ function MyAccount () {
   } = useContext(HuellitasContext);
 
   const { users } = getUsers(API_URL);
+  const [myPets, setMyPets] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
+  const [isWatchingPets, setIsWatchingPets] = useState(false);
+
+  const styleOptions = 'my-1 px-2 hover:bg-[#f143c6]';
+
+  const getMyPets = async () => {
+    const response = await fetch(`${API_URL}/pets`);
+    const data = await response.json();
+    const myPets = data.filter(pet => pet.userId === userLogged.user.id);
+    setMyPets(myPets);
+  }
+
+  useEffect(() => {
+    getMyPets();
+  }
+  , [myPets]);
   
   const renderOptions = () => (
-    <ul className='flex flex-col h-screen bg-[#f86ed9] font-medium text-base text-[#520538]'>
-      <li 
-      className='my-1 px-2 hover:bg-[#f143c6]'
-      >
+    <ul className='flex flex-col min-h-screen w-[144px] bg-[#f86ed9] font-medium text-base text-[#520538]'>
+      <li className={styleOptions}>
         Datos Personales:
       </li>
 
-      <li 
-      onClick={() => setIsEditing(true)} 
-      className='my-1 px-2 hover:bg-[#f143c6]'
-      >
+      <li className={styleOptions}
+      onClick={() => setIsEditing(true)} >
         Editar Perfil:
+      </li>
+
+      <li className={styleOptions}>
+        Mis Mascotas:
       </li>
 
       <li 
@@ -51,9 +68,22 @@ function MyAccount () {
     <Layout>
       <Banner photo={ userLogged.user.image }/>
       <div className='flex justify-between w-full'>
-        <div className='flex'>
+        <div className='flex flex-grow'>
           { renderOptions() }
-          {
+
+          { !isWatchingPets && 
+            <div className='px-2 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 justify-items-center flex-grow'>
+              {
+                myPets.map(pet => (
+                  <Link to={`/huellitas/pet/${pet.id}`} key={pet.id}>
+                    <Card pet={pet} key={pet.id}/>
+                  </Link>
+                ))
+              }
+            </div>
+          }
+
+          {/* {
             isEditing ?
             <UserEdition users={users}
             user={userLogged.user} 
@@ -69,7 +99,7 @@ function MyAccount () {
             API_URL={API_URL}
             userLogged={userLogged.user}
             setUserLogged={setUserLogged}/>
-          }
+          } */}
         </div>
 
         <div></div>

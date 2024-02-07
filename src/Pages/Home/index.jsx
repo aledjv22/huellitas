@@ -1,4 +1,4 @@
-import React from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '../../Components/Layout';
 import Card from '../../Components/Card';
@@ -8,7 +8,7 @@ import addPet from '../../Images/plus.svg'
 function Home () {
   const { 
     filteredPets,
-  } = React.useContext(HuellitasContext);
+  } = useContext(HuellitasContext);
 
   const renderView = () => {
     if (filteredPets?.length > 0){
