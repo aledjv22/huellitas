@@ -101,11 +101,11 @@ function SignIn () {
 
         <img src={check} alt='check' className='w-20 h-20 mb-4'/>
 
-        <button className={stylesButton}>
-          <Link to='/huellitas/'>
+        <Link to='/huellitas/'>
+          <button className={stylesButton}>
             Ir al inicio
-          </Link>
-        </button>
+          </button>
+        </Link>
       </div>
     )
   }
