@@ -1,12 +1,16 @@
 import { useContext, useState, useEffect } from 'react';
-import Layout from '../../Components/Layout';
+import { useDeletePet } from '../../Utils/Pets/deletePet';
 import { HuellitasContext } from '../../Context';
+import Layout from '../../Components/Layout';
 import Gallery from '../../Components/Gallery';
-
 
 function PetDetail () {
   const { 
     pets,
+    setPets,
+    userLogged,
+    isLoggedIn,
+    API_URL
   } = useContext(HuellitasContext);
 
   const [pet, setPet] = useState(null);
@@ -24,6 +28,26 @@ function PetDetail () {
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const year = String(date.getFullYear()).slice(-2);
     return `${day}/${month}/${year}`;
+  }
+
+  const styleButton = `bg-[#86155f] text-[#fccef4] font-bold p-2 m-2 rounded-md transform 
+  hover:scale-105 transition-transform duration-300`;
+
+  const deletePet = useDeletePet(API_URL);
+
+  const renderButtons = () => {
+    return (
+      <div className='flex flex-row w-full justify-evenly'>
+        <button className={styleButton}>
+          Editar
+        </button>
+        
+        <button className={styleButton}
+        onClick={async () => await deletePet(pet.id, userLogged.token, setPets)}>
+          Eliminar
+        </button>
+      </div>
+    );
   }
 
   const renderView = () => {
@@ -75,6 +99,9 @@ function PetDetail () {
           Galería 
         </h2>
         <Gallery gallery={pet.images}/>
+        {isLoggedIn &&
+        userLogged.user.id === pet.userId &&
+        renderButtons()}
       </article>
     );
   }

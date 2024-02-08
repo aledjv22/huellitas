@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '../../Components/Layout';
 import Card from '../../Components/Card';
