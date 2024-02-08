@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '../../Components/Layout';
 import Card from '../../Components/Card';
@@ -7,6 +7,7 @@ import addPet from '../../Images/plus.svg'
 
 function Home () {
   const { 
+    isLoggedIn,
     filteredPets,
   } = useContext(HuellitasContext);
 
@@ -33,7 +34,7 @@ function Home () {
       <div className="flex flex-wrap justify-center gap-4">
         {renderView()}
         {filteredPets?.length > 0 && (
-          <Link to={`pet/register`}
+          <Link to={isLoggedIn ? 'pet/register' : 'sign-in'}
           style={{backgroundColor: 'rgba(252, 206, 244, 0.75)'}}
           className='fixed bottom-10 right-10 z-10 p-1 rounded-full'
           >
