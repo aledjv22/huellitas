@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { HuellitasContext } from '../../Context';
-import { getUsers } from '../../Utils/Users/getUsers';
+import { useGetUsers } from '../../Utils/Users/getUsers';
 import Layout from '../../Components/Layout';
 import Banner from '../../Components/Banner';
 import UserData from '../../Components/UserData';
@@ -16,10 +16,12 @@ function MyAccount () {
     API_URL,
   } = useContext(HuellitasContext);
 
-  const { users } = getUsers(API_URL);
+  const [users, setUsers] = useState(null);
   const [myPets, setMyPets] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const [isWatchingPets, setIsWatchingPets] = useState(false);
+
+  const getUsers = useGetUsers(API_URL);
 
   const styleOptions = 'my-1 px-2 hover:bg-[#f143c6]';
 
@@ -34,6 +36,10 @@ function MyAccount () {
     getMyPets();
   }
   , [myPets]);
+
+  useEffect(() => {
+    getUsers(setUsers);
+  }, [users]);
   
   const renderOptions = () => (
     <ul className='flex flex-col min-h-screen w-[144px] bg-[#f86ed9] font-medium text-base text-[#520538]'>

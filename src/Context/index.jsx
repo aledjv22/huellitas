@@ -1,6 +1,6 @@
 import { useState, useEffect, createContext } from 'react';
-import { getUsers } from '../Utils/Users/getUsers';
-import { getPets } from '../Utils/Pets/getPets';
+import { useGetUsers } from '../Utils/Users/getUsers';
+import { useGetPets } from '../Utils/Pets/getPets';
 
 const HuellitasContext = createContext();
 
@@ -9,14 +9,16 @@ function HuellitasProvider ({ children }) {
   const [searchByType, setSearchByType] = useState(null);
   const [searchBySex, setSearchBySex] = useState(null);
   const [userLogged, setUserLogged] = useState(null);
+  const [users, setUsers] = useState(null);
+  const [pets, setPets] = useState([]);
 
   const API_URL = 'https://db-huellitas-0308351800f8.herokuapp.com/api/v1';
 
   // get pets from API
-  const { pets, setPets } = getPets(API_URL);
+  const getPets = useGetPets(API_URL);
 
   // get users from API
-  const { users, setUsers } = getUsers(API_URL);
+  const getUsers = useGetUsers(API_URL);
 
   // filtering section
   const [filteredPets, setFilteredPets] = useState(null);
@@ -56,6 +58,14 @@ function HuellitasProvider ({ children }) {
     if (!searchByType && !searchBySex)
       setFilteredPets(filterBy(null, pets, searchByType, searchBySex));
   },[pets, searchByType, searchBySex]);
+
+  useEffect(() => {
+    getPets(setPets);
+  }, [setPets]);
+
+  useEffect(() => {
+    getUsers(setUsers);
+  }, [setUsers]);
 
   return (
     <HuellitasContext.Provider value={{

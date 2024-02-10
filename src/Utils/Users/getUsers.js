@@ -1,14 +1,17 @@
-import { useState, useEffect } from 'react';
+export const useGetUsers = (API_URL) => {
+  const getUsers = async (setUsers) => {
+    const response = await fetch(`${API_URL}/users`, {
+      method: 'GET',
+      headers: {'Content-Type': 'application/json'}
+    });
+    if(response.ok) {
+      const users = await response.json();
+      setUsers(users);
+    } else {
+      console.log('Error');
+      return null;
+    }
+  };
 
-export const getUsers = (API_URL) => {
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    fetch(`${API_URL}/users`)
-      .then(response => response.json())
-      .then(data => setUsers(data))
-      .catch(error => console.error(error));
-  }, []);
-
-  return { users, setUsers };
+  return getUsers;
 }
