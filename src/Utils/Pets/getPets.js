@@ -1,14 +1,17 @@
-import { useState, useEffect } from "react";
+export const useGetPets = (API_URL) => {
+  const getPets = async (setPets) => {
+    const response = await fetch(`${API_URL}/pets`, {
+      method: 'GET',
+      headers: {'Content-Type': 'application/json'}
+    });
+    if(response.ok) {
+      const pets = await response.json();
+      setPets(pets);
+    } else {
+      console.log('Error');
+      return null;
+    }
+  };
 
-export const getPets = (API_URL) => {
-  const [pets, setPets] = useState([]);
-
-  useEffect(() => {
-    fetch(`${API_URL}/pets`)
-      .then(response => response.json())
-      .then(data => setPets(data))
-      .catch(error => console.error(error));
-  }, []);
-
-  return { pets, setPets };
+  return getPets;
 }

@@ -1,5 +1,6 @@
 import { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useGetPet } from '../../Utils/Pets/getPet';
 import { useDeletePet } from '../../Utils/Pets/deletePet';
 import { HuellitasContext } from '../../Context';
 import Layout from '../../Components/Layout';
@@ -9,12 +10,12 @@ import check from '../../Images/checkmark.svg';
 
 function PetDetail () {
   const { 
-    pets,
     userLogged,
     isLoggedIn,
     API_URL
   } = useContext(HuellitasContext);
 
+  const getPet = useGetPet(API_URL);
   const deletePet = useDeletePet(API_URL);
 
   const [pet, setPet] = useState(null);
@@ -24,9 +25,8 @@ function PetDetail () {
   useEffect(() => {
     const pathSegments = window.location.pathname.split('/');
     const petId = pathSegments[pathSegments.length - 1];
-    const petFound = pets.find(pet => pet.id === petId);
-    setPet(petFound);
-  }, [pet, setPet]);
+    getPet(petId, setPet, setIsEditing);
+  }, [setPet]);
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
