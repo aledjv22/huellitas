@@ -1,26 +1,32 @@
 import { useContext, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useDeletePet } from '../../Utils/Pets/deletePet';
 import { HuellitasContext } from '../../Context';
 import Layout from '../../Components/Layout';
+import PetEdition from '../../Components/PetEdition';
 import Gallery from '../../Components/Gallery';
+import check from '../../Images/checkmark.svg';
 
 function PetDetail () {
   const { 
     pets,
-    setPets,
     userLogged,
     isLoggedIn,
     API_URL
   } = useContext(HuellitasContext);
 
+  const deletePet = useDeletePet(API_URL);
+
   const [pet, setPet] = useState(null);
+  const [deleteSuccess, setDeleteSuccess] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     const pathSegments = window.location.pathname.split('/');
     const petId = pathSegments[pathSegments.length - 1];
     const petFound = pets.find(pet => pet.id === petId);
     setPet(petFound);
-  }, [pets]);
+  }, [pet, setPet]);
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -33,19 +39,40 @@ function PetDetail () {
   const styleButton = `bg-[#86155f] text-[#fccef4] font-bold p-2 m-2 rounded-md transform 
   hover:scale-105 transition-transform duration-300`;
 
-  const deletePet = useDeletePet(API_URL);
-
   const renderButtons = () => {
     return (
       <div className='flex flex-row w-full justify-evenly'>
-        <button className={styleButton}>
+        <button className={styleButton}
+        onClick={() => {
+          setIsEditing(true);
+        }}>
           Editar
         </button>
-        
+
         <button className={styleButton}
-        onClick={async () => await deletePet(pet.id, userLogged.token, setPets)}>
+        onClick={async () => await deletePet(pet.id, userLogged.token, setPets, setDeleteSuccess)}>
           Eliminar
         </button>
+      </div>
+    );
+  }
+
+  const renderDeleteSuccess = () => {
+    return (
+      <div className='flex flex-col w-screen h-screen items-center justify-center'>
+        <h2 className='text-3xl font-bold text-[#86155f]'> 
+          Eliminación exitosa 
+        </h2>
+
+        <img src={check} alt="check" className='w-20 h-20 mb-4'/>
+        
+        <Link to='/huellitas'>
+          <button className={`bg-gradient-to-r from-[#e022a7] to-[#a11371] 
+            hover:bg-gradient-to-r hover:to-[#e022a7] hover:from-[#a11371]  
+            text-[#fccef4] font-bold rounded-lg w-[300px] mb-4 py-3`}>
+              Inicio
+          </button>
+        </Link>
       </div>
     );
   }
@@ -108,7 +135,18 @@ function PetDetail () {
 
   return (
     <Layout>
-      {pet?renderView():<p>No se encontró la mascota</p>}
+      {pet && !isEditing && !deleteSuccess && renderView()}
+
+      {isEditing && !deleteSuccess && <PetEdition pet={pet} setIsEditing={setIsEditing} API_URL={API_URL} token={userLogged.token} setPet={setPet}/>}
+
+      {deleteSuccess && renderDeleteSuccess()}
+
+      {
+        !pet && !deleteSuccess && 
+        <h2 className='text-3xl font-bold text-[#86155f]'>
+          Mascota no encontrada.
+        </h2>
+      }
     </Layout>
   );
 }

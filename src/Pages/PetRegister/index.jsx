@@ -53,14 +53,14 @@ function PetRegister () {
     await postPet(petData, userLogged.token, setPets, setRegistrationSuccess, setId);
   }
 
-  const handleMainImageChange = async (event) => {
-    event.preventDefault();
-    postMainImage(event, setMainImage);
+  const handleMainImage = async (e) => {
+    e.preventDefault();
+    await postMainImage(e, setMainImage);
   }
 
-  const handleImagesChange = (event) => {
-    event.preventDefault();
-    postImages(event, setImages);
+  const handleImages = async (e) => {
+    e.preventDefault();
+    await postImages(e, setImages);
   }
 
   const renderSuccess = () => {
@@ -96,6 +96,20 @@ function PetRegister () {
           </label>
           <input className={stylesInput} type='text' required id='name'
           onChange={e => setName(e.target.value)} placeholder='Nombre' />
+
+          <label htmlFor='mainImage' className='flex'>
+            Imagen principal:
+            <div className='ml-1 text-[#FF0000]'> * </div>
+          </label>
+          <input type='file' onChange={handleMainImage} required 
+          className={`${stylesInput} cursor-pointer hover:text-[#e022a7] file:hidden`} id='mainImage' />
+
+          <label htmlFor='images' className='flex'>
+            Imágenes (min. 3, max 10):
+            <div className='ml-1 text-[#FF0000]'> * </div>
+          </label>
+          <input type='file' multiple onChange={handleImages} required id='images'
+          className={`${stylesInput} cursor-pointer hover:text-[#e022a7] file:hidden`} />
 
           <label htmlFor='state' className='flex'>
             Estado:
@@ -138,13 +152,6 @@ function PetRegister () {
           <input className={stylesInput} type='text' required id='age' 
           onChange={e => setAge(e.target.value)} placeholder='Edad' />
 
-          <label htmlFor='description' className='flex'>
-            Descripción:
-            <div className='ml-1 text-[#FF0000]'> * </div>
-          </label>
-          <input className={stylesInput} type='text' required 
-          onChange={e => setDescription(e.target.value)} placeholder='Descripción' id='description' />
-
           <label htmlFor='type' className='flex'>
             Tipo:
             <div className='ml-1 text-[#FF0000]'> * </div>
@@ -173,19 +180,12 @@ function PetRegister () {
             <option value='Grande'>Grande</option>
           </select>
 
-          <label htmlFor='mainImage' className='flex'>
-            Imagen principal:
+          <label htmlFor='description' className='flex'>
+            Descripción:
             <div className='ml-1 text-[#FF0000]'> * </div>
           </label>
-          <input type='file' onChange={handleMainImageChange} required 
-          className={`${stylesInput} cursor-pointer hover:text-[#e022a7] file:hidden`} id='mainImage' />
-
-          <label htmlFor='images' className='flex'>
-            Imágenes (min. 3, max 10):
-            <div className='ml-1 text-[#FF0000]'> * </div>
-          </label>
-          <input type='file' multiple onChange={handleImagesChange} required 
-          className={`${stylesInput} cursor-pointer hover:text-[#e022a7] file:hidden`} id='images' />
+          <input className={stylesInput} type='text' required 
+          onChange={e => setDescription(e.target.value)} placeholder='Descripción' id='description' />
 
           <button className={stylesButton}
           type='submit'>
