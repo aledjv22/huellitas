@@ -9,6 +9,10 @@ import PetEdition from '../../Components/PetEdition';
 import ContactForm from '../../Components/ContactForm';
 import Gallery from '../../Components/Gallery';
 import check from '../../Images/checkmark.svg';
+import facebook from '../../Images/facebook.svg';
+import twitter from '../../Images/twitter.svg';
+import whatsapp from '../../Images/whatsapp.svg';
+import mail from '../../Images/mail.svg';
 
 function PetDetail () {
   const { 
@@ -96,9 +100,34 @@ function PetDetail () {
         {isLoggedIn &&
         userLogged.user.id === pet.userId &&
         renderButtons()}
-        <h2 className='text-3xl font-bold underline'>
-          {pet.name}
-        </h2>
+        <div className='w-full flex flex-row justify-between px-3'>
+          <h2 className='text-3xl font-bold underline'>
+            {pet.name}
+          </h2>
+          <div className='flex flex-row justify-evenly mx-1 w-[150px]'>
+            <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`} 
+              target="_blank" rel="noopener noreferrer"
+              className='flex flex-col justify-center'
+              title='Compartir en Facebook'>
+              <img src={facebook} alt='icono de facebook' className='w-[35px]'/>
+            </a>
+
+            <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`¡Enamórate de ${pet.name} en Huellitas! ¿Podrías ser su nueva familia?`)}&url=${encodeURIComponent(window.location.href)}`} target="_blank" rel="noopener noreferrer" className='flex flex-col justify-center'
+            title='Compartir en Twitter'>
+              <img src={twitter} alt='icono de twitter' className='w-[25px]'/>
+            </a>
+
+            <a href={`https://api.whatsapp.com/send?text=${encodeURIComponent(`¡Enamórate de ${pet.name} en Huellitas! ¿Podrías ser su nueva familia?`)}%20${encodeURIComponent(window.location.href)}`} target="_blank" rel="noopener noreferrer" className='flex flex-col justify-center' 
+            title='Compartir en WhatsApp'>
+              <img src={whatsapp} alt='icono de whatsapp' className='w-[25px]'/>
+            </a>
+
+            <a href={`https://mail.google.com/mail/u/0/?view=cm&fs=1&su=Compartir%20enlace&body=${encodeURIComponent(`¡Enamórate de ${pet.name} en Huellitas! ¿Podrías ser su nueva familia?`)}%20${encodeURIComponent(window.location.href)}&tf=1`} target="_blank" rel="noopener noreferrer" className='flex flex-col justify-center'
+            title='Compartir por mail'>
+              <img src={mail} alt='icono de mail' className='w-[25px]'/>
+            </a> 
+          </div>
+        </div>
 
         <div className='flex text-md font-medium'>
           <table>
