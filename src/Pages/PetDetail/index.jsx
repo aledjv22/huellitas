@@ -27,6 +27,7 @@ function PetDetail () {
 
   const [user, setUser] = useState(null);
   const [pet, setPet] = useState(null);
+  const [message, setMessage] = useState('');
   const [deleteSuccess, setDeleteSuccess] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -43,6 +44,20 @@ function PetDetail () {
     };
 
     if (pet) fetchUserData();
+  }, [pet]);
+
+  useEffect(() => {
+    {pet && pet.state === 'En adopción' && 
+    setMessage(`¡Enamórate de ${pet.name} en Huellitas! ¿Podrías ser su nueva familia?`)}
+
+    {pet && pet.state === 'Perdido' &&
+    setMessage(`¡Ayudanos a encontrar a ${pet.name}!`)}
+
+    {pet && pet.state === 'Adoptado' &&
+    setMessage(`¡${pet.name} encontró su familia!`)}
+
+    {pet && pet.state === 'Encontrado' &&
+    setMessage(`${pet.name} fue encontrado.`)}
   }, [pet]);
 
   const formatDate = (dateString) => {
@@ -112,17 +127,17 @@ function PetDetail () {
               <img src={facebook} alt='icono de facebook' className='w-[35px]'/>
             </a>
 
-            <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`¡Enamórate de ${pet.name} en Huellitas! ¿Podrías ser su nueva familia?`)}&url=${encodeURIComponent(window.location.href)}`} target="_blank" rel="noopener noreferrer" className='flex flex-col justify-center'
+            <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}&url=${encodeURIComponent(window.location.href)}`} target="_blank" rel="noopener noreferrer" className='flex flex-col justify-center'
             title='Compartir en Twitter'>
               <img src={twitter} alt='icono de twitter' className='w-[25px]'/>
             </a>
 
-            <a href={`https://api.whatsapp.com/send?text=${encodeURIComponent(`¡Enamórate de ${pet.name} en Huellitas! ¿Podrías ser su nueva familia?`)}%20${encodeURIComponent(window.location.href)}`} target="_blank" rel="noopener noreferrer" className='flex flex-col justify-center' 
+            <a href={`https://api.whatsapp.com/send?text=${encodeURIComponent(message)}%20${encodeURIComponent(window.location.href)}`} target="_blank" rel="noopener noreferrer" className='flex flex-col justify-center' 
             title='Compartir en WhatsApp'>
               <img src={whatsapp} alt='icono de whatsapp' className='w-[25px]'/>
             </a>
 
-            <a href={`https://mail.google.com/mail/u/0/?view=cm&fs=1&su=Compartir%20enlace&body=${encodeURIComponent(`¡Enamórate de ${pet.name} en Huellitas! ¿Podrías ser su nueva familia?`)}%20${encodeURIComponent(window.location.href)}&tf=1`} target="_blank" rel="noopener noreferrer" className='flex flex-col justify-center'
+            <a href={`https://mail.google.com/mail/u/0/?view=cm&fs=1&su=Compartir%20enlace&body=${encodeURIComponent(message)}%20${encodeURIComponent(window.location.href)}&tf=1`} target="_blank" rel="noopener noreferrer" className='flex flex-col justify-center'
             title='Compartir por mail'>
               <img src={mail} alt='icono de mail' className='w-[25px]'/>
             </a> 
