@@ -1,9 +1,25 @@
+import { useState, useEffect } from 'react';
 import heart from '../../Images/heart.svg';
-import paw from '../../Images/paw.svg';
+import house from '../../Images/house.svg';
+import located from '../../Images/located.svg';
+import not_located from '../../Images/not-located.svg';
 import male from '../../Images/male.svg';
 import female from '../../Images/female.svg';
 
 function Card({ pet }) {
+  const [srcState, setSrcState] = useState(heart);
+
+  useEffect(() => {
+    {pet.state === 'En adopción' && setSrcState(heart)}
+
+    {pet.state === 'Perdido' && setSrcState(not_located)}
+
+    {pet.state === 'Adoptado' && setSrcState(house)}
+
+    {pet.state === 'Encontrado' && setSrcState(located)}
+  }, [pet.state]);
+  
+
   const iconSex =  () => {
     return (
       <img
@@ -17,7 +33,7 @@ function Card({ pet }) {
 
   const iconState = () => {
     return (
-      <img src={pet.state === 'En adopción' ? heart : paw} 
+      <img src={srcState} 
       alt='icono del estado' 
       className='h-[15px] mr-1'/>
     );

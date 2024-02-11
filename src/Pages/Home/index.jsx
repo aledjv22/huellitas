@@ -1,15 +1,24 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '../../Components/Layout';
 import Card from '../../Components/Card';
 import { HuellitasContext } from '../../Context';
+import { useGetPets } from '../../Utils/Pets/getPets';
 import addPet from '../../Images/plus.svg'
 
 function Home () {
   const { 
     isLoggedIn,
     filteredPets,
+    setPets,
+    API_URL
   } = useContext(HuellitasContext);
+
+  const getPets = useGetPets(API_URL);
+
+  useEffect(() => {
+    getPets(setPets);
+  }, [setPets]);
 
   const renderView = () => {
     if (filteredPets?.length > 0){
