@@ -5,6 +5,7 @@ import { useDeletePet } from '../../Utils/Pets/deletePet';
 import { HuellitasContext } from '../../Context';
 import Layout from '../../Components/Layout';
 import PetEdition from '../../Components/PetEdition';
+import ContactForm from '../../Components/ContactForm';
 import Gallery from '../../Components/Gallery';
 import check from '../../Images/checkmark.svg';
 
@@ -80,6 +81,9 @@ function PetDetail () {
   const renderView = () => {
     return (
       <article className='flex flex-col items-center text-[#86155f] w-[500px]'>
+        {isLoggedIn &&
+        userLogged.user.id === pet.userId &&
+        renderButtons()}
         <h2 className='text-3xl font-bold underline'>
           {pet.name}
         </h2>
@@ -96,7 +100,6 @@ function PetDetail () {
                 <td>Estado: </td>
                 <td>Ubicación: </td>
                 <td>Ingreso: </td>
-                <td>Vistas: </td>
               </tr>
               <tr className='flex flex-col ml-2'>
                 <td>{pet.name}</td>
@@ -107,12 +110,11 @@ function PetDetail () {
                 <td>{pet.state}</td>
                 <td>{pet.location}</td>
                 <td>{formatDate(pet.createdAt)}</td>
-                <td>{pet.views}</td>
               </tr>
             </tbody>
           </table>
           <img src={pet.main_image} alt={pet.name} 
-          className='p-1 w-[230px] ml-5'/>
+          className='p-1 w-[230px] ml-5 rounded-2xl'/>
         </div>
 
         <h2 className='text-3xl font-bold underline mt-3'>
@@ -126,9 +128,7 @@ function PetDetail () {
           Galería 
         </h2>
         <Gallery gallery={pet.images}/>
-        {isLoggedIn &&
-        userLogged.user.id === pet.userId &&
-        renderButtons()}
+        <ContactForm userId={pet.userId} namePet={pet.name} petId={pet.id} API_URL={API_URL}/>
       </article>
     );
   }

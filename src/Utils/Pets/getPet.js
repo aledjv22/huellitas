@@ -8,7 +8,6 @@ export const useGetPet = (API_URL) => {
       const petFound = await response.json();
       setPet(petFound);
       setIsEditing(false);
-      console.log('Pet found');
       return petFound;
     } else {
       console.log('Error');

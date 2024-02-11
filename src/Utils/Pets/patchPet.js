@@ -12,9 +12,7 @@ export const usePatchPet = (API_URL) => {
       },
       body: JSON.stringify(petData)
     });
-    if(response.ok) {
-      console.log('Pet updated');
-    } else {
+    if(!response.ok) {
       console.log('Error');
       console.log(response);
     }
