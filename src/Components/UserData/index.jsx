@@ -26,7 +26,7 @@ function UserData ({ id, token, API_URL, userLogged, setUserLogged }) {
   const getUser = useGetUser(API_URL);
   useEffect(() => {
     const fetchUserData = async () => {
-      const { user } = await getUser(id, token);
+      const user = await getUser(id);
       if (user) {
         setUserLogged({ user, token });
         setUserData(createUserData());
@@ -34,7 +34,7 @@ function UserData ({ id, token, API_URL, userLogged, setUserLogged }) {
     };
     
     fetchUserData();
-  }, [userLogged]);
+  }, [userLogged, userData]);
 
   return (
     <>
