@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useGetUser } from '../../Utils/Users/getUser';
 
-function ContactForm ({ userId, namePet, petId, API_URL }) {
+function ContactForm ({ userId, namePet, statePet, petId, API_URL }) {
   const stylesInput = 'bg-transparent border-2 border-[#86155f] outline-[#f143c6] rounded-lg w-full px-2 py-1 mb-2';
   const stylesButton = `bg-gradient-to-r from-[#e022a7] to-[#a11371] hover:bg-gradient-to-r hover:to-[#e022a7] 
   hover:from-[#a11371]  text-[#fccef4] font-bold rounded-lg w-[300px] mb-4 py-3`;
@@ -26,13 +26,14 @@ function ContactForm ({ userId, namePet, petId, API_URL }) {
         Nombre:
       </label>
       <input type='text' required id='name' placeholder='Tu nombre' 
-      name='name' className={stylesInput} />
+      name='Nombre' className={stylesInput} autoComplete='name' />
 
       <label htmlFor='email'>
         Email:
       </label>
       <input type='email' id='email' placeholder='Tu email'
-      name='email' className={stylesInput} onChange={(e) => {
+      name='Correo' className={stylesInput} autoComplete='email'
+      onChange={(e) => {
         if (e.target.value !== '') {
           setThereIsAnEmail(true);
           setThereIsAPhone(false);
@@ -43,7 +44,8 @@ function ContactForm ({ userId, namePet, petId, API_URL }) {
         Teléfono:
       </label>
       <input type='text' id='phone' placeholder='Tu teléfono'
-      name='phone' className={stylesInput} onChange={(e) => {
+      name='Teléfono' className={stylesInput} autoComplete='tel'
+      onChange={(e) => {
         if (e.target.value !== '') {
           setThereIsAPhone(true);
           setThereIsAnEmail(false);
@@ -54,13 +56,19 @@ function ContactForm ({ userId, namePet, petId, API_URL }) {
         Porque quieres adoptar a {namePet}:
       </label>
       <input type='text' required id='message' placeholder='Tu mensaje'
-      name='message' className={stylesInput} />
+      name='Mensaje' className={stylesInput} />
 
       <input type='submit' value='Enviar' className={stylesButton} />
 
       <input type='hidden' name='_next' value={`https://aledjv22.github.io/huellitas/pet/${petId}`} />
 
       <input type='hidden' name='_captcha' value='false' />
+
+      <input type='hidden' name='_subject' 
+      value={`${statePet === 'En adopción'?'Adopción' : 'Información'} de ${namePet}`} />
+
+      <input type='hidden' name='Enlace' value={`https://aledjv22.github.io/huellitas/pet/${petId}`} />
+
     </form>
   );
 }

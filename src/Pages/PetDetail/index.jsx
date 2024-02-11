@@ -1,5 +1,6 @@
 import { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useGetUser } from '../../Utils/Users/getUser';
 import { useGetPet } from '../../Utils/Pets/getPet';
 import { useDeletePet } from '../../Utils/Pets/deletePet';
 import { HuellitasContext } from '../../Context';
@@ -16,9 +17,11 @@ function PetDetail () {
     API_URL
   } = useContext(HuellitasContext);
 
+  const getUser = useGetUser(API_URL);
   const getPet = useGetPet(API_URL);
   const deletePet = useDeletePet(API_URL);
 
+  const [user, setUser] = useState(null);
   const [pet, setPet] = useState(null);
   const [deleteSuccess, setDeleteSuccess] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -28,6 +31,15 @@ function PetDetail () {
     const petId = pathSegments[pathSegments.length - 1];
     getPet(petId, setPet, setIsEditing);
   }, [setPet]);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const userData = await getUser(pet?.userId);
+      setUser(userData);
+    };
+
+    if (pet) fetchUserData();
+  }, [pet]);
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -128,7 +140,40 @@ function PetDetail () {
           Galería 
         </h2>
         <Gallery gallery={pet.images}/>
-        <ContactForm userId={pet.userId} namePet={pet.name} petId={pet.id} API_URL={API_URL}/>
+
+        {user && user.role === 'foundation' &&
+        <div className='flex flex-col text-lg font-semibold items-center text-[#86155f] w-[500px]'>
+          <h2 className='text-3xl font-bold underline mt-3'>
+            Datos de la fundación
+          </h2>
+          <table>
+            <tbody className='flex flex-row mr-5'>
+              <tr className='flex flex-col items-end underline'>
+                <td>Nombre: </td>
+                <td>Ubicación: </td>
+                {user.alias && <td>Alias: </td>}
+                {user.cbuCvu && <td>CBU/CVU: </td>}
+                {user.urlDonation && <td>Donación: </td>}
+              </tr>
+              <tr className='flex flex-col ml-2'>
+                <td>{user.foundation}</td>
+                <td>{user.location}</td>
+                {user.alias && <td>{user.alias}</td>}
+                {user.cbuCvu && <td>{user.cbuCvu}</td>}
+                {user.urlDonation && 
+                <td><a href={user.urlDonation} target='_blank' 
+                rel='noreferrer'>Enlace</a></td>}
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        }
+
+
+        <h2 className='text-3xl font-bold underline mt-3'>
+          Contacto
+        </h2>
+        <ContactForm userId={pet.userId} namePet={pet.name} petId={pet.id} API_URL={API_URL} statePet={pet.state}/>
       </article>
     );
   }
