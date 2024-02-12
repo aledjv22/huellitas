@@ -1,7 +1,9 @@
-import { useContext } from "react";
-import { NavLink } from "react-router-dom";
-import { HuellitasContext } from "../../Context";
-import Submenu from "../Submenu";
+import { useContext } from 'react';
+import { NavLink } from 'react-router-dom';
+import { HuellitasContext } from '../../Context';
+import Submenu from '../Submenu';
+import logo from '../../Images/huellitas-logo.svg';
+
 
 function NavBar () {
   const { 
@@ -32,7 +34,7 @@ function NavBar () {
         setSearchBySex(null);
       }}
       >
-        Huellitas
+        <img src={logo} alt='Huellitas' className='h-[40px]' />
       </NavLink>
 
       <ul className='flex items-center gap-3'>
