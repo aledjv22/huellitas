@@ -1,6 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '../../Components/Layout';
+import Footer from '../../Components/Footer';
 import Card from '../../Components/Card';
 import { HuellitasContext } from '../../Context';
 import { useGetPets } from '../../Utils/Pets/getPets';
@@ -45,9 +46,9 @@ function Home () {
         {filteredPets?.length > 0 && (
           <Link to={isLoggedIn ? 'pet/register' : 'sign-in'}
           style={{backgroundColor: 'rgba(252, 206, 244, 0.75)'}}
-          className='fixed bottom-10 right-10 z-10 p-1 rounded-full'
+          className='fixed bottom-[88px] right-10 z-10 p-1 rounded-full'
           >
-            <img src={addPet} alt='addPet' className='w-20 h-20' />
+            <img src={addPet} alt='addPet' className='w-[60px] h-[60px]' />
           </Link>
         )}
       </div>
