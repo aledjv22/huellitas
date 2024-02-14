@@ -18,7 +18,6 @@ function Footer () {
         target="_blank"> Alejandro Díaz</a>
         , para incentivar la divulgación de la adopción de mascotas.
       </p>
-      {/* <p>para incentivar la divulgación de la adopción de mascotas.</p> */}
     </footer>
   );
 }
