@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import down from '../../Images/down-arrow.svg';
 
-function Submenu({ type, setSearchByType, setSearchBySex, setSearchByState, setSearchBySize }){
+function Submenu({ type, setSearchByType, setSearchBySex, 
+setSearchByState, setSearchBySize, setIsOpenMobileMenu }){
   const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 915);
   const [sexSelected, setSexSelected] = useState('');
@@ -19,8 +20,8 @@ function Submenu({ type, setSearchByType, setSearchBySex, setSearchByState, setS
   } , [window.innerWidth]);
 
   return (
-    <div className={`flex ${isMobile && 'flex-col'}`}>
-      <p 
+    <div className={`flex`}>
+      <p className={isMobile ? 'mr-4' : ''}
       onClick={() => {
         setIsOpen(false);
         type === 'Todo' ? setSearchByType(null) : setSearchByType(type);
@@ -35,26 +36,34 @@ function Submenu({ type, setSearchByType, setSearchBySex, setSearchByState, setS
       <div className='ml-[2px] flex flex-col justify-center items-center'>
         <img src={down} 
         alt='down arrow' 
-        className='w-4 h-4 pt-1'
+        className={isMobile ? 'w-5 h-5' : 'w-4 h-4 pt-1'}
         onClick={() => setIsOpen(!isOpen)}
         />
 
         {
         isOpen &&
         (
-          <form className=' bg-[#86155f] text-[#fccef4] m-0 absolute z-20 top-[44px] rounded-lg p-2'>
+          <form className={`bg-[#86155f] text-[#fccef4] m-0 absolute z-20 rounded-lg p-2
+          ${!isMobile ? 'top-[44px]' : ''}
+          ${isMobile && type === 'Todo' ? 'top-[40px]' : ''}
+          ${isMobile && type === 'Perro' ? 'top-[80px]':''}
+          ${isMobile && type === 'Gato' ? 'top-[120px]':''}
+          ${isMobile ? 'w-full left-0 flex flex-col':''}`}>
             <label htmlFor='sex' className='mr-[23px]'>Sexo:</label> 
-            <select id='sex' className={stylesInput} value={sexSelected}
+            <select id='sex' value={sexSelected}
+            className={`${stylesInput} ${isMobile ? 'h-[30px] mb-2' : ''}`} 
             onChange={(e) => {
               setSexSelected(e.target.value)
             }}>
               <option value=''>--</option>
               <option value='Macho'>Macho</option>
               <option value='Hembra'>Hembra</option>
-            </select> <br/> 
+            </select> 
+            {!isMobile && <br/>} 
 
             <label htmlFor='state' className='mr-[11px]'>Estado:</label> 
-            <select id='state' className={stylesInput}  value={stateSelected}
+            <select id='state' value={stateSelected}
+            className={`${stylesInput} ${isMobile ? 'h-[30px] mb-2' : ''}`} 
             onChange={(e) => {
               setStateSelected(e.target.value)
             }}>
@@ -63,10 +72,12 @@ function Submenu({ type, setSearchByType, setSearchBySex, setSearchByState, setS
               <option value='Perdido'>Perdido</option>
               <option value='Adoptado'>Adoptado</option>
               <option value='Encontrado'>Encontrado</option>
-            </select> <br/>
+            </select> 
+            {!isMobile && <br/>}
 
             <label htmlFor='size' className='mr-1'>Tamaño:</label>
-            <select id='size' className={stylesInput} value={sizeSelected}
+            <select id='size' value={sizeSelected}
+            className={`${stylesInput} ${isMobile ? 'h-[30px] mb-2' : ''}`} 
             onChange={(e) => {
               setSizeSelected(e.target.value);
             }}>
@@ -74,7 +85,8 @@ function Submenu({ type, setSearchByType, setSearchBySex, setSearchByState, setS
               <option value='Pequeño'>Pequeño</option>
               <option value='Mediano'>Mediano</option>
               <option value='Grande'>Grande</option>
-            </select> <br/>
+            </select> 
+            {!isMobile && <br/>}
 
             <div className='w-full flex justify-evenly pt-1'>
               <button
@@ -88,8 +100,7 @@ function Submenu({ type, setSearchByType, setSearchBySex, setSearchByState, setS
                 setStateSelected('');
                 setSizeSelected('');
                 setIsOpen(false)
-              }}
-              > Limpiar </button>
+              }} > Limpiar </button>
 
               <button 
               className='bg-[#f86ed9] text-[#86155f] rounded-lg p-1 cursor-pointer' 
@@ -98,8 +109,11 @@ function Submenu({ type, setSearchByType, setSearchBySex, setSearchByState, setS
                 !isEmpty(stateSelected) ? setSearchByState(stateSelected) : setSearchByState(null);
                 !isEmpty(sexSelected) ? setSearchBySex(sexSelected) : setSearchBySex(null);
                 type === 'Todo' ? setSearchByType(null) : setSearchByType(type);
+                if (isMobile) setIsOpenMobileMenu(false);
                 setIsOpen(false);
-              }} > Buscar </button>
+              }}> 
+                Buscar 
+              </button>
             </div>
           </form>
         )
