@@ -64,9 +64,11 @@ function UserEdition ({ users, user, setIsEditing, API_URL, userLogged, setUserL
         return setMessage('La contraseña debe tener al menos 8 caracteres');
 
     if(!isEmpty(newPassword) && newPassword === confirmNewPassword) {
-      await changePasswordLocal(user.email, currentPassword, newPassword, setIsCurrentPassword);
+      const response = await changePasswordLocal(user.email, currentPassword, newPassword, setIsCurrentPassword);
+
+      if (response === 'error') return setMessage('Contraseña actual incorrecta');
       
-      if(!isCurrentPassword) return setMessage('Contraseña actual incorrecta');
+      if (response === 'Password changed') setIsCurrentPassword(true);
     }
 
     const updateUserData = () => ({

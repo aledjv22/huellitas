@@ -16,9 +16,10 @@ export const useChangePasswordLocal = (API_URL) => {
       });
       if (response.ok) {
         setIsCurrentPassword(true);
+        return 'Password changed';
       } else if (response.status === 401) {
-        console.log('Error: Unauthorized');
         setIsCurrentPassword(false);
+        return 'error';
       }
     };
   
