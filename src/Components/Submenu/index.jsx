@@ -20,8 +20,8 @@ setSearchByState, setSearchBySize, setIsOpenMobileMenu }){
   } , [window.innerWidth]);
 
   return (
-    <div className={`flex`}>
-      <p className={isMobile ? 'mr-4' : ''}
+    <div className={`flex ${!isMobile ? 'mr-3' : ''}`}>
+      <p className={isMobile ? 'mr-3' : ''}
       onClick={() => {
         setIsOpen(false);
         type === 'Todo' ? setSearchByType(null) : setSearchByType(type);
@@ -36,7 +36,7 @@ setSearchByState, setSearchBySize, setIsOpenMobileMenu }){
       <div className='ml-[2px] flex flex-col justify-center items-center'>
         <img src={down} 
         alt='down arrow' 
-        className={isMobile ? 'w-5 h-5' : 'w-4 h-4 pt-1'}
+        className={isMobile ? 'w-5 h-5' : 'w-5 h-5 pt-1 ml-1'}
         onClick={() => setIsOpen(!isOpen)}
         />
 

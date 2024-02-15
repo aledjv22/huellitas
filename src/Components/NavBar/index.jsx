@@ -38,11 +38,11 @@ function NavBar () {
 
   const navDesktop = () => {
     return (
-      <nav className='flex justify-between items-center fixed z-10 top-0 w-full h-11 py-1 px-8 text-sm text-[#86155f] bg-[#fcb6ee]'>
+      <nav className='flex justify-between items-center fixed z-10 top-0 w-full h-12 py-1 px-8 text-xl text-[#86155f] font-semibold bg-[#fcb6ee]'>
         <NavLink to='/huellitas/'
         className={activeStyle}
         >
-          <img src={logo} alt='Huellitas' className='h-[40px]' 
+          <img src={logo} alt='Huellitas' className='h-12' 
           onClick={() => {
             setSearchByType(null);
             setSearchBySex(null);
@@ -74,18 +74,18 @@ function NavBar () {
   
         <ul className='flex items-center gap-3 text-[#fcb6ee]'>
           <NavLink to='/huellitas/sign-up'
-          className={`${!isLoggedIn ? activeStyle : 'hidden'} bg-[#a11370] p-1 rounded-xl`} >
+          className={`${!isLoggedIn ? activeStyle : 'hidden'} bg-[#a11370] py-1 px-2 rounded-xl`} >
             Registrarse
           </NavLink>
   
           <NavLink to='/huellitas/sign-in'
-          className={`${!isLoggedIn ? activeStyle : 'hidden'} bg-[#86155f] p-1 rounded-xl`} >
+          className={`${!isLoggedIn ? activeStyle : 'hidden'} bg-[#86155f] py-1 px-2 rounded-xl`} >
             Ingresar
           </NavLink>
   
           <NavLink 
           to={`/huellitas/my-account/${user.firstName}${user.lastName}${user.id.slice(0, 5)}`}
-          className={`${isLoggedIn ? activeStyle : 'hidden'} bg-[#86155f] p-1 rounded-xl`}  >
+          className={`${isLoggedIn ? activeStyle : 'hidden'} bg-[#86155f] py-1 px-2 rounded-xl`}  >
             Mi Cuenta
           </NavLink>
         </ul>
@@ -97,7 +97,7 @@ function NavBar () {
     return (
       <nav className='flex justify-between items-center fixed z-10 top-0 w-full h-11 py-1 px-8 text-sm text-[#86155f] bg-[#fcb6ee] border border-[#fcb6ee]'>
         <NavLink to='/huellitas/' className={activeStyle} >
-          <img src={logo} alt='Huellitas' className='h-[40px]' 
+          <img src={logo} alt='Huellitas' className='h-11' 
           onClick={() => {
             setSearchByType(null);
             setSearchBySex(null);
