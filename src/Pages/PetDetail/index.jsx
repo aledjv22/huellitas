@@ -30,6 +30,7 @@ function PetDetail () {
   const [message, setMessage] = useState('');
   const [deleteSuccess, setDeleteSuccess] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 915);
 
   useEffect(() => {
     const pathSegments = window.location.pathname.split('/');
@@ -45,6 +46,10 @@ function PetDetail () {
 
     if (pet) fetchUserData();
   }, [pet]);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 915);
+  } , [window.innerWidth]);
 
   useEffect(() => {
     {pet && pet.state === 'En adopción' && 
@@ -111,11 +116,13 @@ function PetDetail () {
 
   const renderView = () => {
     return (
-      <article className='flex flex-col items-center text-[#86155f] w-[500px]'>
+      <article className={`flex flex-col items-center text-[#86155f] 
+      ${isMobile ? 'w-[400px]' : 'w-[500px]'}`}>
         {isLoggedIn &&
         userLogged.user.id === pet.userId &&
         renderButtons()}
-        <div className='w-full flex flex-row justify-between px-3'>
+        <div className={`w-full flex justify-between px-3 
+        ${isMobile ? 'flex-col items-center' : 'flex-row'}`}>
           <h2 className='text-3xl font-bold underline'>
             {pet.name}
           </h2>
@@ -144,7 +151,8 @@ function PetDetail () {
           </div>
         </div>
 
-        <div className='flex text-md font-medium'>
+        <div className={`flex text-md font-medium 
+        ${isMobile ? 'flex-col justify-center items-center' : ''}`}>
           <table>
             <tbody className='flex flex-row mr-5'>
               <tr className='flex flex-col items-end underline'>
@@ -170,20 +178,22 @@ function PetDetail () {
             </tbody>
           </table>
           <img src={pet.main_image} alt={pet.name} 
-          className='p-1 w-[230px] ml-5 rounded-2xl'/>
+          className={`p-1 rounded-2xl ${isMobile ? 'w-[280px]' : 'w-[230px] ml-5'}`}/>
         </div>
 
         <h2 className='text-3xl font-bold underline mt-3'>
           Descripción
         </h2>
-        <p className='flex text-md font-medium'>
-          {pet.description}
-        </p>
+        <span className={`flex text-md font-medium justify-center items-center w-full`}>
+          <p className={`${isMobile ? 'w-[350px]' : ''}`}>
+            {pet.description}
+          </p>
+        </span>
 
         <h2 className='text-3xl font-bold underline mt-3'>
           Galería 
         </h2>
-        <Gallery gallery={pet.images}/>
+        <Gallery gallery={pet.images} isMobile={isMobile}/>
 
         {user && user.role === 'foundation' &&
         <div className='flex flex-col text-lg font-semibold items-center text-[#86155f] w-[500px]'>

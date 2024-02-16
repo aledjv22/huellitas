@@ -1,7 +1,7 @@
 import ImageGallery from 'react-image-gallery';
 import 'react-image-gallery/styles/css/image-gallery.css';
 
-function Gallery ({gallery}) {
+function Gallery ({gallery, isMobile}) {
   
   const images = gallery.map(image => ({
     original: image,
@@ -84,7 +84,7 @@ function Gallery ({gallery}) {
   }
 
   return (
-    <div className='mt-1 w-[500px]'>
+    <div className={`mt-1 ${isMobile ? 'w-[350px]' : 'w-[500px]'}`}>
       <ImageGallery items={images}
       showIndex={true}
       slideInterval={2000}

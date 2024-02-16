@@ -148,7 +148,7 @@ function PetEdition ({ pet, setPet, setIsEditing, API_URL, token }) {
         <label htmlFor='description'>
           Descripción:
         </label>
-        <input type='text' className={stylesInput} id='description'
+        <textarea type='text' className={stylesInput} id='description'
         onChange={(e) => setDescription(e.target.value)} placeholder={pet.description} />
 
         <div className='flex justify-evenly'>
