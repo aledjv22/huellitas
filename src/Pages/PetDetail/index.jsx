@@ -18,7 +18,8 @@ function PetDetail () {
   const { 
     userLogged,
     isLoggedIn,
-    API_URL
+    API_URL,
+    setPets
   } = useContext(HuellitasContext);
 
   const getUser = useGetUser(API_URL);
