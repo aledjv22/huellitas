@@ -1,5 +1,5 @@
-import { useContext, useEffect } from "react";
-import { useRoutes, BrowserRouter, useHistory } from "react-router-dom";
+import { useContext } from "react";
+import { useRoutes, BrowserRouter } from "react-router-dom";
 import { HuellitasProvider, HuellitasContext } from "./context";
 import Home from "./pages/Home";
 import MyAccount from "./pages/MyAccount";
@@ -32,18 +32,6 @@ const AppRoutes = () => {
 }
 
 function App() {
-  const history = useHistory();
-
-  useEffect(() => {
-    // On initial load, check if there's a redirect route saved
-    const redirectRoute = sessionStorage.redirect;
-    delete sessionStorage.redirect;
-    if (redirectRoute) {
-      // If there's a saved redirect route, navigate to it
-      history.push(redirectRoute);
-    }
-  }, [history]);
-  
   return (
     <BrowserRouter>
       <HuellitasProvider>
