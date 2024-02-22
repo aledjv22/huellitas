@@ -220,7 +220,7 @@ function SignUp () {
       <div className="flex flex-col w-screen h-screen items-center justify-center">
         <h2 className="text-3xl font-bold text-[#86155f]"> Registro Exitoso </h2>
         <img src={check} alt="check" className="w-20 h-20 mb-4"/>
-        <Link to="/huellitas/sign-in">
+        <Link to="/sign-in">
           <button className={stylesButton}>
               Inicia sesión
           </button>

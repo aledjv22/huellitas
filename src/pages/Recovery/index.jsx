@@ -40,7 +40,7 @@ function Recovery () {
         <img src={check} alt="check" className="w-20 h-20 mb-2"/>
 
         <button className={stylesButton}>
-          <Link to="/huellitas/sign-in">
+          <Link to="/sign-in">
             Ir a iniciar sesión
           </Link>
         </button>

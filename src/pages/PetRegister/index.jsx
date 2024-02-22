@@ -72,7 +72,7 @@ function PetRegister () {
 
         <img src={check} alt="check" className="w-20 h-20 mb-4"/>
         
-        <Link to={`/huellitas/pet/${id}`}>
+        <Link to={`/pet/${id}`}>
           <button className={stylesButton}>
               Ver publicación
           </button>

@@ -104,7 +104,7 @@ function PetDetail () {
 
         <img src={check} alt="check" className="w-20 h-20 mb-4"/>
         
-        <Link to="/huellitas">
+        <Link to="/">
           <button className={`bg-gradient-to-r from-[#e022a7] to-[#a11371] 
             hover:bg-gradient-to-r hover:to-[#e022a7] hover:from-[#a11371]  
             text-[#fccef4] font-bold rounded-lg w-[300px] mb-4 py-3`}>

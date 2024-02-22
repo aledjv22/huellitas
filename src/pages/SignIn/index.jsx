@@ -101,7 +101,7 @@ function SignIn () {
 
         <img src={check} alt="check" className="w-20 h-20 mb-4"/>
 
-        <Link to="/huellitas/">
+        <Link to="/">
           <button className={stylesButton}>
             Ir al inicio
           </button>

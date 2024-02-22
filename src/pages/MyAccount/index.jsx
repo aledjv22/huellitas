@@ -74,7 +74,7 @@ function MyAccount () {
         }}
         className="my-1 mx-3 hover:bg-gradient-to-r hover:to-[#e022a7] hover:from-[#a11371] rounded-3xl flex justify-center"
       >
-        <Link to="/huellitas/">
+        <Link to="/">
           Cerrar sesión
         </Link>
       </li>
@@ -102,7 +102,7 @@ function MyAccount () {
             isWatchingPets && 
             <div className="px-2 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 justify-items-center flex-grow">
               {myPets.map(pet => (
-                  <Link to={`/huellitas/pet/${pet.id}`} key={pet.id}>
+                  <Link to={`/pet/${pet.id}`} key={pet.id}>
                     <Card pet={pet} key={pet.id}/>
                   </Link>
                 ))}

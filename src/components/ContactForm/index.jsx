@@ -60,14 +60,14 @@ function ContactForm ({ userId, namePet, statePet, petId, API_URL }) {
 
       <input type="submit" value="Enviar" className={stylesButton} />
 
-      <input type="hidden" name="_next" value={`https://aledjv22.github.io/huellitas/pet/${petId}`} />
+      <input type="hidden" name="_next" value={`https://www.huellitas.live/pet/${petId}`} />
 
       <input type="hidden" name="_captcha" value="false" />
 
       <input type="hidden" name="_subject" 
       value={`${statePet === "En adopción"?"Adopción" : "Información"} de ${namePet}`} />
 
-      <input type="hidden" name="Enlace" value={`https://aledjv22.github.io/huellitas/pet/${petId}`} />
+      <input type="hidden" name="Enlace" value={`https://www.huellitas.live/pet/${petId}`} />
 
     </form>
   );
