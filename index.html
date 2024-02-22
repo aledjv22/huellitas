@@ -6,11 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Huellitas</title>
     <script>
-      // If there is a saved route in sessionStorage, update the current route
-      if (sessionStorage.redirect) {
-        history.replaceState(null, null, sessionStorage.redirect);
-        sessionStorage.removeItem('redirect');
-      }
+      (function(){
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect != location.href) {
+          history.replaceState(null, null, redirect);
+        }
+      })();
     </script>
     <script type="module" crossorigin src="/assets/index-1ec0de24.js"></script>
     <link rel="stylesheet" href="/assets/index-81055be6.css">
