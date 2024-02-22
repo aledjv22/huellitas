@@ -13,19 +13,18 @@ import NavBar from "./components/NavBar";
 
 const AppRoutes = () => {
   const { isLoggedIn } = useContext(HuellitasContext);
-  const base = "huellitas";
   let routes = useRoutes([
-    {path: base, element: <Home />},
-    {path: base + "/my-account", element: isLoggedIn ? <MyAccount /> : <NotFound />},
-    {path: base + "/my-account/*", element: isLoggedIn ? <MyAccount /> : <NotFound />},
-    {path: base + "/sign-in", element: <SignIn />},
-    {path: base + "/sign-up", element: <SignUp />},
-    {path: base + "/recovery", element: <NotFound />},
-    {path: base + "/recovery/*", element: <Recovery />},
-    {path: base + "/pet/", element: <NotFound />},
-    {path: base + "/pet/register", element: isLoggedIn ? <PetRegister /> : <NotFound />},
-    {path: base + "/pet/*", element: <PetDetail />},
-    {path: base + "/*", element: <NotFound />}
+    {path: "/", element: <Home />},
+    {path: "/my-account", element: isLoggedIn ? <MyAccount /> : <NotFound />},
+    {path: "/my-account/*", element: isLoggedIn ? <MyAccount /> : <NotFound />},
+    {path: "/sign-in", element: <SignIn />},
+    {path: "/sign-up", element: <SignUp />},
+    {path: "/recovery", element: <NotFound />},
+    {path: "/recovery/*", element: <Recovery />},
+    {path: "/pet/", element: <NotFound />},
+    {path: "/pet/register", element: isLoggedIn ? <PetRegister /> : <NotFound />},
+    {path: "/pet/*", element: <PetDetail />},
+    {path: "/*", element: <NotFound />}
   ]);
 
   return routes;
