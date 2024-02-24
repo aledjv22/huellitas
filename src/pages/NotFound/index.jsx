@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import Layout from "../../components/Layout";
 
 function NotFound () {
@@ -9,6 +10,9 @@ function NotFound () {
       <h2 className="mt-2 text-[#86155f] font-bold text-xl">
         Not Found
       </h2>
+      <Helmet>
+        <title> Huellitas | Not Found </title>
+      </Helmet>
     </Layout>
   )
 }

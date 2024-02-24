@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import Layout from "../../components/Layout";
 import Card from "../../components/Card";
 import { HuellitasContext } from "../../context";
@@ -51,6 +52,9 @@ function Home () {
           </Link>
         )}
       </div>
+      <Helmet>
+        <title> Huellitas </title>
+      </Helmet>
     </Layout>
   );
 }

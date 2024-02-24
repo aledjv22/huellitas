@@ -251,7 +251,6 @@ function PetDetail () {
 
       <Helmet>
         <title>{pet ? `Huellitas | ${pet.name}` : "Mascota no encontrada"}</title>
-        <meta property="og:image" content={pet ? pet.main_image : ""}/>
       </Helmet>
     </Layout>
   );

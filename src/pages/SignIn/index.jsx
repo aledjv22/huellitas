@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import PasswordRecoveryForm from "../../components/PasswordRecoveryForm";
 import { HuellitasContext } from "../../context";
 import { useLoginUser } from "../../utils/Users/loginUser";
@@ -126,6 +127,9 @@ function SignIn () {
       :
       renderForm()
       }
+      <Helmet>
+        <title>Iniciar sesión</title>
+      </Helmet>
     </Layout>
   );
 }

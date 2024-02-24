@@ -1,5 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { HuellitasContext } from "../../context";
 import { useChangePassword } from "../../utils/Users/changePassword";
 import Layout from "../../components/Layout";
@@ -101,6 +102,9 @@ function Recovery () {
       :
       isPasswordChanged? renderSuccess() : renderForm()
       }
+      <Helmet>
+        <title> Recuperar contraseña </title>
+      </Helmet>
     </Layout>
   );
 }

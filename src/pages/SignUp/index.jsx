@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { HuellitasContext } from "../../context";
 import { useProfilePicture } from "../../utils/Users/profilePicture";
 import { usePostUser } from "../../utils/Users/postUser";
@@ -236,6 +237,9 @@ function SignUp () {
       renderSuccess() :
       renderForm()
       }
+      <Helmet>
+        <title>Registro</title>
+      </Helmet>
     </Layout>
   );
 }

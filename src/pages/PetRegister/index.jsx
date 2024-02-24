@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { HuellitasContext } from "../../context";
 import { usePostPet } from "../../utils/Pets/postPet";
 import { usePostMainImage } from "../../utils/Pets/postMainImage";
@@ -199,6 +200,9 @@ function PetRegister () {
   return (
     <Layout>
       {registrationSuccess ? renderSuccess() : renderForm()}
+      <Helmet>
+        <title> Huellitas | Registro de mascotas </title>
+      </Helmet>
     </Layout>
   )
 }

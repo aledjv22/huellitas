@@ -1,5 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { HuellitasContext } from "../../context";
 import { useGetUsers } from "../../utils/Users/getUsers";
 import Layout from "../../components/Layout";
@@ -124,6 +125,9 @@ function MyAccount () {
 
         <div></div>
       </div>
+      <Helmet>
+        <title> Huellitas | Mi Cuenta </title>
+      </Helmet>
     </Layout>
   )
 }
