@@ -1,289 +1,318 @@
-# Huellitas: Adopción de mascotas
+# Huellitas: Pet Adoption
 
-## Descripción
+[Documentation in Spanish](README_es.md)
 
-Huellitas es una plataforma web dedicada a facilitar el proceso de adopción de mascotas, específicamente perros y gatos. Mi objetivo es proporcionar un espacio donde los refugios y personas particulares puedan publicar información sobre animales que necesitan un hogar o se encuentran perdidos, también donde las personas interesadas en adoptar puedan buscar y encontrar a su nuevo compañero o quienes busquen la ubicación de su mascota tal vez pueda encontrarla publicada.
+## Table of Contents
 
-La plataforma permite a los usuarios:
+- [Description](#description)
+- [Website Navigation](#website-navigation)
+  - [Navigation Bar](#navigation-bar)
+    - [Desktop Navigation Bar](#desktop-navigation-bar)
+    - [Mobile Navigation Bar](#mobile-navigation-bar)
+  - [Main Page](#main-page)
+    - [Desktop Navigation](#desktop-navigation)
+    - [Mobile Navigation](#mobile-navigation)
+  - [Pet Detail Page](#pet-detail-page)
+  - [Pet Registration Page](#pet-registration-page)
+  - [Login Page](#login-page)
+  - [Registration Page](#registration-page)
+  - [Password Recovery Page](#password-recovery-page)
+  - [My Account Page](#my-account-page)
+  - [Footer](#footer)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Technologies](#technologies)
+- [Contribution](#contribution)
+- [License](#license)
+- [Author](#author)
+  - [Contact](#contact)
 
-- Buscar mascotas disponibles para adopción: La página principal muestra una lista de todas las mascotas disponibles para adopción. Cada mascota se muestra en una tarjeta individual, que se genera utilizando el componente `Card`. Al hacer clic en una tarjeta, los usuarios son redirigidos a una página con más detalles sobre la mascota seleccionada.
-- Publicar información sobre mascotas que necesitan un hogar: Los usuarios registrados pueden agregar nuevas mascotas a la plataforma. Esto se realiza a través de un formulario de registro de mascotas, al que se puede acceder a través de un botón en la página principal.
-- Crear y gestionar su cuenta de usuario: Los usuarios pueden registrarse e iniciar sesión en la plataforma.
-- Contactar con los dueños o refugios para iniciar el proceso de adopción.
+## Description
 
-Huellitas está construida con React y utiliza React Router para la navegación. La información de las mascotas se obtiene de una API externa creada por mi a la cual puede acceder a su repositorio con este [link](https://github.com/aledjv22/db-huellitas "link"), y se utilizan hooks personalizados para realizar las diversas operaciones.
+Huellitas is a web platform dedicated to facilitating the pet adoption process, specifically dogs and cats. My goal is to provide a space where shelters and private individuals can post information about animals that need a home or are lost, also where people interested in adopting can search and find their new companion or those looking for their pet's location may be able to find it published.
 
-## Navegación en la página web
+The platform allows users to:
 
-### Barra de navegación
+- Search for pets available for adoption: The main page displays a list of all pets available for adoption. Each pet is displayed on an individual card, which is generated using the `Card` component. By clicking on a card, users are redirected to a page with more details about the selected pet.
+- Post information about pets that need a home: Registered users can add new pets to the platform. This is done through a pet registration form, which can be accessed through a button on the main page.
+- Create and manage their user account: Users can register and log in to the platform.
+- Contact owners or shelters to start the adoption process.
 
-Huellitas cuenta con una barra de navegación superior que se adapta tanto a dispositivos móviles como a pantallas de escritorio.
+Huellitas is built with React and uses React Router for navigation. The pet information is obtained from an external API created by me, which you can access its repository with this [link](https://github.com/aledjv22/db-huellitas "link"), and custom hooks are used to perform the various operations.
 
-#### Barra de navegación en escritorio
+## Website Navigation
 
-En la versión de escritorio, la barra de navegación se encuentra en la parte superior de la página y se mantiene fija mientras se desplaza por la página. Contiene los siguientes elementos:
+### Navigation Bar
 
-- **Logo: **Al hacer clic en el logo, se restablecen todos los filtros de búsqueda y se cierra cualquier submenú abierto.
+Huellitas features a top navigation bar that adapts to both mobile devices and desktop screens.
 
-- **Todos**: Este enlace lleva a la página principal y abre un submenú que permite filtrar la búsqueda por tipo, sexo, estado y tamaño de las mascotas.
+#### Desktop Navigation Bar
 
-- **Perros:** Este enlace filtra la búsqueda para mostrar solo perros y abre un submenú similar al anterior.
+In the desktop version, the navigation bar is located at the top of the page and remains fixed as you scroll through the page. It contains the following elements:
 
-- **Gatos:** Este enlace filtra la búsqueda para mostrar solo gatos y abre un submenú similar al anterior.
+- **Logo:** Clicking on the logo resets all search filters and closes any open submenu.
 
-- **Registrarse:** Este enlace solo es visible si el usuario no ha iniciado sesión. Lleva a la página de registro.
+- **All:** This link leads to the main page and opens a submenu that allows filtering the search by type, sex, status, and size of the pets.
 
-- **Ingresar:** Este enlace solo es visible si el usuario no ha iniciado sesión. Lleva a la página de inicio de sesión.
+- **Dogs:** This link filters the search to only show dogs and opens a submenu similar to the previous one.
 
-- **Mi Cuenta:** Este enlace solo es visible si el usuario ha iniciado sesión. Lleva a la página de la cuenta del usuario.
+- **Cats:** This link filters the search to only show cats and opens a submenu similar to the previous one.
 
-A continuación imágenes del mismo:
+- **Sign Up:** This link is only visible if the user is not logged in. It leads to the registration page.
+
+- **Log In:** This link is only visible if the user is not logged in. It leads to the login page.
+
+- **My Account:** This link is only visible if the user is logged in. It leads to the user's account page.
+
+Below are images of it:
 
 <div align="center">
- <img src="https://i.ibb.co/3RCsvV6/navbar-Desktop.png" alt="Imagen del navbar en escritorio" style="width: 100%;">
- <br/>>
- <figcaption></figcaption>Barra de navegación en su vista de escritorio</figcaption>
+ <img src="https://i.ibb.co/3RCsvV6/navbar-Desktop.png" alt="Desktop navbar image" style="width: 100%;">
+ <br/>
+ <figcaption>Navigation bar in its desktop view</figcaption>
 </div>
 
 <div align="center">
- <img src="https://i.ibb.co/Jpd081t/sub-Menu-Navbar-Desktop.png" alt="Imagen del menu de filtrado en escritorio" style="width: 40%;">
+ <img src="https://i.ibb.co/Jpd081t/sub-Menu-Navbar-Desktop.png" alt="Desktop filtering menu image" style="width: 40%;">
  <br/>
- <figcaption>Submenú de filtrado</figcaption>
+ <figcaption>Filtering submenu</figcaption>
 </div>
 
-#### Barra de navegación en móviles
+#### Mobile Navigation Bar
 
-En la versión móvil, la barra de navegación se convierte en un menú desplegable que se puede abrir y cerrar haciendo clic en el icono del menú. Contiene los mismos elementos que la versión de escritorio, pero están organizados verticalmente en lugar de horizontalmente. Además, los enlaces "Registrarse", "Ingresar" y "Mi Cuenta" se muestran dentro del menú desplegable en lugar de en la barra de navegación.
+In the mobile version, the navigation bar turns into a dropdown menu that can be opened and closed by clicking on the menu icon. It contains the same elements as the desktop version, but they are organized vertically instead of horizontally. Also, the "Sign Up", "Log In", and "My Account" links are displayed within the dropdown menu instead of on the navigation bar.
 
-A continuación imágenes del mismo:
-
-<div align="center">
- <img src="https://i.ibb.co/c83mtxJ/navbar-Mobile.jpg" alt="Imagen del navbar en móvil" style="width: 80%;">
- <br/>
- <figcaption>Barra de navegación en su vista de móvil</figcaption>
-</div>
+Below are images of it:
 
 <div align="center">
- <img src="https://i.ibb.co/C5xc2J5/nabvar-Mobile-open.jpg" alt="Imagen del menu de filtrado en móvil" style="width: 80%;">
+ <img src="https://i.ibb.co/c83mtxJ/navbar-Mobile.jpg" alt="Mobile navbar image" style="width: 80%;">
  <br/>
- <figcaption>Barra de navegación móvil desplegada</figcaption>
+ <figcaption>Navigation bar in its mobile view</figcaption>
 </div>
 
 <div align="center">
- <img src="https://i.ibb.co/smKcgYW/nav-Bar-Mobile-submenuopen.jpg" alt="Imagen del menu de filtrado en móvil" style="width: 80%;">
+ <img src="https://i.ibb.co/C5xc2J5/nabvar-Mobile-open.jpg" alt="Mobile filtering menu image" style="width: 80%;">
  <br/>
- <figcaption>Submenú de filtrado despegado</figcaption>
-</div>
-
-### Página principal
-
-La página principal de Huellitas presenta una lista de mascotas disponibles para adopción y en otros estados. Esta lista se adapta tanto a dispositivos móviles como a pantallas de escritorio.
-
-#### Navegación en escritorio
-En la versión de escritorio, la lista de mascotas se muestra en una cuadrícula con varias tarjetas por fila. Cada tarjeta representa una mascota y contiene una imagen de la mascota, su nombre y su tipo. Al hacer clic en una tarjeta, se redirige al usuario a una página de detalles para esa mascota.
-
-Si el usuario ha iniciado sesión, se muestra un botón flotante en la parte inferior derecha de la pantalla. Este botón permite al usuario registrar una nueva mascota. Si el usuario no ha iniciado sesión, al hacer clic en este botón se le redirige a la página de inicio de sesión.
-
-<div align="center">
- <img src="https://i.ibb.co/gwqyQt1/home.png" alt="Imagen de la página principal desde el escritorio" style="width: 100%;">
- <br/>
- <figcaption>Vista de la página principal desde un escritorio.</figcaption>
-</div>
-
-#### Navegación en móviles
-En la versión móvil, la lista de mascotas se muestra en una cuadrícula con una sola tarjeta por fila. Al igual que en la versión de escritorio, al hacer clic en una tarjeta se redirige al usuario a una página de detalles para esa mascota.
-
-El botón para registrar una nueva mascota se muestra de la misma manera que en la versión de escritorio.
-
-Si no se encuentran mascotas que coincidan con los criterios de búsqueda del usuario, se muestra un mensaje que indica que no se han encontrado resultados. Este mensaje se adapta a la pantalla del dispositivo y se muestra de manera prominente para que el usuario pueda verlo fácilmente.
-
-<div align="center">
- <img src="https://i.ibb.co/WxV31sL/home-mobile.png" alt="Imagen de la página principal desde el móvil" style="width: 50%;">
- <br/>
- <figcaption>Vista de la página principal desde un móvil.</figcaption>
-</div>
-
-### Página de detalle de mascota
-La página de detalle de mascota es una de las páginas más importantes de la aplicación. Aquí es donde los usuarios pueden ver información detallada sobre una mascota específica. La página se adapta tanto para dispositivos móviles como para escritorio.
-
-- **Botones de Edición y Eliminación:** Si el usuario está autenticado y es el dueño de la mascota, verá dos botones en la parte superior de la página: "Editar" y "Eliminar". Al hacer clic en "Editar", el usuario puede modificar los detalles de la mascota. Al hacer clic en "Eliminar", la mascota se eliminará de la base de datos.
-
-- **Información de la Mascota:** A continuación, se muestra la información detallada de la mascota, incluyendo su nombre, edad, sexo, tamaño, tipo, estado, ubicación y fecha de ingreso.
-
-- **Descripción de la Mascota:** Debajo de la información de la mascota, se encuentra una descripción detallada de la mascota.
-
-- **Galería de Imágenes:** A continuación, se muestra una galería de imágenes de la mascota.
-
-- **Información de la Fundación:** Si la mascota pertenece a una fundación, se muestra información detallada sobre la fundación.
-
-- **Formulario de Contacto:** En la parte inferior de la página, hay un formulario de contacto que los usuarios pueden utilizar para ponerse en contacto con el dueño de la mascota.
-
-<div align="center">
- <img src="https://i.ibb.co/dt4SnGL/pet-Detail-Desktop1.png" alt="Imagen de la página de detalle de mascota desde el escritorio uno" style="width: 100%;">
- <img src="https://i.ibb.co/SmG1N9c/pet-Detail-Desktop2.png" alt="Imagen de la página de detalle de mascota desde el escritorio dos" style="width: 100%;">
- <br/>
- <figcaption>Vista de la página de detalle de mascota desde un escritorio.</figcaption>
+ <figcaption>Deployed mobile navigation bar</figcaption>
 </div>
 
 <div align="center">
- <img src="https://i.ibb.co/tJMr9k9/pet-Detail-Mobile1.png" alt="Imagen de la página de detalle de mascota desde el móvil uno" style="width: 50%;">
- <img src="https://i.ibb.co/tz6Zs4Q/pet-Detail-Mobile2.png" alt="Imagen de la página de detalle de mascota desde el móvil dos" style="width: 50%;">
+ <img src="https://i.ibb.co/smKcgYW/nav-Bar-Mobile-submenuopen.jpg" alt="Mobile filtering menu image" style="width: 80%;">
  <br/>
- <figcaption>Vista de la página de detalle de mascota desde un móvil.</figcaption>
+ <figcaption>Deployed filtering submenu</figcaption>
 </div>
 
-### Página de registro de mascotas
+### Main Page
 
-La página de registro de mascotas es donde los usuarios pueden registrar una nueva mascota en la aplicación. La página se adapta tanto para dispositivos móviles como para escritorio.
+The main page of Huellitas presents a list of pets available for adoption and in other states. This list adapts to both mobile devices and desktop screens.
 
-- **Formulario de Registro:** El formulario de registro es el elemento principal de la página. Aquí, los usuarios pueden ingresar la información de la mascota, incluyendo su nombre, estado, ubicación, sexo, edad, descripción, tipo, tamaño, imagen principal y otras imágenes.
+#### Desktop Navigation
+In the desktop version, the pet list is displayed in a grid with several cards per row. Each card represents a pet and contains an image of the pet, its name, and its type. Clicking on a card redirects the user to a detail page for that pet.
 
-- **Botón de Registro:** Una vez que el usuario ha llenado toda la información requerida, puede hacer clic en el botón "Registrar mascota" para enviar el formulario. Si el registro es exitoso, se mostrará un mensaje de éxito.
-
-- **Mensaje de Éxito:** Si el registro es exitoso, se mostrará un mensaje de éxito con un botón que lleva al usuario a la página de detalles de la mascota recién registrada.
+If the user is logged in, a floating button is displayed at the bottom right of the screen. This button allows the user to register a new pet. If the user is not logged in, clicking on this button redirects them to the login page.
 
 <div align="center">
- <img src="https://i.ibb.co/vhnJJK2/pet-Register-Desktop.png" alt="Imagen del formulario de registro de mascotas desde un escritorio" style="width: 100%;">
+ <img src="https://i.ibb.co/gwqyQt1/home.png" alt="Image of the main page from the desktop" style="width: 100%;">
  <br/>
- <figcaption>Formulario de registro de mascotas desde un escritorio.</figcaption>
+ <figcaption>View of the main page from a desktop.</figcaption>
 </div>
 
+#### Mobile Navigation
+In the mobile version, the pet list is displayed in a grid with a single card per row. Just like in the desktop version, clicking on a card redirects the user to a detail page for that pet.
+
+The button to register a new pet is displayed in the same way as in the desktop version.
+
+If no pets are found that match the user's search criteria, a message is displayed indicating that no results have been found. This message adapts to the device's screen and is prominently displayed so that the user can easily see it.
+
 <div align="center">
- <img src="https://i.ibb.co/qDg9Z1H/pet-Register-Mobile.png" alt="Imagen del formulario de registro de mascotas desde un móvil" style="width: 50%;">
+ <img src="https://i.ibb.co/WxV31sL/home-mobile.png" alt="Image of the main page from the mobile" style="width: 50%;">
  <br/>
- <figcaption>Formulario de registro de mascotas desde un móvil.</figcaption>
+ <figcaption>View of the main page from a mobile.</figcaption>
 </div>
 
-### Página de inicio de sesión
+### Pet Detail Page
 
-La página de inicio de sesión es donde los usuarios pueden iniciar sesión en la aplicación. La página se adapta tanto para dispositivos móviles como para escritorio.
+The pet detail page is one of the most important pages of the application. Here is where users can view detailed information about a specific pet. The page adapts for both mobile devices and desktop.
 
-- **Formulario de Inicio de Sesión:** El formulario de inicio de sesión es el elemento principal de la página. Aquí, los usuarios pueden ingresar su correo electrónico y contraseña.
+- **Edit and Delete Buttons:** If the user is authenticated and is the owner of the pet, they will see two buttons at the top of the page: "Edit" and "Delete". By clicking on "Edit", the user can modify the pet's details. By clicking on "Delete", the pet will be removed from the database.
 
-- **Botón de Inicio de Sesión:** Una vez que el usuario ha llenado toda la información requerida, puede hacer clic en el botón "Iniciar sesión" para enviar el formulario. Si el inicio de sesión es exitoso, se mostrará un mensaje de éxito.
+- **Pet Information:** Next, the detailed information of the pet is displayed, including its name, age, sex, size, type, status, location, and admission date.
 
-- **Mensaje de Éxito:** Si el inicio de sesión es exitoso, se mostrará un mensaje de éxito con un botón que lleva al usuario a la página principal.
+- **Pet Description:** Below the pet's information, there is a detailed description of the pet.
 
-- **Recuperación de Contraseña:** Si el usuario olvidó su contraseña, puede hacer clic en el enlace "¿Olvidaste tu contraseña?" para ir a la página de recuperación de contraseña.
+- **Image Gallery:** Next, an image gallery of the pet is displayed.
 
-<div align="center">
- <img src="https://i.ibb.co/C8nvxjJ/sign-In-Desktop.png" alt="Imagen del sistema de inicio de sesión en escritorio" style="width: 100%;">
- <br/>
- <figcaption>Sistema de inicio de sesión en escritorio.</figcaption>
-</div>
+- **Foundation Information:** If the pet belongs to a foundation, detailed information about the foundation is displayed.
+
+- **Contact Form:** At the bottom of the page, there is a contact form that users can use to get in touch with the pet's owner.
 
 <div align="center">
- <img src="https://i.ibb.co/CnQ9r2B/sign-In-Mobile.png" alt="Imagen del sistema de inicio de sesión en móvil" style="width: 50%;">
+ <img src="https://i.ibb.co/dt4SnGL/pet-Detail-Desktop1.png" alt="Image of the pet detail page from the desktop one" style="width: 100%;">
+ <img src="https://i.ibb.co/SmG1N9c/pet-Detail-Desktop2.png" alt="Image of the pet detail page from the desktop two" style="width: 100%;">
  <br/>
- <figcaption>Sistema de inicio de sesión en móvil.</figcaption>
-</div>
-
-### Página de Registro
-
-La página de Registro (SignUp) es donde los usuarios pueden crear una nueva cuenta en la aplicación. La página se adapta tanto para dispositivos móviles como para escritorio.
-
-- **Formulario de Registro:** El formulario de registro es el elemento principal de la página. Aquí, los usuarios pueden ingresar su nombre, apellido, correo electrónico, contraseña y otros datos opcionales como teléfono, foto de perfil y detalles de la fundación (sí representan a una).
-
-- **Botón de Registro:** Una vez que el usuario ha llenado toda la información requerida, puede hacer clic en el botón "Crear cuenta" para enviar el formulario. Si el registro es exitoso, se mostrará un mensaje de éxito.
-
-- **Mensaje de Éxito:** Si el registro es exitoso, se mostrará un mensaje de éxito con un botón que lleva al usuario a la página de inicio de sesión.
-
-<div align="center">
- <img src="https://i.ibb.co/mTVZKNv/sign-Up-Desktop.png" alt="Imagen del sistema de registro en escritorio" style="width: 100%;">
- <br/>
- <figcaption>Sistema de registro en escritorio.</figcaption>
+ <figcaption>View of the pet detail page from a desktop.</figcaption>
 </div>
 
 <div align="center">
- <img src="https://i.ibb.co/sKDfPX0/sign-Up-Mobile.png" alt="Imagen del sistema de registro en móvil" style="width: 50%;">
+ <img src="https://i.ibb.co/tJMr9k9/pet-Detail-Mobile1.png" alt="Image of the pet detail page from the mobile one" style="width: 50%;">
+ <img src="https://i.ibb.co/tz6Zs4Q/pet-Detail-Mobile2.png" alt="Image of the pet detail page from the mobile two" style="width: 50%;">
  <br/>
- <figcaption>Sistema de registro en móvil.</figcaption>
+ <figcaption>View of the pet detail page from a mobile.</figcaption>
 </div>
 
-### Página de recuperación de contraseña
+### Pet Registration Page
 
-La página de Recuperación de Contraseña es donde los usuarios pueden cambiar su contraseña si la han olvidado. La página se adapta tanto para dispositivos móviles como para escritorio.
+The pet registration page is where users can register a new pet in the application. The page adapts for both mobile devices and desktop.
 
-- **Formulario de Cambio de Contraseña:** El formulario de cambio de contraseña es el elemento principal de la página. Aquí, los usuarios pueden ingresar su nueva contraseña y confirmar.
+- **Registration Form:** The registration form is the main element of the page. Here, users can enter the pet's information, including its name, status, location, sex, age, description, type, size, main image, and other images.
 
-- **Botón de Cambio de Contraseña:** Una vez que el usuario ha llenado toda la información requerida, puede hacer clic en el botón "Cambiar contraseña" para enviar el formulario. Si el cambio de contraseña es exitoso, se mostrará un mensaje de éxito.
+- **Registration Button:** Once the user has filled in all the required information, they can click on the "Register pet" button to submit the form. If the registration is successful, a success message will be displayed.
 
-- **Mensaje de Éxito:** Si el cambio de contraseña es exitoso, se mostrará un mensaje de éxito con un botón que lleva al usuario a la página de inicio de sesión.
-
-<div align="center">
- <img src="https://i.ibb.co/3cLZpWb/recovery-Desktop.png" alt="Imagen del sistema de recuperación de contraseña en escritorio" style="width: 100%;">
- <br/>
- <figcaption>Sistema de recuperación de contraseña en escritorio.</figcaption>
+- **Success Message:** If the registration is successful, a success message will be displayed with a button that takes the user to the detail page of the newly registered pet.
 
 <div align="center">
- <img src="https://i.ibb.co/qp1gLvR/recovery-Mobile.png" alt="Imagen del sistema de recuperación de contraseña en móvil" style="width: 50%;">
+ <img src="https://i.ibb.co/vhnJJK2/pet-Register-Desktop.png" alt="Image of the pet registration form from a desktop" style="width: 100%;">
  <br/>
- <figcaption>Sistema de recuperación de contraseña en móvil.</figcaption>
-</div>
-
-### Página de mi cuenta
-
-La página de mi cuenta es donde los usuarios pueden ver y editar su información personal, así como ver sus mascotas. La página se adapta tanto para dispositivos móviles como para escritorio.
-
-- **Datos Personales:** Al hacer clic en "Datos Personales", se muestra la información personal del usuario.
-
-- **Editar Perfil:** Al hacer clic en "Editar Perfil", se muestra un formulario que permite al usuario editar su información personal.
-
-- **Mis Mascotas:** Al hacer clic en "Mis Mascotas", se muestra una lista de las mascotas del usuario.
-
-- **Cerrar sesión:** Al hacer clic en "Cerrar sesión", el usuario cierra la sesión y se redirige a la página de inicio.
-
-<div align="center">
- <img src="https://i.ibb.co/bddHvws/my-Account-Desktop.png" alt="Imagen de la página de mi cuenta desde el escritorio" style="width: 100%;">
- <br/>
- <figcaption>Vista de la página de mi cuenta desde un escritorio.</figcaption>
+ <figcaption>Pet registration form from a desktop.</figcaption>
 </div>
 
 <div align="center">
- <img src="https://i.ibb.co/6JFQZ8D/my-Account-Mobile.png" alt="Imagen de la página de mi cuenta desde el móvil" style="width: 50%;">
+ <img src="https://i.ibb.co/qDg9Z1H/pet-Register-Mobile.png" alt="Image of the pet registration form from a mobile" style="width: 50%;">
  <br/>
- <figcaption>Vista de la página de mi cuenta desde un móvil.</figcaption>
+ <figcaption>Pet registration form from a mobile.</figcaption>
 </div>
 
-### Pie de página (Footer)
+### Login Page
 
-El pie de página (Footer) es donde los usuarios pueden encontrar información adicional sobre la página y el creador. El diseño del pie de página se adapta tanto para dispositivos móviles como para escritorio.
+The login page is where users can log into the application. The page adapts for both mobile devices and desktop.
 
-- **Derechos de Autor:** Se muestra un mensaje de derechos de autor que indica que todos los derechos están reservados.
+- **Login Form:** The login form is the main element of the page. Here, users can enter their email and password.
 
-- **Información del Creador:** Se muestra un mensaje que indica quién creó la página y por qué. Este mensaje incluye un enlace al perfil de Twitter del creador.
+- **Login Button:** Once the user has filled in all the required information, they can click on the "Log in" button to submit the form. If the login is successful, a success message will be displayed.
+
+- **Success Message:** If the login is successful, a success message will be displayed with a button that takes the user to the main page.
+
+- **Password Recovery:** If the user forgot their password, they can click on the "Forgot your password?" link to go to the password recovery page.
 
 <div align="center">
- <img src="https://i.ibb.co/rydjSY3/footer-Desktop.png" alt="Imagen del footer en escritorio" style="width: 100%;">
+ <img src="https://i.ibb.co/C8nvxjJ/sign-In-Desktop.png" alt="Image of the login system from a desktop" style="width: 100%;">
  <br/>
- <figcaption>Footer en escritorio.</figcaption>
+ <figcaption>Login system from a desktop.</figcaption>
 </div>
 
 <div align="center">
- <img src="https://i.ibb.co/d20grtq/footer-Mobile.png" alt="Imagen del footer en móvil" style="width: 50%;">
+ <img src="https://i.ibb.co/CnQ9r2B/sign-In-Mobile.png" alt="Image of the login system from a mobile" style="width: 50%;">
  <br/>
- <figcaption>Footer capturado desde un móvil.</figcaption>
+ <figcaption>Login system from a mobile.</figcaption>
 </div>
 
-## Instalación
+### Registration Page
 
-Para instalar Huellitas, sigue estos pasos:
+The Registration (SignUp) page is where users can create a new account in the application. The page adapts for both mobile devices and desktop.
 
-1. Clona el repositorio.
+- **Registration Form:** The registration form is the main element of the page. Here, users can enter their first name, last name, email, password, and other optional data such as phone number, profile picture, and foundation details (if they represent one).
 
-2. Instala las dependencias usando `npm install`.
+- **Registration Button:** Once the user has filled in all the required information, they can click on the "Create account" button to submit the form. If the registration is successful, a success message will be displayed.
 
-3. Inicia el servidor de desarrollo usando `npm run dev`.
+- **Success Message:** If the registration is successful, a success message will be displayed with a button that takes the user to the login page.
 
-## Uso
+<div align="center">
+ <img src="https://i.ibb.co/mTVZKNv/sign-Up-Desktop.png" alt="Image of the registration system from a desktop" style="width: 100%;">
+ <br/>
+ <figcaption>Registration system from a desktop.</figcaption>
+</div>
 
-Huellitas es una página web diseñada para fomentar la adopción de perros y gatos, sin embargo, actualmente existe una limitación técnica que afecta la visualización del contenido de las mascotas directamente desde esta documentación.
+<div align="center">
+ <img src="https://i.ibb.co/sKDfPX0/sign-Up-Mobile.png" alt="Image of the registration system from a mobile" style="width: 50%;">
+ <br/>
+ <figcaption>Registration system from a mobile.</figcaption>
+</div>
 
-Para acceder al contenido completo de las mascotas disponibles para adopción, por favor visita [Huellitas](https://www.huellitas.live/) en tu navegador. Ten en cuenta que debido a restricciones en la base de datos, el acceso directo a ciertas rutas desde esta documentación no está disponible en este momento.
+### Password Recovery Page
 
-Una vez en la página, podrás explorar las diferentes secciones dedicadas a perros y gatos disponibles para adopción. También podrás realizar búsquedas, filtrar resultados y ponerte en contacto con los refugios para obtener más información sobre las mascotas disponibles.
+The Password Recovery page is where users can change their password if they have forgotten it. The page adapts for both mobile devices and desktop.
 
-## Tecnologías
+- **Password Change Form:** The password change form is the main element of the page. Here, users can enter their new password and confirm it.
+
+- **Password Change Button:** Once the user has filled in all the required information, they can click on the "Change password" button to submit the form. If the password change is successful, a success message will be displayed.
+
+- **Success Message:** If the password change is successful, a success message will be displayed with a button that takes the user to the login page.
+
+<div align="center">
+ <img src="https://i.ibb.co/3cLZpWb/recovery-Desktop.png" alt="Image of the password recovery system from a desktop" style="width: 100%;">
+ <br/>
+ <figcaption>Password recovery system from a desktop.</figcaption>
+</div>
+
+<div align="center">
+ <img src="https://i.ibb.co/qp1gLvR/recovery-Mobile.png" alt="Image of the password recovery system from a mobile" style="width: 50%;">
+ <br/>
+ <figcaption>Password recovery system from a mobile.</figcaption>
+</div>
+
+### My Account Page
+
+The My Account page is where users can view and edit their personal information, as well as view their pets. The page adapts for both mobile devices and desktop.
+
+- **Personal Data:** By clicking on "Personal Data", the user's personal information is displayed.
+
+- **Edit Profile:** By clicking on "Edit Profile", a form is displayed that allows the user to edit their personal information.
+
+- **My Pets:** By clicking on "My Pets", a list of the user's pets is displayed.
+
+- **Log Out:** By clicking on "Log Out", the user logs out and is redirected to the home page.
+
+<div align="center">
+ <img src="https://i.ibb.co/bddHvws/my-Account-Desktop.png" alt="Image of the my account page from a desktop" style="width: 100%;">
+ <br/>
+ <figcaption>View of the my account page from a desktop.</figcaption>
+</div>
+
+<div align="center">
+ <img src="https://i.ibb.co/6JFQZ8D/my-Account-Mobile.png" alt="Image of the my account page from a mobile" style="width: 50%;">
+ <br/>
+ <figcaption>View of the my account page from a mobile.</figcaption>
+</div>
+
+### Footer
+
+The footer is where users can find additional information about the page and the creator. The footer design adapts for both mobile devices and desktop.
+
+- **Copyright:** A copyright message is displayed indicating that all rights are reserved.
+
+- **Creator Information:** A message is displayed indicating who created the page and why. This message includes a link to the creator's Twitter profile.
+
+<div align="center">
+ <img src="https://i.ibb.co/rydjSY3/footer-Desktop.png" alt="Image of the footer on desktop" style="width: 100%;">
+ <br/>
+ <figcaption>Footer on desktop.</figcaption>
+</div>
+
+<div align="center">
+ <img src="https://i.ibb.co/d20grtq/footer-Mobile.png" alt="Image of the footer on mobile" style="width: 50%;">
+ <br/>
+ <figcaption>Footer captured from a mobile.</figcaption>
+</div>
+
+## Installation
+
+To install Huellitas, follow these steps:
+
+1. Clone the repository.
+
+2. Install the dependencies using `npm install`.
+
+3. Start the development server using `npm run dev`.
+
+## Usage
+
+Huellitas is a web page designed to promote the adoption of dogs and cats, however, there is currently a technical limitation that affects the display of pet content directly from this documentation.
+
+To access the full content of the pets available for adoption, please visit [Huellitas](https://www.huellitas.live/) in your browser. Please note that due to database restrictions, direct access to certain routes from this documentation is not available at this time.
+
+Once on the page, you will be able to explore the different sections dedicated to dogs and cats available for adoption. You can also perform searches, filter results, and contact shelters for more information about the available pets.
+
+## Technologies
 
 - React
 - React Router
@@ -292,47 +321,47 @@ Una vez en la página, podrás explorar las diferentes secciones dedicadas a per
 - HTML
 - JavaScript
 
-## Contribución
+## Contribution
 
-¡Estamos abiertos a contribuciones! Si deseas contribuir a Huellitas, te agradecemos tu interés y te pedimos que sigas estas pautas para enviar tus contribuciones de manera efectiva:
+We are open to contributions! If you wish to contribute to Huellitas, we appreciate your interest and ask you to follow these guidelines to effectively submit your contributions:
 
-1. **Fork del repositorio:** Haz un fork del repositorio en GitHub haciendo clic en el botón "Fork" en la esquina superior derecha de esta página. Esto creará una copia del repositorio en tu propia cuenta.
+1. **Fork the repository:** Fork the repository on GitHub by clicking the "Fork" button in the upper right corner of this page. This will create a copy of the repository in your own account.
 
-2. **Clona tu fork:** Clona tu fork del repositorio a tu máquina local. Puedes hacerlo ejecutando el siguiente comando en tu terminal:
+2. **Clone your fork:** Clone your fork of the repository to your local machine. You can do this by running the following command in your terminal:
 
-3. **Crea una nueva rama:** Antes de comenzar a hacer cambios, crea una nueva rama para tu contribución. Esto ayudará a mantener tu trabajo separado de la rama principal del repositorio. Puedes hacerlo ejecutando el siguiente comando:
+3. **Create a new branch:** Before you start making changes, create a new branch for your contribution. This will help keep your work separate from the main branch of the repository. You can do this by running the following command:
 ```bash
-git checkout -b nombre-de-tu-funcionalidad
+git checkout -b name-of-your-feature
 ```
 
-4. **Realiza tus cambios:** Haz los cambios necesarios en tu código para implementar la funcionalidad que deseas agregar o corregir. Asegúrate de seguir las pautas de estilo y las mejores prácticas de codificación del proyecto.
+4. **Make your changes:** Make the necessary changes in your code to implement the functionality you want to add or correct. Be sure to follow the style guidelines and best coding practices of the project.
 
-5. **Haz commit de tus cambios:** Una vez que hayas terminado de hacer tus cambios, haz commit de ellos con un mensaje descriptivo. Puedes hacerlo ejecutando los siguientes comandos:
+5. **Commit your changes:** Once you have finished making your changes, commit them with a descriptive message. You can do this by running the following commands:
 ```bash
 git add .
-git commit -m "Agrega una descripción breve de tus cambios"
+git commit -m "Add a brief description of your changes"
 ```
 
-6. **Envía tus cambios:** Después de hacer commit de tus cambios, es hora de enviarlos a tu repositorio en GitHub. Puedes hacerlo ejecutando el siguiente comando:
+6. **Push your changes:** After committing your changes, it's time to push them to your repository on GitHub. You can do this by running the following command:
 ```bash
-git push origin nombre-de-tu-funcionalidad
+git push origin name-of-your-feature
 ```
 
-7. **Abre una solicitud de extracción (Pull Request):** Una vez que tus cambios estén en tu fork del repositorio en GitHub, puedes abrir una solicitud de extracción para enviar tus cambios al repositorio original. Ve a la página de tu fork en GitHub y haz clic en el botón "Compare & pull request". Asegúrate de proporcionar una descripción detallada de tus cambios en la solicitud de extracción.
+7. **Open a Pull Request:** Once your changes are in your fork of the repository on GitHub, you can open a pull request to submit your changes to the original repository. Go to the page of your fork on GitHub and click on the "Compare & pull request" button. Be sure to provide a detailed description of your changes in the pull request.
 
-Una vez que hayas enviado tu solicitud de extracción, estaremos encantados de revisar tus cambios y fusionarlos en el repositorio principal si son apropiados. ¡Gracias por contribuir a Huellitas!
+Once you have submitted your pull request, we will be delighted to review your changes and merge them into the main repository if they are appropriate. Thank you for contributing to Huellitas!
 
-## Licencia
+## License
 
-Huellitas está bajo la Licencia MIT. Consulta el archivo `LICENSE` para obtener más información.
+Huellitas is under the MIT License. See the `LICENSE` file for more information.
 
-## Autor
+## Author
 
 [Victor Alejandro Díaz Jáuregui](https://twitter.com/v_alediaz_ "Victor Alejandro Díaz Jáuregui")
 
-### Contacto
+### Contact
 
-Si tienes alguna pregunta o inquietud sobre Huellitas, no dudes en ponerte en contacto conmigo a través de mi perfil de Twitter o enviándome un correo electrónico a:
+If you have any questions or concerns about Huellitas, feel free to contact me through my Twitter profile or by sending me an email at:
 
 <div align="center">
  <a href="https://twitter.com/v_alediaz_" target="_blank">
