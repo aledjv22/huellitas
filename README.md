@@ -8,7 +8,7 @@ La plataforma permite a los usuarios:
 
 - Buscar mascotas disponibles para adopción: La página principal muestra una lista de todas las mascotas disponibles para adopción. Cada mascota se muestra en una tarjeta individual, que se genera utilizando el componente `Card`. Al hacer clic en una tarjeta, los usuarios son redirigidos a una página con más detalles sobre la mascota seleccionada.
 - Publicar información sobre mascotas que necesitan un hogar: Los usuarios registrados pueden agregar nuevas mascotas a la plataforma. Esto se realiza a través de un formulario de registro de mascotas, al que se puede acceder a través de un botón en la página principal.
-- Crear y gestionar su cuenta de usuario: Los usuarios pueden registrarse e iniciar sesión en la plataforma. 
+- Crear y gestionar su cuenta de usuario: Los usuarios pueden registrarse e iniciar sesión en la plataforma.
 - Contactar con los dueños o refugios para iniciar el proceso de adopción.
 
 Huellitas está construida con React y utiliza React Router para la navegación. La información de las mascotas se obtiene de una API externa creada por mi a la cual puede acceder a su repositorio con este [link](https://github.com/aledjv22/db-huellitas "link"), y se utilizan hooks personalizados para realizar las diversas operaciones.
@@ -37,38 +37,43 @@ En la versión de escritorio, la barra de navegación se encuentra en la parte s
 
 - **Mi Cuenta:** Este enlace solo es visible si el usuario ha iniciado sesión. Lleva a la página de la cuenta del usuario.
 
-A continuación imagenes del mismo:
+A continuación imágenes del mismo:
 
-<figure style="text-align: center;">
-  <img src="https://i.ibb.co/3RCsvV6/navbar-Desktop.png" alt="Imagen del navbar en escritorio" style="width: 100%;">
-  <figcaption>Barra de navegación en su vista de escritorio</figcaption>
-</figure>
+<div align="center">
+ <img src="https://i.ibb.co/3RCsvV6/navbar-Desktop.png" alt="Imagen del navbar en escritorio" style="width: 100%;">
+ <br/>>
+ <figcaption></figcaption>Barra de navegación en su vista de escritorio</figcaption>
+</div>
 
-<figure style="text-align: center;">
-  <img src="https://i.ibb.co/Jpd081t/sub-Menu-Navbar-Desktop.png" alt="Imagen del menu de filtrado en escritorio" style="width: 40%;">
-  <figcaption>Submenú de filtrado</figcaption>
-</figure>
+<div align="center">
+ <img src="https://i.ibb.co/Jpd081t/sub-Menu-Navbar-Desktop.png" alt="Imagen del menu de filtrado en escritorio" style="width: 40%;">
+ <br/>
+ <figcaption>Submenú de filtrado</figcaption>
+</div>
 
 #### Barra de navegación en móviles
 
 En la versión móvil, la barra de navegación se convierte en un menú desplegable que se puede abrir y cerrar haciendo clic en el icono del menú. Contiene los mismos elementos que la versión de escritorio, pero están organizados verticalmente en lugar de horizontalmente. Además, los enlaces "Registrarse", "Ingresar" y "Mi Cuenta" se muestran dentro del menú desplegable en lugar de en la barra de navegación.
 
-A continuación imagenes del mismo:
+A continuación imágenes del mismo:
 
-<figure style="text-align: center;">
-  <img src="https://i.ibb.co/c83mtxJ/navbar-Mobile.jpg" alt="Imagen del navbar en móvil" style="width: 80%;">
-  <figcaption>Barra de navegación en su vista de móvil</figcaption>
-</figure>
+<div align="center">
+ <img src="https://i.ibb.co/c83mtxJ/navbar-Mobile.jpg" alt="Imagen del navbar en móvil" style="width: 80%;">
+ <br/>
+ <figcaption>Barra de navegación en su vista de móvil</figcaption>
+</div>
 
-<figure style="text-align: center;">
-  <img src="https://i.ibb.co/C5xc2J5/nabvar-Mobile-open.jpg" alt="Imagen del menu de filtrado en móvil" style="width: 80%;">
-  <figcaption>Barra de navegación móvil desplegada</figcaption>
-</figure>
+<div align="center">
+ <img src="https://i.ibb.co/C5xc2J5/nabvar-Mobile-open.jpg" alt="Imagen del menu de filtrado en móvil" style="width: 80%;">
+ <br/>
+ <figcaption>Barra de navegación móvil desplegada</figcaption>
+</div>
 
-<figure style="text-align: center;">
-  <img src="https://i.ibb.co/smKcgYW/nav-Bar-Mobile-submenuopen.jpg" alt="Imagen del menu de filtrado en móvil" style="width: 80%;">
-  <figcaption>Submenú de filtrado despegado</figcaption>
-</figure>
+<div align="center">
+ <img src="https://i.ibb.co/smKcgYW/nav-Bar-Mobile-submenuopen.jpg" alt="Imagen del menu de filtrado en móvil" style="width: 80%;">
+ <br/>
+ <figcaption>Submenú de filtrado despegado</figcaption>
+</div>
 
 ### Página principal
 
@@ -79,11 +84,11 @@ En la versión de escritorio, la lista de mascotas se muestra en una cuadrícula
 
 Si el usuario ha iniciado sesión, se muestra un botón flotante en la parte inferior derecha de la pantalla. Este botón permite al usuario registrar una nueva mascota. Si el usuario no ha iniciado sesión, al hacer clic en este botón se le redirige a la página de inicio de sesión.
 
-<figure style="text-align: center;">
-  <img src="https://i.ibb.co/gwqyQt1/home.png" alt="Imagen de la página principal desde el escritorio" style="width: 100%;">
-  <figcaption>Vista de la página principal desde un escritorio.</figcaption>
-</figure>
-
+<div align="center">
+ <img src="https://i.ibb.co/gwqyQt1/home.png" alt="Imagen de la página principal desde el escritorio" style="width: 100%;">
+ <br/>
+ <figcaption>Vista de la página principal desde un escritorio.</figcaption>
+</div>
 
 #### Navegación en móviles
 En la versión móvil, la lista de mascotas se muestra en una cuadrícula con una sola tarjeta por fila. Al igual que en la versión de escritorio, al hacer clic en una tarjeta se redirige al usuario a una página de detalles para esa mascota.
@@ -92,11 +97,11 @@ El botón para registrar una nueva mascota se muestra de la misma manera que en 
 
 Si no se encuentran mascotas que coincidan con los criterios de búsqueda del usuario, se muestra un mensaje que indica que no se han encontrado resultados. Este mensaje se adapta a la pantalla del dispositivo y se muestra de manera prominente para que el usuario pueda verlo fácilmente.
 
-<figure style="text-align: center;">
-  <img src="https://i.ibb.co/WxV31sL/home-mobile.png" alt="Imagen de la página principal desde el móvil" style="width: 50%;">
-  <figcaption>Vista de la página principal desde un móvil.</figcaption>
-</figure>
-
+<div align="center">
+ <img src="https://i.ibb.co/WxV31sL/home-mobile.png" alt="Imagen de la página principal desde el móvil" style="width: 50%;">
+ <br/>
+ <figcaption>Vista de la página principal desde un móvil.</figcaption>
+</div>
 
 ### Página de detalle de mascota
 La página de detalle de mascota es una de las páginas más importantes de la aplicación. Aquí es donde los usuarios pueden ver información detallada sobre una mascota específica. La página se adapta tanto para dispositivos móviles como para escritorio.
@@ -113,17 +118,19 @@ La página de detalle de mascota es una de las páginas más importantes de la a
 
 - **Formulario de Contacto:** En la parte inferior de la página, hay un formulario de contacto que los usuarios pueden utilizar para ponerse en contacto con el dueño de la mascota.
 
-<figure style="text-align: center;">
-  <img src="https://i.ibb.co/dt4SnGL/pet-Detail-Desktop1.png" alt="Imagen de la página de detalle de mascota desde el escritorio uno" style="width: 100%;">
-  <img src="https://i.ibb.co/SmG1N9c/pet-Detail-Desktop2.png" alt="Imagen de la página de detalle de mascota desde el escritorio dos" style="width: 100%;">
-  <figcaption>Vista de la página de detalle de mascota desde un escritorio.</figcaption>
-</figure>
+<div align="center">
+ <img src="https://i.ibb.co/dt4SnGL/pet-Detail-Desktop1.png" alt="Imagen de la página de detalle de mascota desde el escritorio uno" style="width: 100%;">
+ <img src="https://i.ibb.co/SmG1N9c/pet-Detail-Desktop2.png" alt="Imagen de la página de detalle de mascota desde el escritorio dos" style="width: 100%;">
+ <br/>
+ <figcaption>Vista de la página de detalle de mascota desde un escritorio.</figcaption>
+</div>
 
-<figure style="text-align: center;">
-  <img src="https://i.ibb.co/tJMr9k9/pet-Detail-Mobile1.png" alt="Imagen de la página de detalle de mascota desde el móvil uno" style="width: 50%;">
-  <img src="https://i.ibb.co/tz6Zs4Q/pet-Detail-Mobile2.png" alt="Imagen de la página de detalle de mascota desde el móvil dos" style="width: 50%;">
-  <figcaption>Vista de la página de detalle de mascota desde un móvil.</figcaption>
-</figure>
+<div align="center">
+ <img src="https://i.ibb.co/tJMr9k9/pet-Detail-Mobile1.png" alt="Imagen de la página de detalle de mascota desde el móvil uno" style="width: 50%;">
+ <img src="https://i.ibb.co/tz6Zs4Q/pet-Detail-Mobile2.png" alt="Imagen de la página de detalle de mascota desde el móvil dos" style="width: 50%;">
+ <br/>
+ <figcaption>Vista de la página de detalle de mascota desde un móvil.</figcaption>
+</div>
 
 ### Página de registro de mascotas
 
@@ -135,17 +142,19 @@ La página de registro de mascotas es donde los usuarios pueden registrar una nu
 
 - **Mensaje de Éxito:** Si el registro es exitoso, se mostrará un mensaje de éxito con un botón que lleva al usuario a la página de detalles de la mascota recién registrada.
 
-<figure style="text-align: center;">
-  <img src="https://i.ibb.co/vhnJJK2/pet-Register-Desktop.png" alt="Imagen del formulario de registro de mascotas desde un escritorio" style="width: 100%;">
-  <figcaption>Formulario de registro de mascotas desde un escritorio.</figcaption>
-</figure>
+<div align="center">
+ <img src="https://i.ibb.co/vhnJJK2/pet-Register-Desktop.png" alt="Imagen del formulario de registro de mascotas desde un escritorio" style="width: 100%;">
+ <br/>
+ <figcaption>Formulario de registro de mascotas desde un escritorio.</figcaption>
+</div>
 
-<figure style="text-align: center;">
-  <img src="https://i.ibb.co/qDg9Z1H/pet-Register-Mobile.png" alt="Imagen del formulario de registro de mascotas desde un móvil" style="width: 50%;">
-  <figcaption>Formulario de registro de mascotas desde un móvil.</figcaption>
-</figure>
+<div align="center">
+ <img src="https://i.ibb.co/qDg9Z1H/pet-Register-Mobile.png" alt="Imagen del formulario de registro de mascotas desde un móvil" style="width: 50%;">
+ <br/>
+ <figcaption>Formulario de registro de mascotas desde un móvil.</figcaption>
+</div>
 
-### Página de inicio de sesión 
+### Página de inicio de sesión
 
 La página de inicio de sesión es donde los usuarios pueden iniciar sesión en la aplicación. La página se adapta tanto para dispositivos móviles como para escritorio.
 
@@ -157,54 +166,60 @@ La página de inicio de sesión es donde los usuarios pueden iniciar sesión en 
 
 - **Recuperación de Contraseña:** Si el usuario olvidó su contraseña, puede hacer clic en el enlace "¿Olvidaste tu contraseña?" para ir a la página de recuperación de contraseña.
 
-<figure style="text-align: center;">
-  <img src="https://i.ibb.co/C8nvxjJ/sign-In-Desktop.png" alt="Imagen del sistema de inicio de sesión en escritorio" style="width: 100%;">
-  <figcaption>Sistema de inicio de sesión en escritorio.</figcaption>
-</figure>
+<div align="center">
+ <img src="https://i.ibb.co/C8nvxjJ/sign-In-Desktop.png" alt="Imagen del sistema de inicio de sesión en escritorio" style="width: 100%;">
+ <br/>
+ <figcaption>Sistema de inicio de sesión en escritorio.</figcaption>
+</div>
 
-<figure style="text-align: center;">
-  <img src="https://i.ibb.co/CnQ9r2B/sign-In-Mobile.png" alt="Imagen del sistema de inicio de sesión en móvil" style="width: 50%;">
-  <figcaption>Sistema de inicio de sesión en móvil.</figcaption>
-</figure>
+<div align="center">
+ <img src="https://i.ibb.co/CnQ9r2B/sign-In-Mobile.png" alt="Imagen del sistema de inicio de sesión en móvil" style="width: 50%;">
+ <br/>
+ <figcaption>Sistema de inicio de sesión en móvil.</figcaption>
+</div>
 
 ### Página de Registro
 
 La página de Registro (SignUp) es donde los usuarios pueden crear una nueva cuenta en la aplicación. La página se adapta tanto para dispositivos móviles como para escritorio.
 
-- **Formulario de Registro:** El formulario de registro es el elemento principal de la página. Aquí, los usuarios pueden ingresar su nombre, apellido, correo electrónico, contraseña y otros datos opcionales como teléfono, foto de perfil y detalles de la fundación (si representan a una).
+- **Formulario de Registro:** El formulario de registro es el elemento principal de la página. Aquí, los usuarios pueden ingresar su nombre, apellido, correo electrónico, contraseña y otros datos opcionales como teléfono, foto de perfil y detalles de la fundación (sí representan a una).
 
 - **Botón de Registro:** Una vez que el usuario ha llenado toda la información requerida, puede hacer clic en el botón "Crear cuenta" para enviar el formulario. Si el registro es exitoso, se mostrará un mensaje de éxito.
 
 - **Mensaje de Éxito:** Si el registro es exitoso, se mostrará un mensaje de éxito con un botón que lleva al usuario a la página de inicio de sesión.
 
-<figure style="text-align: center;">
-  <img src="https://i.ibb.co/mTVZKNv/sign-Up-Desktop.png" alt="Imagen del sistema de registro en escritorio" style="width: 100%;">
-  <figcaption>Sistema de registro en escritorio.</figcaption>
-</figure>
+<div align="center">
+ <img src="https://i.ibb.co/mTVZKNv/sign-Up-Desktop.png" alt="Imagen del sistema de registro en escritorio" style="width: 100%;">
+ <br/>
+ <figcaption>Sistema de registro en escritorio.</figcaption>
+</div>
 
-<figure style="text-align: center;">
-  <img src="https://i.ibb.co/sKDfPX0/sign-Up-Mobile.png" alt="Imagen del sistema de registro en móvil" style="width: 50%;">
-  <figcaption>Sistema de registro en móvil.</figcaption>
-</figure>
+<div align="center">
+ <img src="https://i.ibb.co/sKDfPX0/sign-Up-Mobile.png" alt="Imagen del sistema de registro en móvil" style="width: 50%;">
+ <br/>
+ <figcaption>Sistema de registro en móvil.</figcaption>
+</div>
 
-### Página de recuperación de contraseña 
+### Página de recuperación de contraseña
 
 La página de Recuperación de Contraseña es donde los usuarios pueden cambiar su contraseña si la han olvidado. La página se adapta tanto para dispositivos móviles como para escritorio.
 
-- **Formulario de Cambio de Contraseña:** El formulario de cambio de contraseña es el elemento principal de la página. Aquí, los usuarios pueden ingresar su nueva contraseña y confirmarla.
+- **Formulario de Cambio de Contraseña:** El formulario de cambio de contraseña es el elemento principal de la página. Aquí, los usuarios pueden ingresar su nueva contraseña y confirmar.
 
 - **Botón de Cambio de Contraseña:** Una vez que el usuario ha llenado toda la información requerida, puede hacer clic en el botón "Cambiar contraseña" para enviar el formulario. Si el cambio de contraseña es exitoso, se mostrará un mensaje de éxito.
 
 - **Mensaje de Éxito:** Si el cambio de contraseña es exitoso, se mostrará un mensaje de éxito con un botón que lleva al usuario a la página de inicio de sesión.
 
-<figure style="text-align: center;">
-  <img src="https://i.ibb.co/3cLZpWb/recovery-Desktop.png" alt="Imagen del sistema de recuperación de contraseña en escritorio" style="width: 100%;">
-  <figcaption>Sistema de recuperación de contraseña en escritorio.</figcaption>
+<div align="center">
+ <img src="https://i.ibb.co/3cLZpWb/recovery-Desktop.png" alt="Imagen del sistema de recuperación de contraseña en escritorio" style="width: 100%;">
+ <br/>
+ <figcaption>Sistema de recuperación de contraseña en escritorio.</figcaption>
 
-<figure style="text-align: center;">
-  <img src="https://i.ibb.co/qp1gLvR/recovery-Mobile.png" alt="Imagen del sistema de recuperación de contraseña en móvil" style="width: 50%;">
-  <figcaption>Sistema de recuperación de contraseña en móvil.</figcaption>
-</figure>
+<div align="center">
+ <img src="https://i.ibb.co/qp1gLvR/recovery-Mobile.png" alt="Imagen del sistema de recuperación de contraseña en móvil" style="width: 50%;">
+ <br/>
+ <figcaption>Sistema de recuperación de contraseña en móvil.</figcaption>
+</div>
 
 ### Página de mi cuenta
 
@@ -218,16 +233,17 @@ La página de mi cuenta es donde los usuarios pueden ver y editar su informació
 
 - **Cerrar sesión:** Al hacer clic en "Cerrar sesión", el usuario cierra la sesión y se redirige a la página de inicio.
 
+<div align="center">
+ <img src="https://i.ibb.co/bddHvws/my-Account-Desktop.png" alt="Imagen de la página de mi cuenta desde el escritorio" style="width: 100%;">
+ <br/>
+ <figcaption>Vista de la página de mi cuenta desde un escritorio.</figcaption>
+</div>
 
-<figure style="text-align: center;">
-  <img src="https://i.ibb.co/bddHvws/my-Account-Desktop.png" alt="Imagen de la página de mi cuenta desde el escritorio" style="width: 100%;">
-  <figcaption>Vista de la página de mi cuenta desde un escritorio.</figcaption>
-</figure>
-
-<figure style="text-align: center;">
-  <img src="https://i.ibb.co/6JFQZ8D/my-Account-Mobile.png" alt="Imagen de la página de mi cuenta desde el móvil" style="width: 50%;">
-  <figcaption>Vista de la página de mi cuenta desde un móvil.</figcaption>
-</figure>
+<div align="center">
+ <img src="https://i.ibb.co/6JFQZ8D/my-Account-Mobile.png" alt="Imagen de la página de mi cuenta desde el móvil" style="width: 50%;">
+ <br/>
+ <figcaption>Vista de la página de mi cuenta desde un móvil.</figcaption>
+</div>
 
 ### Pie de página (Footer)
 
@@ -237,15 +253,17 @@ El pie de página (Footer) es donde los usuarios pueden encontrar información a
 
 - **Información del Creador:** Se muestra un mensaje que indica quién creó la página y por qué. Este mensaje incluye un enlace al perfil de Twitter del creador.
 
-<figure style="text-align: center;">
-  <img src="https://i.ibb.co/rydjSY3/footer-Desktop.png" alt="Imagen del footer en escritorio" style="width: 100%;">
-  <figcaption>Footer en escritorio.</figcaption>
-</figure>
+<div align="center">
+ <img src="https://i.ibb.co/rydjSY3/footer-Desktop.png" alt="Imagen del footer en escritorio" style="width: 100%;">
+ <br/>
+ <figcaption>Footer en escritorio.</figcaption>
+</div>
 
-<figure style="text-align: center;">
-  <img src="https://i.ibb.co/d20grtq/footer-Mobile.png" alt="Imagen del footer en móvil" style="width: 50%;">
-  <figcaption>Footer capturado desde un móvil.</figcaption>
-</figure>
+<div align="center">
+ <img src="https://i.ibb.co/d20grtq/footer-Mobile.png" alt="Imagen del footer en móvil" style="width: 50%;">
+ <br/>
+ <figcaption>Footer capturado desde un móvil.</figcaption>
+</div>
 
 ## Instalación
 
@@ -256,7 +274,6 @@ Para instalar Huellitas, sigue estos pasos:
 2. Instala las dependencias usando `npm install`.
 
 3. Inicia el servidor de desarrollo usando `npm run dev`.
-
 
 ## Uso
 
@@ -313,16 +330,16 @@ Huellitas está bajo la Licencia MIT. Consulta el archivo `LICENSE` para obtener
 
 [Victor Alejandro Díaz Jáuregui](https://twitter.com/v_alediaz_ "Victor Alejandro Díaz Jáuregui")
 
-## Contacto
+### Contacto
 
 Si tienes alguna pregunta o inquietud sobre Huellitas, no dudes en ponerte en contacto conmigo a través de mi perfil de Twitter o enviándome un correo electrónico a:
 
-<div style="display: flex; justify-content: center; gap: 10px;">
-  <a href="https://twitter.com/v_alediaz_" target="_blank">
-    <img src="https://img.icons8.com/color/48/000000/twitter.png" alt="Twitter" width="50" height="50">
-  </a>
+<div align="center">
+ <a href="https://twitter.com/v_alediaz_" target="_blank">
+   <img src="https://img.icons8.com/color/48/000000/twitter.png" alt="Twitter" width="50" height="50">
+ </a>
 
-  <a href="mailto:victor.diaz.jauregui@mi.unc.edu.ar" target="_blank">
-    <img src="https://img.icons8.com/color/48/000000/gmail.png" alt="Gmail" width="50" height="50">
-  </a>
+ <a href="mailto:victor.diaz.jauregui@mi.unc.edu.ar" target="_blank">
+   <img src="https://img.icons8.com/color/48/000000/gmail.png" alt="Gmail" width="50" height="50">
+ </a>
 </div>
