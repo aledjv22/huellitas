@@ -119,10 +119,11 @@ function PetDetail () {
   const renderView = () => {
     return (
       <article className={`flex flex-col items-center text-[#86155f] 
-      ${isMobile ? "w-[400px]" : "w-[500px]"}`}>
+      ${isMobile ? "w-screen px-1" : "w-[500px]"}`}>
         {isLoggedIn &&
         userLogged.user.id === pet.userId &&
         renderButtons()}
+        
         <div className={`w-full flex justify-between px-3 
         ${isMobile ? "flex-col items-center" : "flex-row"}`}>
           <h2 className="text-3xl font-bold underline">
@@ -195,10 +196,13 @@ function PetDetail () {
         <h2 className="text-3xl font-bold underline mt-3">
           Galería 
         </h2>
-        <Gallery gallery={pet.images} isMobile={isMobile}/>
+        <div className="w-full flex flex-col items-center">
+          <Gallery gallery={pet.images} isMobile={isMobile}/> 
+        </div>
 
         {user && user.role === "foundation" &&
-        <div className="flex flex-col text-lg font-semibold items-center text-[#86155f] w-[500px]">
+        <div className={`flex flex-col font-semibold items-center text-[#86155f]
+        ${isMobile ? "w-full" : "w-[500px]"}`}>
           <h2 className="text-3xl font-bold underline mt-3">
             Datos de la fundación
           </h2>
@@ -225,11 +229,15 @@ function PetDetail () {
         </div>
         }
 
-
-        <h2 className="text-3xl font-bold underline mt-3">
-          Contacto
-        </h2>
-        <ContactForm userId={pet.userId} namePet={pet.name} petId={pet.id} API_URL={API_URL} statePet={pet.state}/>
+        {pet.state === "En adopción" && (
+          <>
+            <h2 className="text-3xl font-bold underline mt-3">
+              Contacto
+            </h2>
+            <ContactForm userId={pet.userId} namePet={pet.name} petId={pet.id}
+            API_URL={API_URL} statePet={pet.state}/>
+          </>
+        )}
       </article>
     );
   }

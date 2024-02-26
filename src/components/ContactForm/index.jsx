@@ -9,6 +9,7 @@ function ContactForm ({ userId, namePet, statePet, petId, API_URL }) {
   const [thereIsAnEmail, setThereIsAnEmail] = useState(false);
   const [thereIsAPhone, setThereIsAPhone] = useState(false);
   const [emailPet, setEmailPet] = useState("");
+
   const getUser = useGetUser(API_URL);
 
   useEffect(() => {
@@ -53,7 +54,7 @@ function ContactForm ({ userId, namePet, statePet, petId, API_URL }) {
       }} required={!thereIsAnEmail} />
 
       <label htmlFor="message">
-        Porque quieres adoptar a {namePet}:
+        Cuál es tu interes en {namePet}?:
       </label>
       <input type="text" required id="message" placeholder="Tu mensaje"
       name="Mensaje" className={stylesInput} />

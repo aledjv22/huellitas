@@ -107,16 +107,13 @@ function MyAccount () {
         <div className={`flex ${isMobile ? "flex-col w-full" : "flex-grow"}`}>
           { renderOptions() }
 
-          { 
-            !isEditing && !isWatchingPets &&
-            (<div className={`${isMobile ? "w-full flex flex-col items-center" : ""}`}>
-              <UserData 
-              id={userLogged.user.id} 
-              token={userLogged.token}
-              API_URL={API_URL}
-              userLogged={userLogged.user}
-              setUserLogged={setUserLogged}/>
-            </div>)
+          {!isEditing && !isWatchingPets &&
+            <UserData 
+            id={userLogged.user.id} 
+            token={userLogged.token}
+            API_URL={API_URL}
+            userLogged={userLogged.user}
+            setUserLogged={setUserLogged}/>
           }
 
           { 

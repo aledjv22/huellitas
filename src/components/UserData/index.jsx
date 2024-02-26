@@ -45,8 +45,8 @@ function UserData ({ id, token, API_URL, userLogged, setUserLogged }) {
 
   return (
     <div
-    className={`flex flex-row ${isMobile ? "w-full left-0 ml-3 text-base" : "text-xl"}`} >
-      <ul className="flex flex-col font-medium text-[#520538] mx-2">
+    className={`flex flex-row ${isMobile ? "w-full left-0 pl-3 text-base font-normal" : "text-xl"}`} >
+      <ul className="flex flex-col font-medium text-[#520538] mr-1">
         {
         userData.map((data, index) => (
           <li key={index} className="mt-[6px]">

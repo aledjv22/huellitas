@@ -46,7 +46,7 @@ function NavBar () {
     setIsMobile(window.innerWidth < 915);
   } , [window.innerWidth]);
   return (
-    <nav className={`flex justify-between items-center fixed z-10 top-0 w-full py-1 px-8 text-[#86155f] bg-[#fcb6ee] 
+    <nav className={`flex justify-between items-center fixed z-10 top-0 w-screen py-1 px-8 text-[#86155f] bg-[#fcb6ee] 
     ${isMobile ? "text-sm border border-[#fcb6ee] h-11" : "font-semibold text-xl h-12"}`}>
       <NavLink to="/"
       className={activeStyle}
