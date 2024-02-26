@@ -21,10 +21,11 @@ function MyAccount () {
   const [myPets, setMyPets] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const [isWatchingPets, setIsWatchingPets] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 915);
 
   const getUsers = useGetUsers(API_URL);
 
-  const styleOptions = "my-1 px-2 hover:bg-[#f143c6]";
+  const styleOptions = "w-full my-1 px-2 hover:bg-[#f143c6] flex flex-col";
 
   const getMyPets = async () => {
     const response = await fetch(`${API_URL}/pets`);
@@ -41,31 +42,44 @@ function MyAccount () {
   useEffect(() => {
     getUsers(setUsers);
   }, [users]);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 915);
+  }, [window.innerWidth]);
   
   const renderOptions = () => (
-    <ul className="flex flex-col min-h-screen w-[144px] bg-[#f86ed9] font-medium text-base text-[#520538]">
-      <li className={styleOptions}
+    <ul 
+    className={`flex ${isMobile?
+    "w-full flex-row bg-[#f86ed9] font-medium text-base text-[#520538] justify-evenly" : 
+    "flex-col min-h-screen w-[144px] bg-[#f86ed9] font-medium text-xl text-[#520538]"}`}>
+      <li 
+      className={`${styleOptions} 
+      ${isMobile ? "w-auto hover:rounded-md justify-center" : ""}`}
       onClick={() => {
         setIsWatchingPets(false);
         setIsEditing(false);
       }}>
-        Datos Personales:
+        Datos <br/> Personales:
       </li>
 
-      <li className={styleOptions}
+      <li 
+      className={`${styleOptions} 
+      ${isMobile ? "w-auto hover:rounded-md justify-center" : ""}`}
       onClick={() => {
         setIsWatchingPets(false);
         setIsEditing(true);
       }} >
-        Editar Perfil:
+        Editar <br/> Perfil:
       </li>
 
-      <li className={styleOptions}
+      <li 
+      className={`${styleOptions} 
+      ${isMobile ? "w-auto hover:rounded-md justify-center" : ""}`}
       onClick={() => {
         setIsWatchingPets(true);
         setIsEditing(false);
       }}>
-        Mis Mascotas:
+        Mis <br/> Mascotas:
       </li>
 
       <li 
@@ -73,10 +87,14 @@ function MyAccount () {
           setUserLogged(null);
           setIsLoggedIn(false);
         }}
-        className="my-1 mx-3 hover:bg-gradient-to-r hover:to-[#e022a7] hover:from-[#a11371] rounded-3xl flex justify-center"
+        className={`my-1 mx-1 hover:bg-gradient-to-r hover:to-[#e022a7] hover:from-[#a11371] rounded-3xl flex justify-center items-center hover:text-[#fccef4] ${isMobile ? "py-1 px-4" : ""}`}
       >
         <Link to="/">
-          Cerrar sesión
+          Cerrar 
+          <br
+          className="h-0 w-0"
+          />
+          sesión
         </Link>
       </li>
     </ul>
@@ -86,17 +104,19 @@ function MyAccount () {
     <Layout>
       <Banner photo={ userLogged.user.image }/>
       <div className="flex justify-between w-full">
-        <div className="flex flex-grow">
+        <div className={`flex ${isMobile ? "flex-col w-full" : "flex-grow"}`}>
           { renderOptions() }
 
           { 
             !isEditing && !isWatchingPets &&
-            <UserData 
-            id={userLogged.user.id} 
-            token={userLogged.token}
-            API_URL={API_URL}
-            userLogged={userLogged.user}
-            setUserLogged={setUserLogged}/>
+            (<div className={`${isMobile ? "w-full flex flex-col items-center" : ""}`}>
+              <UserData 
+              id={userLogged.user.id} 
+              token={userLogged.token}
+              API_URL={API_URL}
+              userLogged={userLogged.user}
+              setUserLogged={setUserLogged}/>
+            </div>)
           }
 
           { 
@@ -112,18 +132,20 @@ function MyAccount () {
 
           {
             isEditing &&
-            <UserEdition users={users}
-            user={userLogged.user} 
-            setIsEditing={setIsEditing}
-            API_URL={API_URL}
-            userLogged={userLogged}
-            setUserLogged={setUserLogged}
-            /> 
+            (<div className={`${isMobile ? "w-full flex flex-col items-center" : ""}`}>
+              <UserEdition users={users}
+              user={userLogged.user} 
+              setIsEditing={setIsEditing}
+              API_URL={API_URL}
+              userLogged={userLogged}
+              setUserLogged={setUserLogged}
+              /> 
+            </div>)
           }
 
         </div>
 
-        <div></div>
+        {!isMobile && <div></div>}
       </div>
       <Helmet>
         <title> Huellitas | Mi Cuenta </title>

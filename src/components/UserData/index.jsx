@@ -23,7 +23,10 @@ function UserData ({ id, token, API_URL, userLogged, setUserLogged }) {
   };
 
   const [userData, setUserData] = useState(createUserData);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 915);
+
   const getUser = useGetUser(API_URL);
+
   useEffect(() => {
     const fetchUserData = async () => {
       const user = await getUser(id);
@@ -36,9 +39,14 @@ function UserData ({ id, token, API_URL, userLogged, setUserLogged }) {
     fetchUserData();
   }, [userLogged, userData]);
 
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 915);
+  }, [window.innerWidth]); 
+
   return (
-    <>
-      <ul className="flex flex-col font-medium text-base text-[#520538] mx-2">
+    <div
+    className={`flex flex-row ${isMobile ? "w-full left-0 ml-3 text-base" : "text-xl"}`} >
+      <ul className="flex flex-col font-medium text-[#520538] mx-2">
         {
         userData.map((data, index) => (
           <li key={index} className="mt-[6px]">
@@ -56,7 +64,7 @@ function UserData ({ id, token, API_URL, userLogged, setUserLogged }) {
         ))
         }
       </ul>
-    </>
+    </div>
   );
 }
 
