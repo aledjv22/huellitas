@@ -38,7 +38,7 @@ The platform allows users to:
 - Create and manage their user account: Users can register and log in to the platform.
 - Contact owners or shelters to start the adoption process.
 
-Huellitas is built with React and uses React Router for navigation. The pet information is obtained from an external API created by me, which you can access its repository with this [link](https://github.com/aledjv22/db-huellitas "link"), and custom hooks are used to perform the various operations.
+Huellitas is built with React and uses React Router for navigation. The pet information is obtained from an external API created by me, which you can access its repository with this [link](https://github.com/aledjv22/HuellitasAPI "link"), and custom hooks are used to perform the various operations.
 
 ## Website Navigation
 

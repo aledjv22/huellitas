@@ -39,7 +39,7 @@ La plataforma permite a los usuarios:
 - Crear y gestionar su cuenta de usuario: Los usuarios pueden registrarse e iniciar sesión en la plataforma.
 - Contactar con los dueños o refugios para iniciar el proceso de adopción.
 
-Huellitas está construida con React y utiliza React Router para la navegación. La información de las mascotas se obtiene de una API externa creada por mi a la cual puede acceder a su repositorio con este [link](https://github.com/aledjv22/db-huellitas "link"), y se utilizan hooks personalizados para realizar las diversas operaciones.
+Huellitas está construida con React y utiliza React Router para la navegación. La información de las mascotas se obtiene de una API externa creada por mi a la cual puede acceder a su repositorio con este [link](https://github.com/aledjv22/HuellitasAPI "link"), y se utilizan hooks personalizados para realizar las diversas operaciones.
 
 ## Navegación en la página web
 
